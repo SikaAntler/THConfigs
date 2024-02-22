@@ -23,21 +23,31 @@ local get_venv_version = function(venv)
 	end
 end
 
+local _venv_path
+local _venv_python
+
+function M.venv_changed(venv_path, venv_python)
+	_venv_path = venv_path
+	_venv_python = venv_python
+end
+
 function M.python_env()
 	if vim.bo.filetype ~= "python" then
 		return ""
 	end
 
-	local venv = os.getenv("VIRTUAL_ENV")
-	if venv == nil then
+	-- local venv = os.getenv("VIRTUAL_ENV")
+
+	if _venv_path == nil or _venv_python == nil then
 		return ""
-	else
-		venv = Path:new(venv)
-		local version = get_venv_version(venv)
-		local project = venv:parent():_split()
-		project = project[#project]
-		return string.format("%s (%s)", version, project)
 	end
+
+	local venv = Path:new(_venv_path)
+	local version = get_venv_version(venv)
+	local project = venv:parent():_split()
+	project = project[#project]
+
+	return string.format("venv: %s (%s)", version, project)
 end
 
 return M

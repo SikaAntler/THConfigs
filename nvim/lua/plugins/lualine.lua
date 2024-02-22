@@ -24,7 +24,7 @@ return {
 				icons_enabled = true,
 				theme = "auto",
 				disabled_filetypes = { statusline = { "dashboard" } },
-				-- globalstatus = true,
+				globalstatus = true,
 			},
 			sections = {
 				lualine_a = { "mode" },

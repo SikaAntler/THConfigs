@@ -42,5 +42,5 @@ return {
 	show_new_tab_button_in_tab_bar = true,
 
 	-- Scroll bar
-	enable_scroll_bar = true,
+	enable_scroll_bar = false,
 }

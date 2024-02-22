@@ -10,7 +10,7 @@ vim.o.list = false
 -- Cursor
 vim.wo.cursorline = true
 
--- Tab
+-- <Tab>
 vim.o.expandtab = true
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
@@ -50,3 +50,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Virtual text
 vim.o.virtualedit = "block"
+
+-- Status & Command
+-- vim.o.laststatus = 0
+vim.o.cmdheight = 1

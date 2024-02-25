@@ -45,7 +45,10 @@ require("lazy").setup({
 	require("plugins.trouble"), -- make issues more clarified
 	require("plugins.aerial"), -- class/function/variables outlines
 	require("plugins.telescope"), -- fuzzy search for files
-	require("plugins.venv-selector"),
+	require("plugins.venv-selector"), -- select python venv inside neovim
+	require("plugins.bufferline"), -- use ide-like tabs
+	"echasnovski/mini.bufremove", --  keep layout when close tab on bufferline
+	require("plugins.gitsigns"),
 })
 
 -- Mason

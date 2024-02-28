@@ -1,0 +1,44 @@
+set scrolloff=5
+set incsearch
+set number
+set relativenumber
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+" <Esc>
+inoremap jk <ESC>
+
+" Move line
+nnoremap <C-j> :m+1<CR>
+vnoremap <C-j> :m'>+1<CR>gv
+inoremap <C-j> <ESC>:m+1<CR>gi
+nnoremap <C-k> :m-2<CR>
+vnoremap <C-k> :m'<-2<CR>gv
+inoremap <C-k> <ESC>:m-2<CR>gi
+
+" Move cursor
+nnoremap <S-j> 5j
+vnoremap <S-j> 5j
+onoremap <S-j> 5j
+nnoremap <S-k> 5k
+vnoremap <S-k> 5k
+onoremap <S-k> 5k
+nnoremap <S-h> ^
+vnoremap <S-h> ^
+onoremap <S-h> ^
+nnoremap <S-l> $
+vnoremap <S-l> $
+onoremap <S-l> $
+
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)

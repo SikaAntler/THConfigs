@@ -11,10 +11,13 @@ function M.venv_changed(venv_path, venv_python)
 end
 
 if platform.is_macos then
-	M.conda_envs = "~/opt/miniconda3/envs"
+	M.conda_envs = "~/opt/miniconda3/envs/"
 	M.parent_dir = "bin"
 elseif platform.is_linux then
-	M.conda_envs = "~/miniconda3/envs"
+	M.conda_envs = "~/miniconda3/envs/"
+	M.parent_dir = "bin"
+elseif platform.is_windows then
+	M.conda_envs = "~/AppData/miniconda3/envs/"
 	M.parent_dir = ""
 end
 

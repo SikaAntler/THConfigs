@@ -84,8 +84,9 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 
 	local title = tab_title(tab)
 	local has_unseen_output = tab_has_unseen_output(tab.panes)
-	local offset = has_unseen_output and 4 or 3
-	title = wezterm.truncate_right(title, max_width - offset)
+	-- local offset = has_unseen_output and 4 or 3
+	title = wezterm.truncate_right(title, max_width - 2)
+	-- title = wezterm.truncate_right(title, config.tab_max_width - offset)
 
 	tab_components = {}
 

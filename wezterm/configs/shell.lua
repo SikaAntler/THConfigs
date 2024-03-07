@@ -4,11 +4,11 @@ local shell
 if platform.is_win then
 	shell = "powershell"
 elseif platform.is_macos then
-	shell = "zsh"
+	shell = "/bin/zsh"
 else
 	shell = "bash"
 end
 
 return {
-	default_prog = { shell },
+	default_prog = { shell, "-l" },
 }

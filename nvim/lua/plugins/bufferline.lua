@@ -34,4 +34,15 @@ return {
 		{ "<C-h>", "<cmd>BufferLineCyclePrev<CR>" },
 		{ "<C-l>", "<cmd>BufferLineCycleNext<CR>" },
 	},
+	config = function(_, opts)
+		require("bufferline").setup(opts)
+		-- 从Dashboard中进入时bufferline会失效
+		vim.api.nvim_create_autocmd("BufAdd", {
+			callback = function()
+				vim.schedule(function()
+					pcall(nvim_bufferline)
+				end)
+			end,
+		})
+	end,
 }

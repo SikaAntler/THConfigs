@@ -23,6 +23,7 @@ return {
 
 		return {
 			theme = "hyper",
+			hide = { statusline = false }, -- 启动文件时与lualine冲突
 			shortcut_type = "letter",
 			config = {
 				header = vim.split(logo, "\n"),

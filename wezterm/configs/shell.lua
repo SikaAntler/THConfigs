@@ -2,13 +2,13 @@ local platform = require("configs.platform")
 
 local shell
 if platform.is_win then
-	shell = "powershell"
+	shell = { "powershell" }
 elseif platform.is_macos then
-	shell = "/bin/zsh"
+	shell = { "zsh", "-l" }
 else
-	shell = "bash"
+	shell = { "bash", "-l" }
 end
 
 return {
-	default_prog = { shell, "-l" },
+	default_prog = shell,
 }

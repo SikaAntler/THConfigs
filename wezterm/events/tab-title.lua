@@ -19,6 +19,7 @@ local colors = {
 local function process_name(name)
 	name = name:gsub("(.*[/\\])(.*)", "%2")
 	name = name:gsub("%.exe$", "")
+	name = name:gsub("%.EXE$", "")
 	return name
 end
 

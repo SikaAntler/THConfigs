@@ -4,8 +4,18 @@ require("mason-lspconfig").setup({
 
 local lsp = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-lsp.lua_ls.setup(capabilities)
-lsp.pyright.setup(capabilities)
+lsp.lua_ls.setup({ capabilities = capabilities })
+lsp.pyright.setup({
+	capabilities = capabilities,
+	settings = {
+		python = {
+			analysis = {
+				typeCheckingMode = "off",
+			},
+		},
+	},
+})
+lsp.ruff_lsp.setup({})
 
 local map = vim.keymap.set
 
@@ -15,12 +25,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
 		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-		local opt = { buffer = ev.buf, noremap = true }
+		local opt = { buffer = ev.buf }
 		map("n", "gD", vim.lsp.buf.declaration, opt)
 		map("n", "gd", vim.lsp.buf.definition, opt)
 		map("n", "<C-q>", vim.lsp.buf.hover, opt)
 		map("n", "gi", vim.lsp.buf.implementation, opt)
-		-- map("n", "<C-k>", vim.lsp.buf.signature_help, opt)
+		map("n", "<C-k>", vim.lsp.buf.signature_help, opt)
 		map("n", "<Space>wa", vim.lsp.buf.add_workspace_folder, opt)
 		map("n", "<Space>D", vim.lsp.buf.type_definition, opt)
 		map("n", "<Space>rn", vim.lsp.buf.rename, opt)

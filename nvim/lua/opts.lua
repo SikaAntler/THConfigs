@@ -20,7 +20,7 @@ vim.o.smartindent = true
 
 -- Line
 vim.o.number = true
-vim.o.relativenumber = true
+-- vim.o.relativenumber = true
 vim.o.scrolloff = 5
 vim.o.sidescrolloff = 5
 vim.o.wrap = true

@@ -15,10 +15,13 @@ return {
 	-- Font
 	font_size = platform.is_win and 10.5 or 15,
 	line_height = 1.2,
-	font = wezterm.font({
-		family = "JetBrains Mono",
-		weight = "Regular",
-		harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+	font = wezterm.font_with_fallback({
+		{
+			family = "Fira Code",
+			weight = "Regular",
+			-- harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+		},
+		"JetBrains Mono",
 	}),
 	-- freetype_load_flags = "NO_HINTING"
 	freetype_load_target = "Normal",

@@ -1,7 +1,5 @@
 set scrolloff=5
 set incsearch
-set number
-set relativenumber
 
 " Don't use Ex mode, use Q for formatting.
 map Q gq

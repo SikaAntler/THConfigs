@@ -1,7 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = '''
-$username$directory$git_branch$cmd_duration
+$username$hostname in $directory$git_branch$cmd_duration
 $conda$character
 '''
 
@@ -9,14 +9,17 @@ add_newline = true
 
 [username]
 show_always = true
+format = '[$user]($style)'
+
+[hostname]
+format = '[@$hostname]($style)'
 
 [character]
 # success_symbol = '[➜](bold green)'
 # error_symbol = '[✗](bold red) '
 
 [conda]
-# format = '[$symbol$environment]($style) '
-format = '[$symbol$environment](dimmed green) '
+format = '[$symbol$environment]($style) '
 ignore_base = false
 
 [package]

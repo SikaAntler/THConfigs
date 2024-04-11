@@ -2,7 +2,7 @@
 
 format = '''
 $username$hostname in $directory$git_branch$cmd_duration
-$conda$character
+$conda$character$python
 '''
 
 add_newline = true
@@ -17,6 +17,9 @@ format = '[@$hostname]($style)'
 [character]
 # success_symbol = '[➜](bold green)'
 # error_symbol = '[✗](bold red) '
+
+[directory]
+truncation_length = 5
 
 [conda]
 format = '[$symbol$environment]($style) '

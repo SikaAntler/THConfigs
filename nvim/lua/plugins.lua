@@ -35,6 +35,7 @@ require("lazy").setup({
 	require("plugins.lualine"), -- bottom status line
 	require("plugins.dashboard"), -- startup page
 	require("plugins.dressing"), -- float window
+	require("plugins.noice"),
 	-- Utils
 	-- "nvim-lua/plenary.nvim", -- useful functions library
 	require("plugins.conform"), -- reformat codes

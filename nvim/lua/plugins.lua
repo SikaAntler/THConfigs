@@ -51,6 +51,9 @@ require("lazy").setup({
 	require("plugins.bufferline"), -- use ide-like tabs
 	"echasnovski/mini.bufremove", --  keep layout when close tab on bufferline
 	require("plugins.gitsigns"),
+	require("plugins.treesitter"),
+	-- Lua
+	require("plugins.lazydev"),
 })
 
 -- Mason
@@ -69,3 +72,10 @@ require("plugins.nvim-cmp")
 -- 		require("lint").try_lint()
 -- 	end,
 -- })
+
+-- QML
+-- vim.cmd("au BufRead,BufNewFile *.qml setfiletype qmljs")
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = "*.qml",
+	command = "setfiletype qmljs",
+})

@@ -26,7 +26,7 @@ format = '[$symbol$environment]($style) '
 ignore_base = false
 
 [python]
-format = '[(\($virtualenv\)) ]($style)'
+format = '[(\($virtualenv\) )]($style)'
 
 [package]
 # disabled = true

@@ -1,43 +1,29 @@
 -- lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
+if not vim.uv.fs_stat(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
 end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	-- Mason
-	"williamboman/mason.nvim",
-	"williamboman/mason-lspconfig.nvim",
-	"neovim/nvim-lspconfig",
-	"mfussenegger/nvim-lint",
-	-- Complete
-	{
-		"hrsh7th/nvim-cmp",
-		version = false,
-		event = "InsertEnter",
-	},
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-buffer",
-	"hrsh7th/cmp-path",
-	"L3MON4D3/LuaSnip",
-	"saadparwaiz1/cmp_luasnip",
-	"onsails/lspkind.nvim",
+	require("plugins.lsp"), -- LSP
+	require("plugins.completion"), -- completion
 	-- UI
 	require("plugins.catppuccin"), -- theme
 	require("plugins.lualine"), -- bottom status line
 	require("plugins.dashboard"), -- startup page
 	require("plugins.dressing"), -- float window
 	require("plugins.noice"),
-	-- Utils
-	-- "nvim-lua/plenary.nvim", -- useful functions library
 	require("plugins.conform"), -- reformat codes
 	require("plugins.pairs"), -- pairs for (),[],{}...
 	require("plugins.comment"), -- switch comment/code for quick
@@ -52,18 +38,13 @@ require("lazy").setup({
 	"echasnovski/mini.bufremove", --  keep layout when close tab on bufferline
 	require("plugins.gitsigns"),
 	require("plugins.treesitter"),
-	-- Lua
+	require("plugins.toggleterm"),
+	require("plugins.which-key"),
+	-- Lua Dev
+	-- "nvim-lua/plenary.nvim", -- useful functions library
 	require("plugins.lazydev"),
+	-- "mfussenegger/nvim-lint",
 })
-
--- Mason
-require("mason").setup()
-
--- LSP
-require("plugins.lsp")
-
--- Complete
-require("plugins.nvim-cmp")
 
 -- Linter
 -- require("lint").linters_by_ft = { lua = { "cspell" } }

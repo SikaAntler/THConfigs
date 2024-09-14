@@ -26,7 +26,7 @@ map({ "n", "v", "o" }, "<S-l>", "$", opt)
 map("n", "<C-a>", "ggVG", opt)
 
 -- Python
-map("n", "<C-F10>", ":! python %<CR>", opt)
+-- map("n", "<C-F10>", ":! python %<CR>", opt)
 
 -- Switch window
 map("n", "<A-h>", "<C-w>h", opt)
@@ -34,3 +34,6 @@ map("n", "<A-j>", "<C-w>j", opt)
 map("n", "<A-k>", "<C-w>k", opt)
 map("n", "<A-l>", "<C-w>l", opt)
 map("n", "<A-w>", "<C-w>w", opt)
+
+-- ToggleTerm
+map({ "n", "i" }, "<F6>", '<Esc><Cmd>w<CR><Cmd>TermExec cmd="python %"<CR>')

@@ -1,6 +1,11 @@
+-- return {
+-- 	"echasnovski/mini.pairs",
+-- 	version = "*",
+-- 	event = "VeryLazy",
+-- 	opts = {},
+-- }
 return {
-	"echasnovski/mini.pairs",
-	version = "*",
-	event = "VeryLazy",
-	opts = {},
+	"windwp/nvim-autopairs",
+	event = "InsertEnter",
+	config = true,
 }

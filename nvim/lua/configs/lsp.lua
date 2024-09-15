@@ -8,10 +8,30 @@ require("mason-lspconfig").setup({
 	},
 })
 
-local lsp = require("lspconfig")
+vim.cmd([[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]])
+vim.cmd([[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]])
+
+local lspconfig = require("lspconfig")
+local border = {
+	{ "╭", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "╮", "FloatBorder" },
+	{ "│", "FloatBorder" },
+	{ "╯", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "╰", "FloatBorder" },
+	{ "│", "FloatBorder" },
+}
+local handlers = {
+	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+	["textDocument/documentHighlight"] = vim.lsp.with(vim.lsp.handlers.document_highlight, { border = border }),
+}
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-lsp.lua_ls.setup({ capabilities = capabilities })
-lsp.basedpyright.setup({
+lspconfig.lua_ls.setup({ capabilities = capabilities, handlers = handlers })
+lspconfig.basedpyright.setup({
+	capabilities = capabilities,
+	handlers = handlers,
 	settings = {
 		basedpyright = {
 			analysis = {
@@ -20,6 +40,9 @@ lsp.basedpyright.setup({
 		},
 	},
 })
+
+-- inlay hint
+vim.lsp.inlay_hint.enable()
 
 -- Keymap
 local map = vim.keymap.set

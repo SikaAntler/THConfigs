@@ -3,6 +3,7 @@ require("mason").setup()
 require("mason-lspconfig").setup({
 	ensure_installed = {
 		"basedpyright",
+		"bashls",
 		"lua_ls",
 		"taplo",
 	},
@@ -28,7 +29,6 @@ local handlers = {
 	["textDocument/documentHighlight"] = vim.lsp.with(vim.lsp.handlers.document_highlight, { border = border }),
 }
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-lspconfig.lua_ls.setup({ capabilities = capabilities, handlers = handlers })
 lspconfig.basedpyright.setup({
 	capabilities = capabilities,
 	handlers = handlers,
@@ -40,6 +40,9 @@ lspconfig.basedpyright.setup({
 		},
 	},
 })
+lspconfig.bashls.setup({ capabilities = capabilities, handlers = handlers })
+lspconfig.lua_ls.setup({ capabilities = capabilities, handlers = handlers })
+lspconfig.taplo.setup({ capabilities = capabilities, handlers = handlers })
 
 -- inlay hint
 vim.lsp.inlay_hint.enable()

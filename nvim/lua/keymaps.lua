@@ -1,5 +1,5 @@
 local map = vim.keymap.set
-local opt = { noremap = true }
+local opt = { noremap = true, silent = true }
 
 -- <Esc>
 map("i", "jk", "<Esc>", opt)

@@ -65,9 +65,9 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Virtual text
 vim.o.virtualedit = "block"
 
--- Status & Command
--- vim.o.laststatus = 0
-vim.o.cmdheight = 1
+-- Statusline
+vim.opt.laststatus = 3
+-- vim.o.cmdheight = 1
 
 -- Bufferline
 vim.opt.termguicolors = true

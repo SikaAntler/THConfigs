@@ -20,7 +20,8 @@ require("lazy").setup({
 	require("plugins.completion"), -- completion
 	-- UI
 	require("plugins.catppuccin"), -- theme
-	require("plugins.lualine"), -- bottom status line
+	-- require("plugins.lualine"), -- bottom status line
+	require("plugins.heirline"),
 	require("plugins.dashboard"), -- startup page
 	require("plugins.dressing"), -- float window
 	require("plugins.noice"),
@@ -40,9 +41,13 @@ require("lazy").setup({
 	require("plugins.treesitter"),
 	require("plugins.toggleterm"),
 	require("plugins.which-key"),
-	-- Lua Dev
-	-- "nvim-lua/plenary.nvim", -- useful functions library
+	require("plugins.neoscroll"),
+	require("plugins.dropbar"),
+	-- Utils
 	require("plugins.lazydev"),
+	"nvim-lua/plenary.nvim", -- useful functions library
+	"nvim-tree/nvim-web-devicons",
+	"MunifTanjim/nui.nvim",
 	-- "mfussenegger/nvim-lint",
 })
 

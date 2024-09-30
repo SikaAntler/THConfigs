@@ -2,13 +2,17 @@ return {
 	"catppuccin/nvim",
 	name = "catppuccin",
 	prioroty = 1000,
-	lazy = false,
+	init = function()
+		vim.cmd.colorscheme("catppuccin")
+		-- vim.cmd.hi("Comment gui=none")
+	end,
 	opts = {
-		flavour = "mocha",
-		transparent_background = 0.9,
+		flavour = "macchiato",
+		transparent_background = true,
 		show_end_of_buffer = true,
+		term_colors = true,
 		highlight_overrides = {
-			mocha = function(mocha)
+			macchiato = function(mocha)
 				return {
 					LineNr = { fg = mocha.subtext1 },
 					LineNrAbove = { fg = mocha.overlay2 },
@@ -16,8 +20,20 @@ return {
 				}
 			end,
 		},
+		integrations = {
+			aerial = true,
+			dropbar = { enabled = true, color_mode = true },
+			gitsigns = true,
+			mason = true,
+			neotree = true,
+			noice = true,
+			cmp = true,
+			treesitter_context = true,
+			treesitter = true,
+			telescope = { enabled = true },
+			lsp_trouble = true,
+			illuminate = { enabled = true, lsp = false },
+			which_key = true,
+		},
 	},
-	init = function()
-		vim.cmd.colorscheme("catppuccin")
-	end,
 }

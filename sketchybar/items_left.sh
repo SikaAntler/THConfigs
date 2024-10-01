@@ -5,14 +5,14 @@ for sid in $(aerospace list-workspaces --all); do
         icon.y_offset=0
         icon.padding_left=0
         icon.padding_right=2
-        icon.highlight_color=0xbf7fff7f
+        icon.highlight_color=$HIGHLIGHT
         label.font="$APP_FONT"
         label.y_offset=-2
         label.padding_left=2
         label.padding_right=8
-        label.highlight_color=0xbf7fff7f
+        label.highlight_color=$HIGHLIGHT
         background.height=2
-        background.color=0xbf7fff7f
+        background.color=$HIGHLIGHT
         background.y_offset=-12
         background.drawing=off
         padding_left=8

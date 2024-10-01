@@ -91,7 +91,7 @@ network_up=(
     # padding_right=0
     icon=􀄨
     icon.font.size=10
-    icon.highlight_color=0xbf91acef
+    icon.highlight_color=$HIGHLIGHT
     label.font="$MONO_FONT"
     update_freq=2
 )
@@ -103,7 +103,7 @@ network_down=(
     y_offset=-6
     icon=􀄩
     icon.font.size=10
-    icon.highlight_color=0xbf91acef
+    icon.highlight_color=$HIGHLIGHT
     label.font="$MONO_FONT"
     update_freq=2
     script="$PLUGIN_DIR/network.sh"

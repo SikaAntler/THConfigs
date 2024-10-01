@@ -17,7 +17,7 @@ return {
 		})
 	end,
 	keys = {
-		{ "<leader>vs", "<Cmd>VenvSelect<CR>" },
-		{ "<leader>vc", "<Cmd>VenvSelectCached<CR>" },
+		{ "<Space>vs", "<Cmd>VenvSelect<CR>" },
+		{ "<Space>vc", "<Cmd>VenvSelectCached<CR>" },
 	},
 }

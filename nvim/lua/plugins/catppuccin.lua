@@ -22,6 +22,8 @@ return {
 		},
 		integrations = {
 			aerial = true,
+			dashboard = true,
+			diffview = true,
 			dropbar = { enabled = true, color_mode = true },
 			gitsigns = true,
 			mason = true,

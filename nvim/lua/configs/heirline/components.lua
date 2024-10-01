@@ -207,4 +207,166 @@ M.ScrollBar = {
 	hl = { fg = palette.yellow, bg = palette.base },
 }
 
+---------------------------Tabline---------------------------
+-- local TablineBufnr = {
+-- 	provider = function(self)
+-- 		return tostring(self.bufnr) .. ". "
+-- 	end,
+-- 	hl = "Comment",
+-- }
+
+local TablineFileName = {
+	provider = function(self)
+		local fname = self.filename
+		fname = fname == "" and "[No Name]" or vim.fn.fnamemodify(fname, ":t")
+		return fname
+	end,
+	hl = function(self)
+		if self.is_active then
+			return { fg = palette.text, bold = true }
+		else
+			return { fg = palette.overlay1, italic = true }
+		end
+	end,
+}
+
+local TablineFileFlags = {
+	{
+		condition = function(self)
+			return vim.api.nvim_get_option_value("modified", { buf = self.bufnr })
+		end,
+		provider = " [+]",
+		hl = { fg = palette.green },
+	},
+	{
+		condition = function(self)
+			return not vim.api.nvim_get_option_value("modifiable", { buf = self.bufnr })
+				or vim.api.nvim_get_option_value("readonly", { buf = self.bufnr })
+		end,
+		provider = function(self)
+			if vim.api.nvim_get_option_value("buftype", { buf = self.bufnr }) == "terminal" then
+				return "  "
+			else
+				return ""
+			end
+		end,
+		hl = { fg = palette.yellow },
+	},
+}
+
+local TablineFileNameBlock = {
+	init = function(self)
+		self.filename = vim.api.nvim_buf_get_name(self.bufnr)
+	end,
+	on_click = {
+		callback = function(_, minwid, _, button)
+			if button == "m" then
+				vim.schedule(function()
+					require("bufdelete").bufdelete(minwid)
+				end)
+			else
+				vim.api.nvim_win_set_buf(0, minwid)
+			end
+		end,
+		minwid = function(self)
+			return self.bufnr
+		end,
+		name = "heirline_tabline_buffer_callback",
+	},
+	-- TablineBufnr,
+	FileIcon,
+	TablineFileName,
+	TablineFileFlags,
+}
+
+local TablineCloseButton = {
+	condition = function(self)
+		return not vim.api.nvim_get_option_value("modified", { buf = self.bufnr })
+	end,
+	provider = " ✗",
+	hl = { fg = palette.text },
+	on_click = {
+		callback = function(_, minwid)
+			vim.schedule(function()
+				require("bufdelete").bufdelete(minwid)
+				-- vim.cmd.redrawtabline()
+			end)
+		end,
+		minwid = function(self)
+			return self.bufnr
+		end,
+		name = "heirline_tabline_close_buffer_callback",
+	},
+}
+
+-- local TablineBufferBlock = utils.surround({ "█", "█" }, function(self)
+-- 	if self.is_active then
+-- 		-- return utils.get_highlight("TabLineSel").bg
+-- 		return nil
+-- 	else
+-- 		-- return utils.get_highlight("TabLine").bg
+-- 		return nil
+-- 	end
+-- end, { TablineFileNameBlock, TablineCloseButton })
+local TablineBufferBlock = {
+	M.Spacer,
+	TablineFileNameBlock,
+	TablineCloseButton,
+	M.Spacer,
+}
+
+M.BufferLine = utils.make_buflist(
+	TablineBufferBlock,
+	{ provider = "", hl = { fg = palette.overlay0 } },
+	{ provider = "", hl = { fg = palette.overlay0 } }
+)
+
+M.TablineOffset = {
+	condition = function(self)
+		local win = vim.api.nvim_tabpage_list_wins(0)[1]
+		local bufnr = vim.api.nvim_win_get_buf(win)
+		self.winid = win
+
+		if vim.bo[bufnr].filetype == "neo-tree" then
+			self.title = " Project"
+			return true
+		end
+	end,
+	provider = function(self)
+		local title = self.title
+		local width = vim.api.nvim_win_get_width(self.winid)
+		return title .. string.rep(" ", width - #title)
+	end,
+	hl = function()
+		return "Directory"
+	end,
+}
+
+local Tabpage = {
+	provider = function(self)
+		return "%" .. self.tabnr .. "T " .. self.tabpage .. " %T"
+	end,
+	hl = function(self)
+		if not self.is_active then
+			return "TabLine"
+		else
+			return "TabLineSel"
+		end
+	end,
+}
+
+local TabpageClose = {
+	provider = "%999X  ✗%X",
+	hl = "TabLine",
+}
+
+M.TabPages = {
+	condition = function()
+		return #vim.api.nvim_list_tabpages() >= 2
+	end,
+	M.Fill,
+	utils.make_tablist(Tabpage),
+	TabpageClose,
+}
+
 return M

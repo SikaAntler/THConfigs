@@ -1,6 +1,6 @@
 return {
 	"nvimdev/dashboard-nvim",
-	event = "vimenter",
+	event = "VimEnter",
 	opts = function()
 		local logo = [[
 ┌─────────────────────────────────────────────────────────────┐
@@ -21,8 +21,9 @@ return {
         ]]
 
 		return {
-			theme = "hyper",
-			hide = { statusline = false }, -- 启动文件时与lualine冲突
+			-- theme = "hyper",
+			-- hide = { statusline = false }, -- 启动文件时与lualine冲突
+			hide = { tabline = false }, -- 与heirline的tabline冲突
 			shortcut_type = "letter",
 			config = {
 				header = vim.split(logo, "\n"),

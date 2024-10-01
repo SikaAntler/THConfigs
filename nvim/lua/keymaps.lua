@@ -35,5 +35,9 @@ map("n", "<A-k>", "<C-w>k", opt)
 map("n", "<A-l>", "<C-w>l", opt)
 map("n", "<A-w>", "<C-w>w", opt)
 
+-- Swicth buffer
+map("n", "<C-h>", "<Cmd>bprevious<CR>", opt)
+map("n", "<C-l>", "<Cmd>bnext<CR>", opt)
+
 -- ToggleTerm
 map({ "n", "i" }, "<F6>", '<Esc><Cmd>w<CR><Cmd>TermExec cmd="python %"<CR>')

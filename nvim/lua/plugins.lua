@@ -35,14 +35,16 @@ require("lazy").setup({
 	require("plugins.aerial"), -- class/function/variables outlines
 	require("plugins.telescope"), -- fuzzy search for files
 	require("plugins.venv-selector"), -- select python venv inside neovim
-	require("plugins.bufferline"), -- use ide-like tabs
-	"echasnovski/mini.bufremove", --  keep layout when close tab on bufferline
+	-- require("plugins.bufferline"), -- use ide-like tabs
+	-- "echasnovski/mini.bufremove", --  keep layout when close tab on bufferline
 	require("plugins.gitsigns"),
 	require("plugins.treesitter"),
 	require("plugins.toggleterm"),
 	require("plugins.which-key"),
 	require("plugins.neoscroll"),
 	require("plugins.dropbar"),
+	require("plugins.diffview"),
+	require("plugins.bufdelete"),
 	-- Utils
 	require("plugins.lazydev"),
 	"nvim-lua/plenary.nvim", -- useful functions library

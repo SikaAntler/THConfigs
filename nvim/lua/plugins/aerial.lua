@@ -1,11 +1,10 @@
 return {
 	"stevearc/aerial.nvim",
 	opts = {
-		backends = { "lsp" },
-
+		attach_mode = "global",
 		show_guide = true,
 	},
 	keys = {
-		{ "<Space>cs", "<cmd>AerialToggle<CR>" },
+		{ "<Space>a", "<Cmd>AerialToggle<CR>" },
 	},
 }

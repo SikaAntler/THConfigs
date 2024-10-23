@@ -47,9 +47,9 @@ alias tls="tmux ls"
 alias tn="tmux new-session -s"
 alias ta="tmux attach -t"
 alias tk="tmux kill-session -t"
-alias tnt="tn train"
-alias tat="ta train"
-alias tkt="tk train"
+alias tnm="tn main"
+alias tam="ta main"
+alias tkm="tk main"
 
 # nvidia
 alias ns="nvidia-smi"

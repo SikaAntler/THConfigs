@@ -1,19 +1,19 @@
 -- Clipboard
 -- If using Neovim under SSH, using OSC 52
 vim.opt.clipboard:append("unnamedplus")
-if vim.fn.exists("$SSH_TTY") == 1 then
-	vim.g.clipboard = {
-		name = "OSC 52",
-		copy = {
-			["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-		},
-		paste = {
-			["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-		},
-	}
-end
+-- if vim.fn.exists("$SSH_TTY") == 1 then
+-- 	vim.g.clipboard = {
+-- 		name = "OSC 52",
+-- 		copy = {
+-- 			["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+-- 			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+-- 		},
+-- 		paste = {
+-- 			["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+-- 			["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+-- 		},
+-- 	}
+-- end
 
 -- Mouse
 vim.o.mouse = "a"

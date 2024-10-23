@@ -16,41 +16,46 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	require("plugins.lsp"), -- LSP
-	require("plugins.completion"), -- completion
-	-- UI
+	-- Core
 	require("plugins.catppuccin"), -- theme
-	-- require("plugins.lualine"), -- bottom status line
-	require("plugins.heirline"),
-	require("plugins.dashboard"), -- startup page
-	require("plugins.dressing"), -- float window
-	require("plugins.noice"),
-	require("plugins.conform"), -- reformat codes
-	require("plugins.pairs"), -- pairs for (),[],{}...
-	require("plugins.comment"), -- switch comment/code for quick
-	require("plugins.illunimate"), -- highlight for same things
-	require("plugins.hlchunk"), -- show code fields
-	require("plugins.neo-tree"), -- file explorer
-	require("plugins.trouble"), -- make issues more clarified
-	require("plugins.aerial"), -- class/function/variables outlines
-	require("plugins.telescope"), -- fuzzy search for files
-	require("plugins.venv-selector"), -- select python venv inside neovim
-	-- require("plugins.bufferline"), -- use ide-like tabs
-	-- "echasnovski/mini.bufremove", --  keep layout when close tab on bufferline
-	require("plugins.gitsigns"),
+	require("plugins.lsp"),
+	require("plugins.completion"),
+	require("plugins.conform"),
 	require("plugins.treesitter"),
-	require("plugins.toggleterm"),
-	require("plugins.which-key"),
-	require("plugins.neoscroll"),
+	-- Layout
+	require("plugins.aerial"),
+	require("plugins.dashboard"),
 	require("plugins.dropbar"),
+	require("plugins.heirline"),
+	require("plugins.gitsigns"),
+	require("plugins.neo-tree"),
+	-- require("plugins.bufferline"),
+	-- "echasnovski/mini.bufremove",
+	-- require("plugins.lualine"),
+	-- Coding
+	require("plugins.comment"),
 	require("plugins.diffview"),
-	require("plugins.bufdelete"),
+	require("plugins.hlchunk"),
+	require("plugins.illunimate"),
+	require("plugins.pairs"),
+	require("plugins.telescope"),
+	require("plugins.toggleterm"),
+	require("plugins.trouble"),
+	require("plugins.venv-selector"),
 	-- Utils
+	require("plugins.bufdelete"),
+	require("plugins.dressing"), -- float window
+	require("plugins.image"),
 	require("plugins.lazydev"),
-	"nvim-lua/plenary.nvim", -- useful functions library
+	require("plugins.neoscroll"),
+	require("plugins.noice"),
+	require("plugins.notify"),
+	require("plugins.which-key"),
+	-- "mfussenegger/nvim-lint",
+	-- Dependencies
+	"nvim-lua/plenary.nvim",
 	"nvim-tree/nvim-web-devicons",
 	"MunifTanjim/nui.nvim",
-	-- "mfussenegger/nvim-lint",
 })
 
 -- Linter

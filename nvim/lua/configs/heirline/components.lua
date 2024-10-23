@@ -5,7 +5,11 @@ local M = {}
 
 M.Spacer = { provider = " " }
 M.Fill = { provider = "%=" }
-M.Ruler = { provider = "%(%l/%L%):%c" }
+M.Ruler = { provider = "%(%l%):%c %(%P%)" }
+
+-- ╭───────────────────────────────────────────╮
+-- │                Statusline                 │
+-- ╰───────────────────────────────────────────╯
 
 M.RightPadding = function(child, space)
 	local result = {
@@ -28,19 +32,58 @@ M.Mode = {
 	static = {
 		mode_names = {
 			n = "NORMAL",
+			no = "?",
+			nov = "?",
+			noV = "?",
+			["no\22"] = "?",
+			niI = "INSERT",
+			niR = "REPLACE",
+			niV = "VISUAL",
+			nt = "TERMINAL",
+			ntT = "TERMINAL",
 			v = "VISUAL",
+			vs = "VISUAL",
 			V = "V-LINE",
+			Vs = "V-LINE",
 			["\22"] = "V-BLOCK",
+			["\22s"] = "V-BLOCK",
+			s = "SELECT",
+			S = "S-LINE",
+			["\19"] = "S-BLOCK",
 			i = "INSERT",
+			ic = "INSERT-C",
+			ix = "INSERT-X",
+			R = "REPLACE",
+			Rc = "REPLACE-C",
+			Rx = "REPLACE-X",
+			Rv = "REPLACE-V",
+			Rvc = "REPLACE-VC",
+			Rvx = "REPLACE-VX",
 			c = "COMMAND",
+			cr = "COMMAND-R",
+			cv = "COMMAND-V",
+			cvr = "COMMAND-VR",
+			r = "R",
+			rm = "RM",
+			["r?"] = "R?",
+			["!"] = "!",
+			t = "TERMINAL",
 		},
 		mode_colors = {
 			n = palette.blue,
+			nt = palette.read,
 			v = palette.mauve,
 			V = palette.mauve,
 			["\22"] = palette.mauve,
+			s = palette.pink,
+			S = palette.pink,
+			["\19"] = palette.pink,
 			i = palette.green,
-			c = palette.peach,
+			R = palette.peach,
+			r = palette.peach,
+			c = palette.red,
+			["!"] = palette.red,
+			t = palette.green,
 		},
 	},
 	provider = function(self)
@@ -152,24 +195,34 @@ M.FileNameBlock = {
 	FileFlags,
 }
 
-M.LSPActive = {
+local LangServer = {
 	condition = conditions.lsp_attached,
-	update = { "LspAttach", "LspDetach" },
 	provider = function()
 		local names = {}
 		for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
 			table.insert(names, server.name)
 		end
-		return " [" .. table.concat(names, " ") .. "]"
+		return table.concat(names, " ")
 	end,
-	hl = { fg = palette.surface1, bold = true },
 }
 
-local FileType = {
-	provider = function()
-		return string.upper(vim.bo.filetype)
+local Treesitter = {
+	condition = function()
+		return require("nvim-treesitter.parsers").has_parser()
 	end,
-	hl = { fg = utils.get_highlight("Type").fg, bold = true },
+	provider = function()
+		local ts = require("nvim-treesitter.parsers").has_parser()
+		return " " .. (ts and "TS" or "")
+	end,
+}
+
+M.Language = {
+	update = { "BufEnter", "LspAttach", "LspDetach" },
+	{ provider = "[" },
+	LangServer,
+	Treesitter,
+	{ provider = "]" },
+	hl = { fg = palette.surface1, bold = true },
 }
 
 local FileEncoding = {
@@ -189,31 +242,13 @@ local FileFormat = {
 }
 
 M.FileInfo = {
-	FileType,
 	FileEncoding,
 	FileFormat,
 }
 
-M.ScrollBar = {
-	static = {
-		sbar = { "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" },
-	},
-	provider = function(self)
-		local curr_line = vim.api.nvim_win_get_cursor(0)[1]
-		local lines = vim.api.nvim_buf_line_count(0)
-		local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
-		return string.rep(self.sbar[i], 2)
-	end,
-	hl = { fg = palette.yellow, bg = palette.base },
-}
-
----------------------------Tabline---------------------------
--- local TablineBufnr = {
--- 	provider = function(self)
--- 		return tostring(self.bufnr) .. ". "
--- 	end,
--- 	hl = "Comment",
--- }
+-- ╭───────────────────────────────────────────╮
+-- │                  Tabline                  │
+-- ╰───────────────────────────────────────────╯
 
 local TablineFileName = {
 	provider = function(self)
@@ -235,8 +270,14 @@ local TablineFileFlags = {
 		condition = function(self)
 			return vim.api.nvim_get_option_value("modified", { buf = self.bufnr })
 		end,
-		provider = " [+]",
-		hl = { fg = palette.green },
+		provider = " ",
+		hl = function(self)
+			if self.is_active then
+				return { fg = palette.text, bold = true }
+			else
+				return { fg = palette.overlay1, italic = true }
+			end
+		end,
 	},
 	{
 		condition = function(self)
@@ -273,7 +314,6 @@ local TablineFileNameBlock = {
 		end,
 		name = "heirline_tabline_buffer_callback",
 	},
-	-- TablineBufnr,
 	FileIcon,
 	TablineFileName,
 	TablineFileFlags,
@@ -284,7 +324,13 @@ local TablineCloseButton = {
 		return not vim.api.nvim_get_option_value("modified", { buf = self.bufnr })
 	end,
 	provider = " ✗",
-	hl = { fg = palette.text },
+	hl = function(self)
+		if self.is_active then
+			return { fg = palette.text, bold = true }
+		else
+			return { fg = palette.overlay1, italic = true }
+		end
+	end,
 	on_click = {
 		callback = function(_, minwid)
 			vim.schedule(function()

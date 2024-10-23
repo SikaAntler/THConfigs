@@ -5,6 +5,6 @@ return {
 		show_guide = true,
 	},
 	keys = {
-		{ "<Space>a", "<Cmd>AerialToggle<CR>" },
+		{ "<Space>a", "<Cmd>AerialOpen<CR>" },
 	},
 }

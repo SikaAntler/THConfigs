@@ -34,7 +34,10 @@ lspconfig.basedpyright.setup({
 	handlers = handlers,
 	settings = {
 		basedpyright = {
+			disableOrganizedImport = true,
 			analysis = {
+				autoImportCompletions = false,
+				inlayHints = { variableTypes = false },
 				typeCheckingMode = "basic",
 			},
 		},
@@ -56,15 +59,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		local opt = { buffer = ev.buf }
 		map("n", "gD", vim.lsp.buf.declaration, opt)
-		map("n", "gd", vim.lsp.buf.definition, opt)
+		-- map("n", "gd", vim.lsp.buf.definition, opt)
 		map("n", "<C-q>", vim.lsp.buf.hover, opt)
-		map("n", "gi", vim.lsp.buf.implementation, opt)
+		-- map("n", "gi", vim.lsp.buf.implementation, opt)
 		-- map("n", "<C-k>", vim.lsp.buf.signature_help, opt)
 		map("n", "<Space>wa", vim.lsp.buf.add_workspace_folder, opt)
-		map("n", "<Space>D", vim.lsp.buf.type_definition, opt)
+		-- map("n", "<Space>D", vim.lsp.buf.type_definition, opt)
 		map("n", "<Space>rn", vim.lsp.buf.rename, opt)
 		map({ "n", "v" }, "<Space>ca", vim.lsp.buf.code_action, opt)
-		map("n", "gr", vim.lsp.buf.references, opt)
+		-- map("n", "gr", vim.lsp.buf.references, opt)
 	end,
 })
 

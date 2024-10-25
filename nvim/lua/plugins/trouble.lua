@@ -1,11 +1,9 @@
 return {
 	"folke/trouble.nvim",
-	cmd = { "TroubleToggle", "Trouble" },
-	opts = { use_diagnostic_signs = true },
+	opts = {},
+	cmd = "Trouble",
 	keys = {
-		{ "<Space>xx", "<cmd>TroubleToggle document_diagnostics<CR>" },
-		{ "<Space>xX", "<cmd>TroubleToggle workspace_diagnostics<CR>" },
-		{ "<Space>xL", "<cmd>TroubleToggle loclist<CR>" },
-		{ "<Space>xQ", "<cmd>TroubleToggle quickfix<CR>" },
+		{ "<Space>xx", "<Cmd>Trouble diagnostics toggle<CR>" },
+		{ "<Space>xX", "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>" },
 	},
 }

@@ -1,7 +1,5 @@
 return {
 	"stevearc/conform.nvim",
-	-- event = { "BufWritePre" },
-	cmd = { "ConformInfo" },
 	keys = {
 		{
 			"<C-A-l>",
@@ -17,7 +15,10 @@ return {
 			lua = { "stylua" },
 			python = { "isort", "black" },
 			toml = { "taplo" },
+			yaml = { "yamlfmt" },
 		},
-		-- format_on_save = { timeout_ms = 500, lsp_fallback = true },
+		formatters = {
+			yamlfmt = { args = { "-formatter", "retain_line_breaks_single=true", "-" } },
+		},
 	},
 }

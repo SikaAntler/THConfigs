@@ -139,14 +139,26 @@ alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
-if.app-id = 'com.tencent.xinWeChat'
+if.app-name-regex-substring = '微信'
 run = 'layout floating'
 
 [[on-window-detected]]
-if.app-id = 'com.tencent.qq'
+if.app-name-regex-substring = 'QQ'
 # run = ['layout floating', 'move-node-to-workspace 1']
 run = 'layout floating'
 
 [[on-window-detected]]
-if.app-id = 'com.apple.finder'
+if.app-name-regex-substring = '访达'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = '1Password'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Clash for Windows'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Downie 4'
 run = 'layout floating'

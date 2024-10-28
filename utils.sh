@@ -33,6 +33,7 @@ alias nb="nvim ~/.bashrc"
 alias nz="nvim ~/.zshrc"
 
 # git
+alias lg="lazygit"
 alias gs="git status"
 
 # source

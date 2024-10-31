@@ -28,6 +28,10 @@ luasnip.config.setup({})
 -- 	Operator = "󰆕",
 -- }
 
+local t = function(str)
+	return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 cmp.setup({
@@ -97,7 +101,7 @@ cmp.setup({
 			})(entry, vim_item)
 			local strings = vim.split(kind.kind, "%s", { trimempty = true })
 			kind.kind = " " .. (strings[1] or "") .. " "
-			kind.menu = "    (" .. (strings[2] or "") .. ")"
+			kind.menu = " (" .. (strings[2] or "") .. ")"
 			return kind
 		end,
 	},
@@ -118,6 +122,7 @@ cmp.setup({
 					return { buf }
 				end,
 			},
+			keyword_length = 2,
 			priority = 400,
 		},
 		{
@@ -129,8 +134,7 @@ cmp.setup({
 	},
 
 	mapping = cmp.mapping.preset.insert({
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		-- ['<CR>'] = cmp.mapping.confirm(),
+		-- ["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				local entry = cmp.get_selected_entry()
@@ -142,7 +146,39 @@ cmp.setup({
 				fallback()
 			end
 		end, { "i", "s", "c" }),
-		["<C-e>"] = cmp.mapping.abort(),
+		-- ["<C-e>"] = cmp.mapping.abort(),
+		["<C-n>"] = cmp.mapping({
+			c = function()
+				if cmp.visible() then
+					cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+				else
+					vim.api.nvim_feedkeys(t("<Down>"), "n", true)
+				end
+			end,
+			i = function(fallback)
+				if cmp.visible() then
+					cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+				else
+					fallback()
+				end
+			end,
+		}),
+		["<C-p>"] = cmp.mapping({
+			c = function()
+				if cmp.visible() then
+					cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+				else
+					vim.api.nvim_feedkeys(t("<Up>"), "n", true)
+				end
+			end,
+			i = function(fallback)
+				if cmp.visible() then
+					cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+				else
+					fallback()
+				end
+			end,
+		}),
 	}),
 })
 

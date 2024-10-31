@@ -163,25 +163,31 @@ local FileName = {
 		end
 		return filename
 	end,
-	hl = { fg = utils.get_highlight("Directory").fg },
+	hl = { fg = palette.text },
 }
 
 local FileFlags = {
 	{
-		condition = function()
-			return vim.bo.modified
+		condition = function(self)
+			return vim.api.nvim_get_option_value("modified", { buf = self.bufnr })
 		end,
-		provider = "[+]",
-		hl = { fg = palette.green },
+		provider = " 􀴥 ",
+		hl = { fg = palette.text },
 	},
 	{
-		condition = function()
-			return not vim.bo.modifiable or vim.bo.readonly
+		condition = function(self)
+			local modifiable = vim.api.nvim_get_option_value("modifiable", { buf = self.bufnr })
+			local readonly = vim.api.nvim_get_option_value("readonly", { buf = self.bufnr })
+			return not modifiable or readonly
 		end,
-		provider = function()
-			return " "
+		provider = function(self)
+			if vim.api.nvim_get_option_value("buftype", { buf = self.bufnr }) == "terminal" then
+				return " "
+			else
+				return " "
+			end
 		end,
-		hl = { fg = palette.green },
+		hl = { fg = palette.text },
 	},
 }
 
@@ -326,17 +332,18 @@ local TablineFileFlags = {
 	},
 	{
 		condition = function(self)
-			return not vim.api.nvim_get_option_value("modifiable", { buf = self.bufnr })
-				or vim.api.nvim_get_option_value("readonly", { buf = self.bufnr })
+			local modifiable = vim.api.nvim_get_option_value("modifiable", { buf = self.bufnr })
+			local readonly = vim.api.nvim_get_option_value("readonly", { buf = self.bufnr })
+			return not modifiable or readonly
 		end,
 		provider = function(self)
 			if vim.api.nvim_get_option_value("buftype", { buf = self.bufnr }) == "terminal" then
-				return "  "
+				return " "
 			else
-				return ""
+				return " "
 			end
 		end,
-		hl = { fg = palette.yellow },
+		hl = { fg = palette.text },
 	},
 }
 

@@ -7,6 +7,15 @@ max_width = 1920
 max_height = 1080
 
 [opener]
-edit = [
-    { run = 'nvim "$@"', desc = "$EDITOR", block = true, for = "macos"},
+edit = [{ run = 'nvim "$@"', block = true, for = "unix" }]
+open = [
+  { run = 'open "$@"', for = "macos" },
+  { run = 'start "" "%1"', orphan = true, for = "windows" },
 ]
+reveal = [
+  { run = 'open -R "$1"', for = "macos" },
+  { run = 'explorer /select, "%1"', orphan = true, for = "windows" },
+]
+
+[plugin]
+prepend_previewers = [{ mime = "text/csv", run = "miller" }]

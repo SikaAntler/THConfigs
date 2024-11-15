@@ -24,7 +24,8 @@ require("lazy").setup({
 	require("plugins.treesitter"),
 	-- Layout
 	require("plugins.aerial"),
-	require("plugins.dashboard"),
+	require("plugins.alpha"),
+	-- require("plugins.dashboard"),
 	require("plugins.dropbar"),
 	require("plugins.heirline"),
 	require("plugins.gitsigns"),

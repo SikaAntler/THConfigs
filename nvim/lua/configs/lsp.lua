@@ -68,13 +68,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
+local icons = require("utils.icons")
 vim.diagnostic.config({
 	signs = {
 		text = {
-			[vim.diagnostic.severity.ERROR] = "􀁑 ",
-			[vim.diagnostic.severity.WARN] = "􀇿 ",
-			[vim.diagnostic.severity.INFO] = "􀅵 ",
-			[vim.diagnostic.severity.HINT] = "􁷖 ",
+			[vim.diagnostic.severity.ERROR] = icons.diagnostic_error,
+			[vim.diagnostic.severity.WARN] = icons.diagnostic_warn,
+			[vim.diagnostic.severity.INFO] = icons.diagnostic_info,
+			[vim.diagnostic.severity.HINT] = icons.diagnostic_hint,
 		},
 	},
 })

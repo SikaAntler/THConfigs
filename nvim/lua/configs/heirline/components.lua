@@ -1,6 +1,7 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
 local palette = require("catppuccin.palettes").get_palette("macchiato")
+local icons = require("utils.icons")
 local M = {}
 
 M.Spacer = { provider = " " }
@@ -91,7 +92,7 @@ M.Mode = {
 	end,
 	hl = function(self)
 		local mode = self.mode:sub(1, 1)
-		return { fg = palette.base, bg = self.mode_colors[mode], bold = true }
+		return { fg = palette.crust, bg = self.mode_colors[mode], bold = true }
 	end,
 	update = {
 		"ModeChanged",
@@ -171,7 +172,7 @@ local FileFlags = {
 		condition = function(self)
 			return vim.api.nvim_get_option_value("modified", { buf = self.bufnr })
 		end,
-		provider = " 􀴥 ",
+		provider = " " .. icons.modified_square,
 		hl = { fg = palette.text },
 	},
 	{
@@ -182,9 +183,9 @@ local FileFlags = {
 		end,
 		provider = function(self)
 			if vim.api.nvim_get_option_value("buftype", { buf = self.bufnr }) == "terminal" then
-				return " "
+				return " " .. icons.terminal
 			else
-				return " "
+				return " " .. icons.readonly
 			end
 		end,
 		hl = { fg = palette.text },
@@ -204,14 +205,10 @@ M.FileNameBlock = {
 M.Diagnostics = {
 	condition = conditions.has_diagnostics,
 	static = {
-		-- error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1].text,
-		error_icon = "􀁑 ",
-		-- warn_icon = vim.fn.sign_getdefined("DiagnosticSignWarn")[1].text,
-		warn_icon = "􀇿 ",
-		-- info_icon = vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text,
-		info_icon = "􀅵 ",
-		-- hint_icon = vim.fn.sign_getdefined("DiagnosticSignHint")[1].text,
-		hint_icon = "􁷖 ",
+		error_icon = icons.diagnostic_error,
+		warn_icon = icons.diagnostic_warn,
+		info_icon = icons.diagnostic_info,
+		hint_icon = icons.diagnostic_hint,
 	},
 	init = function(self)
 		self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
@@ -321,7 +318,7 @@ local TablineFileFlags = {
 		condition = function(self)
 			return vim.api.nvim_get_option_value("modified", { buf = self.bufnr })
 		end,
-		provider = " ",
+		provider = " " .. icons.modified_dot,
 		hl = function(self)
 			if self.is_active then
 				return { fg = palette.text, bold = true }
@@ -338,9 +335,9 @@ local TablineFileFlags = {
 		end,
 		provider = function(self)
 			if vim.api.nvim_get_option_value("buftype", { buf = self.bufnr }) == "terminal" then
-				return " "
+				return " " .. icons.terminal
 			else
-				return " "
+				return " " .. icons.readonly
 			end
 		end,
 		hl = { fg = palette.text },
@@ -375,7 +372,7 @@ local TablineCloseButton = {
 	condition = function(self)
 		return not vim.api.nvim_get_option_value("modified", { buf = self.bufnr })
 	end,
-	provider = " ✗",
+	provider = " " .. icons.close,
 	hl = function(self)
 		if self.is_active then
 			return { fg = palette.text, bold = true }

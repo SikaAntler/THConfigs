@@ -30,6 +30,14 @@ local handlers = {
 	["textDocument/documentHighlight"] = vim.lsp.with(vim.lsp.handlers.document_highlight, { border = border }),
 }
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+-- nvim-ufo for fold
+capabilities.textDocument.foldingRange = {
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
+}
+
+-- setup language servers
 lspconfig.basedpyright.setup({
 	capabilities = capabilities,
 	handlers = handlers,

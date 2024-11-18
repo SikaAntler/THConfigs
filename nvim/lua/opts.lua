@@ -72,3 +72,10 @@ vim.opt.laststatus = 3
 -- Bufferline
 vim.opt.termguicolors = true
 vim.opt.mousemoveevent = true
+
+-- Fold
+vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.opt.foldcolumn = "1"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true

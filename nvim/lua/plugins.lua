@@ -27,6 +27,7 @@ require("lazy").setup({
 	require("plugins.alpha"),
 	-- require("plugins.dashboard"),
 	require("plugins.dropbar"),
+	require("plugins.fold"),
 	require("plugins.heirline"),
 	require("plugins.gitsigns"),
 	require("plugins.neo-tree"),

@@ -64,7 +64,13 @@ alias C3="CUDA_VISIBLE_DEVICES=3"
 
 # fzf
 if command -v fzf &>/dev/null; then
-    eval "$(fzf --bash)"
+    if [[ "$SHELL" == */bash ]]; then
+        eval "$(fzf --bash)"
+    elif [[ "$SHELL" == */zsh ]]; then
+        source <(fzf --zsh)
+    else
+        echo "Shell is not Bash or Zsh"
+    fi
 
     export FZF_DEFAULT_OPTS=" \
     --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \

@@ -39,4 +39,4 @@ map("n", "<C-l>", "<Cmd>bnext<CR>", opt)
 
 -- ToggleTerm
 map({ "n", "i" }, "<F6>", '<Cmd>TermExec cmd="python %"<CR>', opt)
-map({ "n", "i" }, "<F7>", '<Cmd>TermExec cmd="bash %"<CR>', opt)
+map({ "n", "i" }, "<F7>", '<Cmd>TermExec cmd="$SHELL %"<CR>', opt)

@@ -38,7 +38,7 @@ dashboard.section.header.opts.hl = "Title"
 dashboard.section.buttons.val = {
 	dashboard.button("SPC f e", "󰙅  File Explorer"),
 	dashboard.button("SPC f f", "󰈞  Find File"),
-	dashboard.button("SPC f g", "󰈬  Find Grep"),
+	dashboard.button("SPC f w", "󰈬  Find Word"),
 	dashboard.button("SPC f o", "󰈢  Find Opened"),
 	dashboard.button("q", "󰈆  Quit Neovim", "<Cmd>q<CR>"),
 }

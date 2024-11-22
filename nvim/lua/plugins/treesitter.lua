@@ -5,7 +5,7 @@ return {
 		build = ":TSUpdate",
 		-- cmd = {'TSUpdateSync', 'TSUpdate', 'TSInstall'},
 		opts = {
-			ensure_installed = { "bash", "lua", "markdown", "python", "qmldir", "qmljs", "yaml" },
+			ensure_installed = { "bash", "lua", "markdown", "markdown_inline", "python", "qmldir", "qmljs", "yaml" },
 			highlight = { enable = true },
 		},
 		config = function(_, opts)

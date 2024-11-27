@@ -1,4 +1,17 @@
 local luasnip = require("luasnip")
+
+local map = vim.keymap.set
+local opts = { noremap = true, silent = true }
+-- map("i", "<C-i>", function()
+-- 	luasnip.expand()
+-- end, opts)
+map({ "i", "s" }, "<C-h>", function()
+	luasnip.jump(-1)
+end, opts)
+map({ "i", "s" }, "<C-l>", function()
+	luasnip.jump(1)
+end, opts)
+
 luasnip.config.setup({})
 
 -- local symbol_map = {

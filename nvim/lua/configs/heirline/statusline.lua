@@ -139,7 +139,13 @@ local FileName = {
 		if filename == "" then
 			return "[No Name]"
 		end
-		if not conditions.width_percent_below(#filename, 0.25) then
+		local max_precent
+		if vim.api.nvim_get_option_value("buftype", { buf = self.bufnr }) == "terminal" then
+			max_precent = 0.7
+		else
+			max_precent = 0.5
+		end
+		if not conditions.width_percent_below(#filename, max_precent) then
 			filename = vim.fn.pathshorten(filename)
 		end
 		return filename
@@ -148,13 +154,13 @@ local FileName = {
 }
 
 local FileFlags = {
-	{
-		condition = function(self)
-			return vim.api.nvim_get_option_value("modified", { buf = self.bufnr })
-		end,
-		provider = " " .. icons.modified_square,
-		hl = { fg = palette.text },
-	},
+	-- {
+	-- 	condition = function(self)
+	-- 		return vim.api.nvim_get_option_value("modified", { buf = self.bufnr })
+	-- 	end,
+	-- 	provider = " " .. icons.modified_square,
+	-- 	hl = { fg = palette.text },
+	-- },
 	{
 		condition = function(self)
 			local modifiable = vim.api.nvim_get_option_value("modifiable", { buf = self.bufnr })

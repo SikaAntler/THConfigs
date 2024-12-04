@@ -92,4 +92,17 @@ vim.diagnostic.config({
 			[vim.diagnostic.severity.HINT] = icons.diagnostic_hint,
 		},
 	},
+	virtual_text = {
+		prefix = function(diagnostic)
+			if diagnostic.severity == vim.diagnostic.severity.ERROR then
+				return icons.diagnostic_error
+			elseif diagnostic.severity == vim.diagnostic.severity.WARN then
+				return icons.diagnostic_warn
+			elseif diagnostic.severity == vim.diagnostic.severity.INFO then
+				return icons.diagnostic_info
+			else
+				return icons.diagnostic_hint
+			end
+		end,
+	},
 })

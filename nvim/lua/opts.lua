@@ -79,3 +79,14 @@ vim.opt.foldcolumn = "1"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
+
+-- Term
+if vim.uv.os_uname().sysname == "Windows_NT" and vim.fn.executable("powershell") then
+	vim.opt.shell = "powershell"
+	vim.opt.shellcmdflag =
+		"-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
+	vim.opt.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+	vim.opt.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
+	vim.o.shellquote = ""
+	vim.o.shellxquote = ""
+end

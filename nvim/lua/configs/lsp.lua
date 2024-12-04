@@ -54,6 +54,12 @@ lspconfig.basedpyright.setup({
 })
 lspconfig.bashls.setup({ capabilities = capabilities, handlers = handlers })
 lspconfig.lua_ls.setup({ capabilities = capabilities, handlers = handlers })
+lspconfig.powershell_es.setup({
+	bundle_path = "~/PowerShellEditorServices",
+	shell = "powershell.exe",
+	capabilities = capabilities,
+	handlers = handlers,
+})
 lspconfig.taplo.setup({ capabilities = capabilities, handlers = handlers })
 lspconfig.yamlls.setup({ capabilities = capabilities, handlers = handlers })
 

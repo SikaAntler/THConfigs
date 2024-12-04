@@ -10,6 +10,7 @@ end
 
 append(require("configs.shell"))
 append(require("configs.appearance"))
+append(require("configs.keys"))
 require("events.tab-title")
 
 return config

@@ -5,7 +5,7 @@ return {
 	-- Window
 	window_decorations = platform.is_win and "INTEGRATED_BUTTONS|RESIZE" or "RESIZE",
 	integrated_title_buttons = { "Hide", "Close" },
-	window_background_opacity = platform.is_win and 0.8 or 0.9,
+	window_background_opacity = platform.is_win and 1.0 or 0.9,
 	text_background_opacity = 0.8,
 	macos_window_background_blur = 20,
 	win32_system_backdrop = "Auto",
@@ -16,16 +16,12 @@ return {
 	font_size = platform.is_win and 10.5 or 15,
 	line_height = 1.2,
 	font = wezterm.font_with_fallback({
-		{
-			family = "Fira Code",
-			weight = "Regular",
-			-- harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
-		},
+		"Maple Mono NF CN",
 		"JetBrains Mono",
 	}),
 	-- freetype_load_flags = "NO_HINTING"
 	freetype_load_target = "Normal",
-	color_scheme = "Catppuccin Mocha",
+	color_scheme = "Catppuccin Macchiato",
 
 	-- Cursor
 	default_cursor_style = "SteadyBar",

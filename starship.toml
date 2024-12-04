@@ -4,8 +4,7 @@ palette = "catppuccin_macchiato"
 
 format = """
 $username$hostname in $directory$git_branch$cmd_duration
-$conda$python$character
-"""
+$conda$python$character"""
 
 add_newline = true
 

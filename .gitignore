@@ -1,5 +1,8 @@
 # lazy.nvim
 /nvim/lazy-lock.json
 
+# lazygit
+/lazygit/state.yml
+
 # MacOS
 .DS_Store

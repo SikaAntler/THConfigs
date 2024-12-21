@@ -37,9 +37,11 @@ require("lazy").setup({
 	-- Coding
 	require("plugins.comment"),
 	require("plugins.diffview"),
+	require("plugins.flash"),
 	require("plugins.hlchunk"),
 	require("plugins.illunimate"),
 	require("plugins.pairs"),
+	require("plugins.symbol-usage"),
 	require("plugins.telescope"),
 	require("plugins.toggleterm"),
 	require("plugins.trouble"),

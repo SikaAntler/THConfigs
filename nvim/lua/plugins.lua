@@ -45,7 +45,7 @@ require("lazy").setup({
 	require("plugins.telescope"),
 	require("plugins.toggleterm"),
 	require("plugins.trouble"),
-	require("plugins.venv-selector"),
+	-- require("plugins.venv-selector"),
 	-- Utils
 	require("plugins.bufdelete"),
 	require("plugins.dressing"), -- float window

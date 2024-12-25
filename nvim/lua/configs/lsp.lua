@@ -60,6 +60,7 @@ lspconfig.powershell_es.setup({
 	capabilities = capabilities,
 	handlers = handlers,
 })
+lspconfig.qmlls.setup({ capabilities = capabilities, handlers = handlers, cmd = { "pyside6-qmlls", "qmlls" } })
 lspconfig.taplo.setup({ capabilities = capabilities, handlers = handlers })
 lspconfig.yamlls.setup({ capabilities = capabilities, handlers = handlers })
 

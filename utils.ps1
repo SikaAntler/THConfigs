@@ -1,5 +1,5 @@
 # Add the following command to $PROFILE
-# Invoke-Expression -Command ". $HOME/THConfigs/utils.sh"
+# Invoke-Expression -Command ". $HOME/THConfigs/utils.ps1"
 
 Set-PSReadLineOption -EditMode Emacs
 

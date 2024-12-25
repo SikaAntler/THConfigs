@@ -4,6 +4,16 @@
 Set-PSReadLineOption -EditMode Emacs
 
 # aliases
+function cd2
+{
+    Set-Location ..\..
+}
+
+function cd3
+{
+    Set-Location ..\..\..
+}
+
 function lg
 {
     lazygit

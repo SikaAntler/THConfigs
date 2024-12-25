@@ -2,6 +2,14 @@ local action = require("wezterm").action
 
 ---@param mods string
 ---@param key string
+---@param send string
+---@return table
+local function send_key(mods, key, send)
+	return { mods = mods, key = key, action = action.SendKey({ key = send }) }
+end
+
+---@param mods string
+---@param key string
 ---@param seq string
 ---@return table
 local function sequence(mods, key, seq)
@@ -28,7 +36,8 @@ end
 return {
 	keys = {
 		-- neovim
-		sequence("CTRL", "/", "gcc"),
+		sequence("CTRL", "/", "gccj"),
+		send_key("CTRL", "`", "F5"),
 
 		-- tmux
 		tmux("1"),

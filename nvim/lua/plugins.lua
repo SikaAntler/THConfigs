@@ -35,6 +35,7 @@ require("lazy").setup({
 	-- "echasnovski/mini.bufremove",
 	-- require("plugins.lualine"),
 	-- Coding
+	require("plugins.colorizer"),
 	require("plugins.comment"),
 	require("plugins.diffview"),
 	require("plugins.flash"),

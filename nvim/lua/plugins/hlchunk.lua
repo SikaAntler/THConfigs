@@ -1,14 +1,15 @@
 return {
 	"shellRaining/hlchunk.nvim",
-	event = "UIEnter",
+	event = { "BufReadPre", "BufNewFile" },
 	opts = {
-		chunk = { enable = false },
 		indent = {
-			support_filetyes = {
-				"*.lua",
+			enable = true,
+			chars = {
+				"│",
+				"¦",
+				"┆",
+				"┊",
 			},
 		},
-		line_num = { enable = false },
-		blank = { enable = false },
 	},
 }

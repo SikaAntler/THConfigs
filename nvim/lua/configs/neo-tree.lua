@@ -22,7 +22,23 @@ require("neo-tree").setup({
 			},
 		},
 	},
+	window = {
+		mappings = {
+			["<Tab>"] = function(state)
+				local node = state.tree:get_node()
+				if require("neo-tree.utils").is_expandable(node) then
+					state.commands["toggle_node"](state)
+				else
+					state.commands["open"](state)
+					vim.cmd("Neotree")
+				end
+			end,
+		},
+	},
 	filesystem = {
 		use_libuv_file_watcher = true,
+		filtered_items = {
+			hide_gitignored = false,
+		},
 	},
 })

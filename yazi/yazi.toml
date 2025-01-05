@@ -1,21 +1,24 @@
 [manager]
 ratio = [1, 2, 3]
-sort_by = "natural"
+sort_by = 'natural'
 
 [preview]
 max_width = 1920
-max_height = 1080
+max_height = 2160
 
 [opener]
-edit = [{ run = 'nvim "$@"', block = true, for = "unix" }]
+edit = [
+  { run = 'nvim "$@"', block = true, for = 'unix' },
+  { run = 'nvim %*', block = true, for = 'windows' },
+]
 open = [
-  { run = 'open "$@"', for = "macos" },
-  { run = 'start "" "%1"', orphan = true, for = "windows" },
+  { run = 'open "$@"', for = 'macos' },
+  { run = 'start "" "%1"', orphan = true, for = 'windows' },
 ]
 reveal = [
-  { run = 'open -R "$1"', for = "macos" },
-  { run = 'explorer /select, "%1"', orphan = true, for = "windows" },
+  { run = 'open -R "$1"', for = 'macos' },
+  { run = 'explorer /select, "%1"', orphan = true, for = 'windows' },
 ]
 
 [plugin]
-prepend_previewers = [{ mime = "text/csv", run = "miller" }]
+prepend_previewers = [{ mime = 'text/csv', run = 'miller' }]

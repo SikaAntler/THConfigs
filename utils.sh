@@ -1,9 +1,25 @@
-# ==================aliases begin==================
+# ╭───────────────────────────────────────────╮
+# │                 Aliases                   │
+# ╰───────────────────────────────────────────╯
+
+# cd
+alias ..="cd ../"
+alias cd2="cd ../../"
+alias cd3="cd ../../../"
+alias cd4="cd ../../../../"
+
+# conda
+alias act="conda activate"
+
+# git
+alias lg="lazygit"
+alias gs="git status"
 
 # ls & grep
 alias grep="grep --color=auto"
 if command -v eza &>/dev/null; then
-    alias ls="eza"
+    alias ls="eza --icons"
+    alias l="ls"
     alias la="ls -aF"
     alias ll="ls -laF"
     
@@ -21,27 +37,17 @@ else
     alias cnfr="ls -lR | grep '^-' -c"
 fi
 
-# cd
-alias ..="cd ../"
-alias cd2="cd ../../"
-alias cd3="cd ../../../"
-alias cd4="cd ../../../../"
-
-# (neo)vim
-alias nv="nvim"
+# neovim
 alias nb="nvim ~/.bashrc"
 alias nz="nvim ~/.zshrc"
 
-# git
-alias lg="lazygit"
-alias gs="git status"
+# nvidia
+alias ns="nvidia-smi"
+alias wns="watch -n 1 -d nvidia-smi"
 
 # source
 alias sb="source ~/.bashrc"
 alias sz="source ~/.zshrc"
-
-# conda
-alias act="conda activate"
 
 # tmux
 alias tls="tmux ls"
@@ -52,15 +58,10 @@ alias tnm="tn main"
 alias tam="ta main"
 alias tkm="tk main"
 
-# nvidia
-alias ns="nvidia-smi"
-alias wns="watch -n 1 -d nvidia-smi"
-alias C0="CUDA_VISIBLE_DEVICES=0"
-alias C1="CUDA_VISIBLE_DEVICES=1"
-alias C2="CUDA_VISIBLE_DEVICES=2"
-alias C3="CUDA_VISIBLE_DEVICES=3"
 
-# ==================aliases end==================
+# ╭───────────────────────────────────────────╮
+# │                 Commands                  │
+# ╰───────────────────────────────────────────╯
 
 # fzf
 if command -v fzf &>/dev/null; then
@@ -78,6 +79,17 @@ if command -v fzf &>/dev/null; then
     --color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
     --color=selected-bg:#494d64 \
     --multi"
+fi
+
+# starship
+if command -v starship &>/dev/null; then
+    if [[ "$SHELL"  == */bash ]]; then
+        eval "$(starship init bash)"
+    elif [[ "$SHELL" == */zsh ]]; then
+        eval "$(starship init zsh)"
+    else
+        echo "Shell is not Bash or Zsh"
+    fi
 fi
 
 # yazi

@@ -8,6 +8,7 @@ return {
 			config = true,
 		},
 		"williamboman/mason-lspconfig.nvim",
+		"saghen/blink.cmp",
 	},
 	config = function()
 		require("configs.lsp")

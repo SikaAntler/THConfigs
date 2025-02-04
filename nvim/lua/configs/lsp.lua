@@ -29,7 +29,9 @@ local handlers = {
 	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
 	["textDocument/documentHighlight"] = vim.lsp.with(vim.lsp.handlers.document_highlight, { border = border }),
 }
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 -- nvim-ufo for fold
 capabilities.textDocument.foldingRange = {

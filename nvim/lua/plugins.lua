@@ -19,7 +19,8 @@ require("lazy").setup({
 	-- Core
 	require("plugins.catppuccin"), -- theme
 	require("plugins.lsp"),
-	require("plugins.completion"),
+	-- require("plugins.nvim-cmp"),
+	require("plugins.blink"),
 	require("plugins.conform"),
 	require("plugins.treesitter"),
 	-- Layout

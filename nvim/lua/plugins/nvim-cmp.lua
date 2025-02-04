@@ -60,6 +60,6 @@ return {
 		},
 	},
 	config = function()
-		require("configs.completion")
+		require("configs.nvim-cmp")
 	end,
 }

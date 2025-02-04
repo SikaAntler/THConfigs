@@ -22,7 +22,8 @@ return {
 		},
 		integrations = {
 			aerial = true,
-			cmp = true,
+			blink_cmp = true,
+			-- cmp = true,
 			dashboard = true,
 			diffview = true,
 			dropbar = { enabled = true, color_mode = true },

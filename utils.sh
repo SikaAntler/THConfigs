@@ -17,7 +17,7 @@ alias gs="git status"
 
 # ls & grep
 alias grep="grep --color=auto"
-if command -v eza &>/dev/null; then
+if [[ -x $(command -v eza) ]]; then
     alias ls="eza --icons"
     alias l="ls"
     alias la="ls -aF"
@@ -64,8 +64,8 @@ alias tkm="tk main"
 # ╰───────────────────────────────────────────╯
 
 # fzf
-if command -v fzf &>/dev/null; then
-    if [[ "$SHELL" == */bash ]]; then
+if [[ -x $(command -v fzf) ]]; then
+    if [[ $SHELL == */bash ]]; then
         eval "$(fzf --bash)"
     elif [[ "$SHELL" == */zsh ]]; then
         source <(fzf --zsh)
@@ -82,10 +82,10 @@ if command -v fzf &>/dev/null; then
 fi
 
 # starship
-if command -v starship &>/dev/null; then
-    if [[ "$SHELL"  == */bash ]]; then
+if [[ -x $(command -v starship) ]]; then
+    if [[ $SHELL  == */bash ]]; then
         eval "$(starship init bash)"
-    elif [[ "$SHELL" == */zsh ]]; then
+    elif [[ $SHELL == */zsh ]]; then
         eval "$(starship init zsh)"
     else
         echo "Shell is not Bash or Zsh"

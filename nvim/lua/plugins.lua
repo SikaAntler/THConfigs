@@ -42,6 +42,7 @@ require("lazy").setup({
 	require("plugins.flash"),
 	require("plugins.hlchunk"),
 	require("plugins.illunimate"),
+	require("plugins.oil"),
 	require("plugins.pairs"),
 	require("plugins.symbol-usage"),
 	require("plugins.telescope"),

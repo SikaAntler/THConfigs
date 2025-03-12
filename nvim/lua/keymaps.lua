@@ -6,7 +6,6 @@ map("i", "jk", "<Esc>", opt)
 
 -- Save
 map({ "n", "i" }, "<C-s>", "<Cmd>w<CR>", opt)
-map({ "n", "i" }, "<D-s>", "<Cmd>w<CR>", opt)
 
 -- Move line
 map("n", "<C-j>", "<Cmd>m+1<CR>", opt)

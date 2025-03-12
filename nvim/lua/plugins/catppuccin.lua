@@ -23,7 +23,6 @@ return {
 		integrations = {
 			aerial = true,
 			blink_cmp = true,
-			-- cmp = true,
 			dashboard = true,
 			diffview = true,
 			dropbar = { enabled = true, color_mode = true },
@@ -34,6 +33,7 @@ return {
 			neotree = true,
 			noice = true,
 			notify = true,
+			snacks = { enabled = true, indent_scope_color = "pink" },
 			telescope = { enabled = true },
 			treesitter = true,
 			treesitter_context = true,

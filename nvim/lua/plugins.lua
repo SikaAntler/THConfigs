@@ -40,7 +40,7 @@ require("lazy").setup({
 	require("plugins.comment"),
 	require("plugins.diffview"),
 	require("plugins.flash"),
-	require("plugins.hlchunk"),
+	-- require("plugins.hlchunk"),
 	require("plugins.illunimate"),
 	require("plugins.oil"),
 	require("plugins.pairs"),
@@ -51,12 +51,13 @@ require("lazy").setup({
 	-- require("plugins.venv-selector"),
 	-- Utils
 	require("plugins.bufdelete"),
-	require("plugins.dressing"), -- float window
+	-- require("plugins.dressing"), -- float window
 	-- require("plugins.image"),
 	require("plugins.lazydev"),
 	require("plugins.neoscroll"),
 	require("plugins.noice"),
 	require("plugins.notify"),
+	require("plugins.snacks"),
 	require("plugins.which-key"),
 	-- "mfussenegger/nvim-lint",
 	-- Dependencies

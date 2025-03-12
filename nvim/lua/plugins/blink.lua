@@ -20,13 +20,7 @@ return {
 	---@module "blink.cmp"
 	---@type blink.cmp.Config
 	opts = {
-		keymap = {
-			preset = "super-tab",
-			["<C-u>"] = { "scroll_documentation_up" },
-			["<C-d>"] = { "scroll_documentation_down" },
-		},
-		snippets = { preset = "luasnip" },
-		sources = { default = { "lsp", "path", "snippets", "buffer" } },
+		appearance = { nerd_font_variant = "normal" },
 		completion = {
 			menu = {
 				draw = {
@@ -39,6 +33,18 @@ return {
 				window = { border = "rounded" },
 			},
 		},
-		appearance = { nerd_font_variant = "normal" },
+		keymap = {
+			preset = "super-tab",
+			["<C-u>"] = { "scroll_documentation_up" },
+			["<C-d>"] = { "scroll_documentation_down" },
+		},
+		signature = {
+			enabled = true,
+			window = {
+				border = "rounded",
+			},
+		},
+		sources = { default = { "snippets", "path", "lsp", "buffer" } },
+		snippets = { preset = "luasnip" },
 	},
 }

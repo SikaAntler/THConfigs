@@ -3,10 +3,19 @@
 palette = "catppuccin_macchiato"
 
 format = """
-$username$hostname in $directory$git_branch$cmd_duration
-$conda$python$character"""
+ $os$username$hostname in $directory$git_branch$cmd_duration
+ $conda$python$character"""
 
 add_newline = true
+
+[os]
+format = "[$symbol](bold red)"
+disabled = false
+
+[os.symbols]
+Macos = " "
+Ubuntu = "󰕈 "
+Windows = " "
 
 [username]
 show_always = true
@@ -16,8 +25,8 @@ format = "[$user]($style)"
 format = "[@$hostname]($style)"
 
 [character]
-# success_symbol = "[➜](bold green)"
-# error_symbol = "[✗](bold red) "
+# success_symbol = "[](bold green)"
+# error_symbol = "[](bold red)"
 
 [directory]
 truncation_length = 5

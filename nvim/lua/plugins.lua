@@ -53,6 +53,7 @@ require("lazy").setup({
 	require("plugins.bufdelete"),
 	-- require("plugins.dressing"), -- float window
 	-- require("plugins.image"),
+	require("plugins.im-select"),
 	require("plugins.lazydev"),
 	require("plugins.neoscroll"),
 	require("plugins.noice"),

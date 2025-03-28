@@ -1,15 +1,15 @@
 return {
-	"shellRaining/hlchunk.nvim",
-	event = { "BufReadPre", "BufNewFile" },
-	opts = {
-		indent = {
-			enable = true,
-			chars = {
-				"│",
-				"¦",
-				"┆",
-				"┊",
-			},
-		},
-	},
+    "shellRaining/hlchunk.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+        indent = {
+            enable = true,
+            chars = {
+                "│",
+                "¦",
+                "┆",
+                "┊",
+            },
+        },
+    },
 }

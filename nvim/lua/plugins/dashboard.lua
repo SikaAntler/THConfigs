@@ -1,8 +1,8 @@
 return {
-	"nvimdev/dashboard-nvim",
-	event = "VimEnter",
-	opts = function()
-		local logo = [[
+    "nvimdev/dashboard-nvim",
+    event = "VimEnter",
+    opts = function()
+        local logo = [[
 ┌─────────────────────────────────────────────────────────────┐
 │┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐│
 ││Esc│!1 │@2 │#3 │$4 │%5 │^6 │&7 │*8 │(9 │)0 │_- │+= │|\ │`~ ││
@@ -20,14 +20,14 @@ return {
 天不生我键盘侠，喷道万古如长夜
         ]]
 
-		return {
-			-- theme = "hyper",
-			-- hide = { statusline = false }, -- 启动文件时与lualine冲突
-			hide = { tabline = false }, -- 与heirline的tabline冲突
-			shortcut_type = "letter",
-			config = {
-				header = vim.split(logo, "\n"),
-			},
-		}
-	end,
+        return {
+            -- theme = "hyper",
+            -- hide = { statusline = false }, -- 启动文件时与lualine冲突
+            hide = { tabline = false }, -- 与heirline的tabline冲突
+            shortcut_type = "letter",
+            config = {
+                header = vim.split(logo, "\n"),
+            },
+        }
+    end,
 }

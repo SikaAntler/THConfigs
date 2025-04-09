@@ -1,23 +1,7 @@
 return {
     "saghen/blink.cmp",
-    version = "*",
-    event = "InsertEnter",
-    dependencies = {
-        {
-            "L3MON4D3/LuaSnip",
-            version = "v2.*",
-            event = "VeryLazy",
-            dependencies = {
-                "rafamadriz/friendly-snippets",
-                config = function()
-                    require("luasnip.loaders.from_lua").load({
-                        paths = { vim.fn.stdpath("config") .. "/lua/snippets" },
-                    })
-                    require("luasnip.loaders.from_vscode").lazy_load()
-                end,
-            },
-        },
-    },
+    version = "1.*",
+    event = { "BufReadPost", "BufNewFile" },
 
     ---@module "blink.cmp"
     ---@type blink.cmp.Config
@@ -51,6 +35,5 @@ return {
             },
         },
         sources = { default = { "snippets", "path", "lsp", "buffer" } },
-        snippets = { preset = "luasnip" },
     },
 }

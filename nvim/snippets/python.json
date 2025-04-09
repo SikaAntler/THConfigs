@@ -1,0 +1,148 @@
+{
+  "Import Enum": {
+    "prefix": "enum",
+    "body": "from enum import Enum"
+  },
+  "Import Matplotlib": {
+    "prefix": "matplotlib",
+    "body": [
+      "import matplotlib.pyplot as plt",
+      "from matplotlib.axes import Axes"
+    ]
+  },
+  "Import Numpy": {
+    "prefix": "numpy",
+    "body": "import numpy as np"
+  },
+  "Import Pandas": {
+    "prefix": "pandas",
+    "body": "import pandas as pd"
+  },
+  "Import Pathlib": {
+    "prefix": "pathlib",
+    "body": "from pathlib import Path"
+  },
+  "Import PIL Image": {
+    "prefix": "pil",
+    "body": "from PIL import Image"
+  },
+  "Import QtCore": {
+    "prefix": "qtcore",
+    "body": "from PySide6.QtCore import Property, QObject, Qt, QUrl, Signal, Slot"
+  },
+  "Import QtGui": {
+    "prefix": "qtgui",
+    "body": "from PySide6.QtGui import QGuiApplication"
+  },
+  "Import QtQml": {
+    "prefix": "qtqml",
+    "body": [
+      "from PySide6.QtQml import (",
+      "\tQmlElement,",
+      "\tQmlSingleton,",
+      "\tQQmlApplicationEngine,",
+      "\tqmlRegisterSingletonType,",
+      "\tqmlRegisterType,",
+      ")"
+    ]
+  },
+  "Import Rich": {
+    "prefix": "rich",
+    "body": "from rich import print"
+  },
+  "Import Tqdm": {
+    "prefix": "tqdm",
+    "body": "from tqdm import tqdm"
+  },
+  "Import Typing": {
+    "prefix": "typing",
+    "body": "from typing import Literal, Optional"
+  },
+  "Add Argument": {
+    "prefix": "add_argument",
+    "body": "parser.add_argument($0)"
+  },
+  "File Read": {
+    "prefix": "fileread",
+    "body": [
+      "with open(${1:filename}, \"r\", encoding=\"utf-8\") as fr:",
+      "\t$0"
+    ]
+  },
+  "File Write": {
+    "prefix": "filewrite",
+    "body": [
+      "with open(${1:filename}, \"r\", encoding=\"utf-8\") as fw:",
+      "\t$0"
+    ]
+  },
+  "If Main": {
+    "prefix": "ifmain",
+    "body": [
+      "from argparse import ArgumentParser\n\n",
+      "def main(cfg) -> None:",
+      "\tpass\n\n",
+      "if __name__ == \"__main__\":",
+      "\tparser = ArgumentParser()",
+      "\t$0\n",
+      "\tmain(parser.parse_args())"
+    ]
+  },
+  "Image Read": {
+    "prefix": "imread",
+    "body": "${1:image} = cv2.imdecode(np.fromfile(${2:img_file}, np.uint8), cv2.IMREAD_UNCHANGED)"
+  },
+  "Image Write": {
+    "prefix": "imwrite",
+    "body": "cv2.imencode(\".${1:png}\", ${2:image})[1].tofile(${3:img_file})"
+  },
+  "Image BGR2RGB": {
+    "prefix": "bgr2rgb",
+    "body": "${1:image} = cv2.cvtColor(${2:image}, cv2.COLOR_BGR2RGB)"
+  },
+  "Image RGB2GRAY": {
+    "prefix": "rgb2gray",
+    "body": "image = cv2.cvtColor(${1:image}, cv2.COLOR_RGB2GRAY)"
+  },
+  "Image RGB2BGR": {
+    "prefix": "rgb2bgr",
+    "body": "image = cv2.cvtColor(${1:image}, cv2.COLOR_RGB2BGR)"
+  },
+  "Progress Bar": {
+    "prefix": "pbar",
+    "body": [
+      "pbar = tqdm(list(${1:parent}.iterdir()), ncols=100)",
+      "for ${2:child} in pbar:",
+      "\t"
+    ]
+  },
+  "QML IMPORT": {
+    "prefix": "qmlimport",
+    "body": [
+      "QML_IMPORT_NAME = \"${1:module}\"",
+      "QML_IMPORT_MAJOR_VERSION = 1",
+      "QML_IMPORT_MINOR_VERSION = 0"
+    ]
+  },
+  "Set Font": {
+    "prefix": "setfont",
+    "body": [
+      "from matplotlib import font_manager\n",
+      "font_manager.fontManager.addfont(Path(\"\\$HOME/.local/share/fonts/Songti.ttc\").resolve())",
+      "plt.rcParams[\"font.sans-serif\"] = [\"Songti SC\"]",
+      "plt.rcParams[\"axes.unicode_minus\"] = False",
+      "$0"
+    ]
+  },
+  "Subplots": {
+    "prefix": "subplots",
+    "body": [
+      "fig, ax = plt.subplots()",
+      "ax: Axes\n"
+    ]
+  },
+  "Pyright Ignore": {
+    "prefix": "ignore",
+    "body": "# pyright-ignore"
+  }
+}

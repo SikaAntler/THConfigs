@@ -22,12 +22,12 @@ luasnip.add_snippets("python", {
     snippet("typing", text("from typing import Literal, Optional")),
 
     -- ╭───────────────────────────────────────────╮
-    -- │                    Main                   │
+    -- │                  Pyright                  │
     -- ╰───────────────────────────────────────────╯
     snippet("pyright-ignore", text("# pyright: ignore")),
 
     -- ╭───────────────────────────────────────────╮
-    -- │                    Main                   │
+    -- │                   Main                    │
     -- ╰───────────────────────────────────────────╯
     snippet(
         "main",
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     snippet("add_argument", fmt("parser.add_argument({})", insert(1))),
 
     -- ╭───────────────────────────────────────────╮
-    -- │                    Main                   │
+    -- │                   File                    │
     -- ╰───────────────────────────────────────────╯
     snippet(
         "fr",
@@ -90,7 +90,7 @@ with open({}, "w", encoding="utf-8") as fw:
         )
     ),
     snippet(
-        "imwrite1",
+        "imwrite",
         fmt(
             "cv2.imencode({}, {})[1].tofile({})",
             { insert(1, "suffix"), insert(2, "image"), insert(3, "img_file") }

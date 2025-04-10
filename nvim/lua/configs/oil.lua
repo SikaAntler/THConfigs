@@ -12,7 +12,7 @@ end
 ---@type oil.SetupOpts
 local opts = {
     default_file_explorer = true,
-    columns = { "permissions", "mtime", "size", "icon" },
+    columns = { "icon" },
     win_options = {
         winbar = "%!v:lua.get_oil_winbar()",
     },

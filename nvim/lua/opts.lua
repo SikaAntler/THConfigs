@@ -74,11 +74,15 @@ vim.opt.termguicolors = true
 vim.opt.mousemoveevent = true
 
 -- Fold
-vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-vim.opt.foldcolumn = "1"
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
+require("utils.fold")
+vim.o.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldclose:"
+vim.o.foldcolumn = "1"
+vim.o.foldenable = true
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldmethod = "expr"
+vim.o.foldtext = "v:lua.custom_foldtext()"
 
 -- Term
 if vim.uv.os_uname().sysname == "Windows_NT" and vim.fn.executable("powershell") then

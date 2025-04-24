@@ -96,17 +96,9 @@
     "prefix": "imwrite",
     "body": "cv2.imencode(\".${1:png}\", ${2:image})[1].tofile(${3:img_file})"
   },
-  "Image BGR2RGB": {
-    "prefix": "bgr2rgb",
-    "body": "${1:image} = cv2.cvtColor(${2:image}, cv2.COLOR_BGR2RGB)"
-  },
-  "Image RGB2GRAY": {
-    "prefix": "rgb2gray",
-    "body": "image = cv2.cvtColor(${1:image}, cv2.COLOR_RGB2GRAY)"
-  },
-  "Image RGB2BGR": {
-    "prefix": "rgb2bgr",
-    "body": "image = cv2.cvtColor(${1:image}, cv2.COLOR_RGB2BGR)"
+  "Image Convert Color": {
+    "prefix": "cvtColor",
+    "body": "${1:image} = cv2.cvtColor(${2:image}, cv2.COLOR_$0)"
   },
   "Progress Bar": {
     "prefix": "pbar",

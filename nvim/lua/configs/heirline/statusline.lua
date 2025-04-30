@@ -66,7 +66,7 @@ local Mode = {
         },
         mode_colors = {
             n = palette.blue,
-            nt = palette.read,
+            nt = palette.red,
             v = palette.mauve,
             V = palette.mauve,
             ["\22"] = palette.mauve,
@@ -193,10 +193,10 @@ local File = {
 local Diagnostics = {
     condition = conditions.has_diagnostics,
     static = {
-        error_icon = icons.diagnostic_error,
-        warn_icon = icons.diagnostic_warn,
-        info_icon = icons.diagnostic_info,
-        hint_icon = icons.diagnostic_hint,
+        error_icon = icons.diagnostic.ERROR,
+        warn_icon = icons.diagnostic.WARN,
+        info_icon = icons.diagnostic.INFO,
+        hint_icon = icons.diagnostic.HINT,
     },
     init = function(self)
         self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })

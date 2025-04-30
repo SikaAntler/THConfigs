@@ -1,9 +1,11 @@
 return {
     close = "✗",
-    diagnostic_error = " ",
-    diagnostic_warn = " ",
-    diagnostic_info = " ",
-    diagnostic_hint = " ",
+    diagnostic = {
+        ERROR = " ",
+        WARN = " ",
+        INFO = " ",
+        HINT = " ",
+    },
     modified_dot = "",
     -- modified_square = " ",
     readonly = " ",

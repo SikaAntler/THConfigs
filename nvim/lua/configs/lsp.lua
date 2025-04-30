@@ -1,45 +1,12 @@
 require("mason").setup()
 require("mason-lspconfig").setup()
 
-vim.cmd([[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]])
-vim.cmd([[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]])
-
-local lspconfig = require("lspconfig")
-local border = {
-    { "╭", "FloatBorder" },
-    { "─", "FloatBorder" },
-    { "╮", "FloatBorder" },
-    { "│", "FloatBorder" },
-    { "╯", "FloatBorder" },
-    { "─", "FloatBorder" },
-    { "╰", "FloatBorder" },
-    { "│", "FloatBorder" },
-}
-local handlers = {
-    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-    ["textDocument/signatureHelp"] = vim.lsp.with(
-        vim.lsp.handlers.signature_help,
-        { border = border }
-    ),
-    ["textDocument/documentHighlight"] = vim.lsp.with(
-        vim.lsp.handlers.document_highlight,
-        { border = border }
-    ),
-}
--- local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
 local capabilities = require("blink.cmp").get_lsp_capabilities()
-
--- nvim-ufo for fold
-capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true,
-}
+local lspconfig = require("lspconfig")
 
 -- setup language servers
 lspconfig.basedpyright.setup({
     capabilities = capabilities,
-    handlers = handlers,
     settings = {
         basedpyright = {
             disableOrganizedImport = true,
@@ -51,21 +18,19 @@ lspconfig.basedpyright.setup({
         },
     },
 })
-lspconfig.bashls.setup({ capabilities = capabilities, handlers = handlers })
-lspconfig.lua_ls.setup({ capabilities = capabilities, handlers = handlers })
+lspconfig.bashls.setup({ capabilities = capabilities })
+lspconfig.lua_ls.setup({ capabilities = capabilities })
 lspconfig.powershell_es.setup({
     bundle_path = "~/PowerShellEditorServices",
     shell = "powershell.exe",
     capabilities = capabilities,
-    handlers = handlers,
 })
 lspconfig.qmlls.setup({
     capabilities = capabilities,
-    handlers = handlers,
     cmd = { "pyside6-qmlls", "qmlls" },
 })
-lspconfig.taplo.setup({ capabilities = capabilities, handlers = handlers })
-lspconfig.yamlls.setup({ capabilities = capabilities, handlers = handlers })
+lspconfig.taplo.setup({ capabilities = capabilities })
+lspconfig.yamlls.setup({ capabilities = capabilities })
 
 -- inlay hint
 vim.lsp.inlay_hint.enable()
@@ -88,25 +53,28 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 local icons = require("utils.icons")
 vim.diagnostic.config({
+    virtual_lines = {
+        current_line = true,
+    },
     signs = {
         text = {
-            [vim.diagnostic.severity.ERROR] = icons.diagnostic_error,
-            [vim.diagnostic.severity.WARN] = icons.diagnostic_warn,
-            [vim.diagnostic.severity.INFO] = icons.diagnostic_info,
-            [vim.diagnostic.severity.HINT] = icons.diagnostic_hint,
+            [vim.diagnostic.severity.ERROR] = icons.diagnostic.ERROR,
+            [vim.diagnostic.severity.WARN] = icons.diagnostic.WARN,
+            [vim.diagnostic.severity.INFO] = icons.diagnostic.INFO,
+            [vim.diagnostic.severity.HINT] = icons.diagnostic.HINT,
         },
     },
-    virtual_text = {
-        prefix = function(diagnostic)
-            if diagnostic.severity == vim.diagnostic.severity.ERROR then
-                return icons.diagnostic_error
-            elseif diagnostic.severity == vim.diagnostic.severity.WARN then
-                return icons.diagnostic_warn
-            elseif diagnostic.severity == vim.diagnostic.severity.INFO then
-                return icons.diagnostic_info
-            else
-                return icons.diagnostic_hint
-            end
-        end,
-    },
+    -- virtual_text = {
+    --     prefix = function(diagnostic)
+    --         if diagnostic.severity == vim.diagnostic.severity.ERROR then
+    --             return icons.diagnostic.ERROR
+    --         elseif diagnostic.severity == vim.diagnostic.severity.WARN then
+    --             return icons.diagnostic.WARN
+    --         elseif diagnostic.severity == vim.diagnostic.severity.INFO then
+    --             return icons.diagnostic.INFO
+    --         else
+    --             return icons.diagnostic.HINT
+    --         end
+    --     end,
+    -- },
 })

@@ -32,22 +32,41 @@ lspconfig.qmlls.setup({
 lspconfig.taplo.setup({ capabilities = capabilities })
 lspconfig.yamlls.setup({ capabilities = capabilities })
 
--- inlay hint
-vim.lsp.inlay_hint.enable()
-
 -- Keymap
-local map = vim.keymap.set
 vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-    callback = function(ev)
-        vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+    group = vim.api.nvim_create_augroup("Lsp", { clear = true }),
+    callback = function(event)
+        local map = function(keys, func, desc)
+            vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+        end
 
-        local opt = { buffer = ev.buf }
-        map("n", "gD", vim.lsp.buf.declaration, opt)
-        map("n", "<C-q>", vim.lsp.buf.hover, opt)
-        map("n", "<Space>wa", vim.lsp.buf.add_workspace_folder, opt)
-        map("n", "<Space>rn", vim.lsp.buf.rename, opt)
-        map({ "n", "v" }, "<Space>ca", vim.lsp.buf.code_action, opt)
+        map("gd", function()
+            local params = vim.lsp.util.make_position_params(0, "utf-8")
+            vim.lsp.buf_request(0, "textDocument/definition", params, function(_, result, _, _)
+                if not result or vim.tbl_isempty(result) then
+                    vim.notify("No definition found", vim.log.levels.INFO)
+                else
+                    require("telescope.builtin").lsp_definitions()
+                end
+            end)
+        end, "Goto Definition")
+        map("gD", vim.lsp.buf.declaration, "Goto Declaration")
+        map("gi", vim.lsp.buf.implementation, "Goto Implementation")
+        map("gr", function()
+            require("telescope.builtin").lsp_references()
+        end, "Goto References")
+        map("<Space>h", vim.lsp.buf.hover, "Hover")
+        map("<Space>rn", vim.lsp.buf.rename, "Rename")
+        map("<Space>ca", vim.lsp.buf.code_action, "Code Action")
+
+        -- Inlay hint
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+            vim.lsp.inlay_hint.enable()
+            map("<Space>ih", function()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+            end, "Inlay Hint")
+        end
     end,
 })
 

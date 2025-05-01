@@ -20,10 +20,6 @@ return {
         { "<Space>fd", "<Cmd>Telescope diagnostics<CR>" },
         { "<Space>fk", "<Cmd>Telescope keymaps<CR>" },
         { "<Space>fr", "<Cmd>Telescope resume<CR>" },
-        { "<Space>D", "<Cmd>Telescope lsp_type_definitions<CR>" },
-        { "gd", "<Cmd>Telescope lsp_definitions<CR>" },
-        { "gi", "<Cmd>Telescope lsp_implementations<CR>" },
-        { "gr", "<Cmd>Telescope lsp_references<CR>" },
     },
     config = function()
         require("configs.telescope")

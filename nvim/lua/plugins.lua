@@ -1,54 +1,40 @@
--- Bootstrap Lazy.nvim
+-- stylua: ignore start
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.uv.fs_stat(lazypath) then
-    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-    local out = vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "--branch=stable",
-        lazyrepo,
-        lazypath,
-    })
-    if vim.v.shell_error ~= 0 then
-        vim.api.nvim_echo({
-            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out, "WarningMsg" },
-            { "\nPress any key to exit..." },
-        }, true, {})
-        vim.fn.getchar()
-        os.exit(1)
-    end
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
 vim.opt.rtp:prepend(lazypath)
+-- stylua: ignore end
 
 require("lazy").setup({
     -- Core
-    require("plugins.catppuccin"), -- theme
+    require("plugins.catppuccin"),
     require("plugins.lsp"),
-    -- require("plugins.nvim-cmp"),
     require("plugins.blink"),
     require("plugins.conform"),
     require("plugins.treesitter"),
     -- Layout
     require("plugins.aerial"),
     require("plugins.alpha"),
-    -- require("plugins.dashboard"),
     require("plugins.dropbar"),
-    -- require("plugins.fold"),
     require("plugins.heirline"),
     require("plugins.gitsigns"),
     require("plugins.neo-tree"),
     require("plugins.statuscol"),
-    -- require("plugins.bufferline"),
-    -- "echasnovski/mini.bufremove",
-    -- require("plugins.lualine"),
     -- Coding
     require("plugins.colorizer"),
-    require("plugins.comment"),
     require("plugins.diffview"),
     require("plugins.flash"),
-    -- require("plugins.hlchunk"),
     require("plugins.illunimate"),
     require("plugins.oil"),
     require("plugins.pairs"),
@@ -56,11 +42,8 @@ require("lazy").setup({
     require("plugins.telescope"),
     require("plugins.toggleterm"),
     require("plugins.trouble"),
-    -- require("plugins.venv-selector"),
     -- Utils
     require("plugins.bufdelete"),
-    -- require("plugins.dressing"), -- float window
-    -- require("plugins.image"),
     require("plugins.im-select"),
     require("plugins.kitty"),
     require("plugins.lazydev"),
@@ -69,24 +52,8 @@ require("lazy").setup({
     require("plugins.notify"),
     require("plugins.snacks"),
     require("plugins.which-key"),
-    -- "mfussenegger/nvim-lint",
     -- Dependencies
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
-})
-
--- Linter
--- require("lint").linters_by_ft = { lua = { "cspell" } }
--- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
--- 	callback = function()
--- 		require("lint").try_lint()
--- 	end,
--- })
-
--- QML
--- vim.cmd("au BufRead,BufNewFile *.qml setfiletype qmljs")
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = "*.qml",
-    command = "setfiletype qmljs",
 })

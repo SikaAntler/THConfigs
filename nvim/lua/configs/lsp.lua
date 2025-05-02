@@ -19,6 +19,10 @@ lspconfig.basedpyright.setup({
     },
 })
 lspconfig.bashls.setup({ capabilities = capabilities })
+lspconfig.clangd.setup({
+    capabilities = capabilities,
+    cmd = { "clangd", "--header-insertion=never" },
+})
 lspconfig.lua_ls.setup({ capabilities = capabilities })
 lspconfig.powershell_es.setup({
     bundle_path = "~/PowerShellEditorServices",

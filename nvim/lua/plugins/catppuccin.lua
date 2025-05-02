@@ -22,8 +22,8 @@ return {
         },
         integrations = {
             aerial = true,
+            alpha = true,
             blink_cmp = true,
-            dashboard = true,
             diffview = true,
             dropbar = { enabled = true, color_mode = true },
             gitsigns = true,
@@ -33,6 +33,7 @@ return {
             neotree = true,
             noice = true,
             notify = true,
+            nvim_surround = true,
             snacks = { enabled = true, indent_scope_color = "pink" },
             telescope = { enabled = true },
             treesitter = true,

@@ -38,6 +38,7 @@ require("lazy").setup({
     require("plugins.illunimate"),
     require("plugins.oil"),
     require("plugins.pairs"),
+    require("plugins.surround"),
     require("plugins.symbol-usage"),
     require("plugins.telescope"),
     require("plugins.toggleterm"),

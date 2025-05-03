@@ -37,28 +37,4 @@ map("n", "<C-h>", "<Cmd>bprevious<CR>", opt)
 map("n", "<C-l>", "<Cmd>bnext<CR>", opt)
 
 -- ToggleTerm
-map({ "n", "i" }, "<F6>", function()
-    local cmd
-    local ft = vim.bo.filetype
-    local name = vim.fn.expand("%:t")
-    if ft == "cpp" then
-        local platform = require("utils.platform")
-        local compiler
-        local out = vim.fn.fnamemodify(name, ":r") .. ".out"
-        if platform.is_linux then
-            compiler = "g++"
-        elseif platform.is_macos then
-            compiler = "clang++"
-        end
-        cmd = compiler .. " " .. name .. " -o " .. out .. " && ./" .. out
-    elseif ft == "python" then
-        cmd = 'python "' .. name .. '"'
-    elseif ft == "sh" then
-        cmd = '$SHELL "' .. name .. '"'
-    else
-        vim.notify("The filetype " .. ft .. " has not been supported")
-    end
-    if cmd ~= nil then
-        require("toggleterm").exec(cmd)
-    end
-end, opt)
+map({ "n", "i" }, "<F6>", require("utils.terminal"), opt)

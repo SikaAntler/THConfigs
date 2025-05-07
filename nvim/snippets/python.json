@@ -135,6 +135,6 @@
   },
   "Pyright Ignore": {
     "prefix": "ignore",
-    "body": "# pyright-ignore"
+    "body": "# pyright: ignore"
   }
 }

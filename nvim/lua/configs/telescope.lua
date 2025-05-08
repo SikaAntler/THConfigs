@@ -11,5 +11,8 @@ require("telescope").setup({
     },
 })
 
-require("telescope").load_extension("fzf")
+if vim.fn.executable("make") == 1 then
+    require("telescope").load_extension("fzf")
+end
+
 require("telescope").load_extension("live_grep_args")

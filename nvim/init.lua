@@ -1,5 +1,6 @@
 require("autocmds")
 require("keymaps")
+require("lsp")
 require("opts")
 
 -- stylua: ignore start

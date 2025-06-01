@@ -1,40 +1,10 @@
-require("mason").setup()
-require("mason-lspconfig").setup()
-
-local capabilities = require("blink.cmp").get_lsp_capabilities()
-local lspconfig = require("lspconfig")
-
--- setup language servers
-lspconfig.basedpyright.setup({
-    capabilities = capabilities,
-    settings = {
-        basedpyright = {
-            disableOrganizedImport = true,
-            analysis = {
-                autoImportCompletions = false,
-                inlayHints = { variableTypes = false },
-                typeCheckingMode = "basic",
-            },
-        },
-    },
-})
-lspconfig.bashls.setup({ capabilities = capabilities })
-lspconfig.clangd.setup({
-    capabilities = capabilities,
-    cmd = { "clangd", "--header-insertion=never" },
-})
-lspconfig.lua_ls.setup({ capabilities = capabilities })
-lspconfig.powershell_es.setup({
-    bundle_path = "~/PowerShellEditorServices",
-    shell = "powershell.exe",
-    capabilities = capabilities,
-})
-lspconfig.qmlls.setup({
-    capabilities = capabilities,
-    cmd = { "pyside6-qmlls", "qmlls" },
-})
-lspconfig.taplo.setup({ capabilities = capabilities })
-lspconfig.yamlls.setup({ capabilities = capabilities })
+vim.lsp.enable("basedpyright")
+vim.lsp.enable("bashls")
+vim.lsp.enable("clangd")
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("qmlls")
+vim.lsp.enable("taplo")
+vim.lsp.enable("yamlls")
 
 -- Keymap
 vim.api.nvim_create_autocmd("LspAttach", {

@@ -45,6 +45,9 @@ return {
             },
         })
     end,
+    settings = {
+        Lua = {},
+    },
     cmd = { "lua-language-server" },
     filetypes = { "lua" },
     root_markers = {
@@ -56,8 +59,5 @@ return {
         "selene.toml",
         "selene.yml",
         ".git",
-    },
-    settings = {
-        Lua = {},
     },
 }

@@ -44,6 +44,40 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
+local complete_client = function(arg)
+    return vim.iter(vim.lsp.get_clients())
+        :map(function(client)
+            return client.name
+        end)
+        :filter(function(name)
+            return name:sub(1, #arg) == arg
+        end)
+        :totable()
+end
+
+vim.api.nvim_create_user_command("LspRestart", function(info)
+    for _, name in ipairs(info.fargs) do
+        if vim.lsp.config[name] == nil then
+            vim.notify(("Invalid server name '%s'"):format(info.args))
+        else
+            vim.lsp.enable(name, false)
+        end
+    end
+
+    local timer = assert(vim.uv.new_timer())
+    timer:start(500, 0, function()
+        for _, name in ipairs(info.fargs) do
+            vim.schedule_wrap(function(x)
+                vim.lsp.enable(x)
+            end)(name)
+        end
+    end)
+end, {
+    desc = "Restart the given client(s)",
+    nargs = "+",
+    complete = complete_client,
+})
+
 local icons = require("utils.icons")
 vim.diagnostic.config({
     virtual_lines = {
@@ -57,17 +91,4 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.HINT] = icons.diagnostic.HINT,
         },
     },
-    -- virtual_text = {
-    --     prefix = function(diagnostic)
-    --         if diagnostic.severity == vim.diagnostic.severity.ERROR then
-    --             return icons.diagnostic.ERROR
-    --         elseif diagnostic.severity == vim.diagnostic.severity.WARN then
-    --             return icons.diagnostic.WARN
-    --         elseif diagnostic.severity == vim.diagnostic.severity.INFO then
-    --             return icons.diagnostic.INFO
-    --         else
-    --             return icons.diagnostic.HINT
-    --         end
-    --     end,
-    -- },
 })

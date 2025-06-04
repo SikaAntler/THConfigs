@@ -1,12 +1,4 @@
 return {
-    capabilities = {
-        offsetEncoding = { "utf-8", "utf-16" },
-        textDocument = {
-            completion = {
-                editsNearCursor = true,
-            },
-        },
-    },
     cmd = { "clangd", "--header-insertion=never" },
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
     root_markers = {
@@ -15,7 +7,15 @@ return {
         ".clang-format",
         "compile_commands.json",
         "compile_flags.txt",
-        "configure.ac",
+        "configure.ac", -- AutoTools
         ".git",
+    },
+    capabilities = {
+        textDocument = {
+            completion = {
+                editsNearCursor = true,
+            },
+        },
+        offsetEncoding = { "utf-8", "utf-16" },
     },
 }

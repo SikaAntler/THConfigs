@@ -1,4 +1,5 @@
 require("autocmds")
+require("filetypes")
 require("keymaps")
 require("lsp")
 require("opts")

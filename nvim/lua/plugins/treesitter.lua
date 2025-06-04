@@ -6,13 +6,15 @@ return {
         opts = {
             ensure_installed = {
                 "bash",
+                "cmake",
+                "cpp",
                 "json",
                 "lua",
                 "markdown",
                 "markdown_inline",
                 "python",
-                "qmldir",
                 "qmljs",
+                "xml",
                 "yaml",
             },
             auto_install = true,

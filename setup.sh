@@ -25,32 +25,45 @@ CONFIG_DIR=$HOME/.config
 DOWNLOAD_DIR=$HOME/Downloads
 [[ -d $DOWNLOAD_DIR ]] || mkdir $DOWNLOAD_DIR
 
-# rust写的工具可以用cargo安装
-[[ -x $(command -v cargo) ]] || curl https://sh.rustup.rs -sSf | sh
-[[ -x $(command  -v eza) ]] || cargo install eza 
-[[ -x $(command  -v fd) ]] || cargo install fd-find
-[[ -x $(command  -v rg) ]] || cargo install ripgrep
-[[ -x $(command  -v yazi) ]] || cargo install --locked yazi-fm yazi-cli
-
 # 下载并安装二进制包
 [[ -x $(command -v starship) ]] || curl -sS https://starship.rs/install.sh | sh -s -- -b $BIN_DIR
 
+if [[ ! -x $(command -v eza) ]]; then
+    eza_version=0.21.4
+    eza_name=eza_x86_64-unknown-linux-gnu
+    wget https://github.com/eza-community/eza/releases/download/v$eza_version/$eza_name.tar.gz -O $DOWNLOAD_DIR/$eza_name.tar.gz
+    tar -zxf $DOWNLOAD_DIR/$eza_name.tar.gz -C $BIN_DIR
+fi
+
+if [[ ! -x $(command -v fd) ]]; then
+    fd_version=10.2.0
+    fd_name=fd-v$fd_version-x86_64-unknown-linux-gnu
+    wget https://github.com/sharkdp/fd/releases/download/v$fd_version/$fd_name.tar.gz -O $DOWNLOAD_DIR/$fd_name.tar.gz
+    tar -zxf $DOWNLOAD_DIR/$fd_name.tar.gz -C $DOWNLOAD_DIR
+    mv $DOWNLOAD_DIR/$fd_name/fd $BIN_DIR
+fi
+
 if [[ ! -x $(command -v fzf) ]]; then
-    wget https://github.com/junegunn/fzf/releases/download/v0.59.0/fzf-0.59.0-linux_amd64.tar.gz -O $DOWNLOAD_DIR/fzf.tar.gz
-    tar -zxf $DOWNLOAD_DIR/fzf.tar.gz -C $DOWNLOAD_DIR
+    fzf_version=0.62.0
+    fzf_name=fzf-$fzf_version-linux_amd64
+    wget https://github.com/junegunn/fzf/releases/download/v$fzf_version/$fzf_name.tar.gz -O $DOWNLOAD_DIR/$fzf_name.tar.gz
+    tar -zxf $DOWNLOAD_DIR/$fzf_name.tar.gz -C $DOWNLOAD_DIR
     mv $DOWNLOAD_DIR/fzf $BIN_DIR
 fi
 
 if [[ ! -x $(command -v jq) ]]; then
-    wget https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-amd64 -O $BIN_DIR/jq
+    jq_version=1.8.0
+    wget https://github.com/jqlang/jq/releases/download/jq-$jq_version/jq-linux-amd64 -O $BIN_DIR/jq
     chmod u+x $BIN_DIR/jq
 fi
 
 if [[ ! -x $(command -v lazygit) ]]; then
-    wget https://github.com/jesseduffield/lazygit/releases/download/v0.45.2/lazygit_0.45.2_Linux_x86_64.tar.gz -O $DOWNLOAD_DIR/lazygit.tar.gz
-    mkdir $DOWNLOAD_DIR/lazygit
-    tar -zxf $DOWNLOAD_DIR/lazygit.tar.gz -C $DOWNLOAD_DIR/lazygit
-    mv $DOWNLOAD_DIR/lazygit/lazygit $BIN_DIR
+    lg_version=0.52.0
+    lg_name=lazygit_${lg_version}_Linux_x86_64
+    wget https://github.com/jesseduffield/lazygit/releases/download/v$lg_version/$lg_name.tar.gz -O $DOWNLOAD_DIR/$lg_name.tar.gz
+    mkdir $DOWNLOAD_DIR/$lg_name
+    tar -zxf $DOWNLOAD_DIR/$lg_name.tar.gz -C $DOWNLOAD_DIR/$lg_name
+    mv $DOWNLOAD_DIR/$lg_name/lazygit $BIN_DIR
 fi
 
 if [[ ! -x $(command -v nvim) ]]; then
@@ -58,8 +71,32 @@ if [[ ! -x $(command -v nvim) ]]; then
     chmod u+x $BIN_DIR/nvim
 fi
 
+if [[ ! -x $(command -v rg) ]]; then
+    rg_version=14.1.1
+    rg_name=ripgrep-$rg_version-x86_64-unknown-linux-musl
+    wget https://github.com/BurntSushi/ripgrep/releases/download/$rg_version/$rg_name.tar.gz -O $DOWNLOAD_DIR/$rg_name.tar.gz
+    tar -zxf $DOWNLOAD_DIR/$rg_name.tar.gz -C $DOWNLOAD_DIR
+    mv $DOWNLOAD_DIR/$rg_name/rg $BIN_DIR
+fi
+
+if [[ ! -x $(command -v tmux) ]]; then
+    tmux_version=3.5a
+    wget https://github.com/nelsonenzo/tmux-appimage/releases/download/$tmux_version/tmux.appimage -O $BIN_DIR/tmux
+    chmod u+x $BIN_DIR/tmux
+fi
+
+if [[ ! -x $(command -v yazi) ]]; then
+    yazi_version=25.5.31
+    yazi_name=yazi-x86_64-unknown-linux-musl
+    wget https://github.com/sxyazi/yazi/releases/download/v$yazi_version/$yazi_name.zip -O $DOWNLOAD_DIR/$yazi_name.zip
+    unzip $DOWNLOAD_DIR/$yazi_name.zip -d $DOWNLOAD_DIR
+    mv $DOWNLOAD_DIR/$yazi_name/ya $BIN_DIR
+    mv $DOWNLOAD_DIR/$yazi_name/yazi $BIN_DIR
+fi
+
 if [[ ! -x $(command -v yq) ]]; then
-    wget https://github.com/mikefarah/yq/releases/download/v4.45.1/yq_linux_amd64 -O $BIN_DIR/yq
+    yq_version=4.45.4
+    wget https://github.com/mikefarah/yq/releases/download/v$yq_version/yq_linux_amd64 -O $BIN_DIR/yq
     chmod u+x $BIN_DIR/yq
 fi
 
@@ -71,7 +108,7 @@ fi
 [[ -f $HOME/.tmux.conf ]] || ln -s $HOME/THConfigs/.tmux.conf $HOME
 [[ -d $CONFIG_DIR/yazi ]] || ln -s $HOME/THConfigs/yazi $CONFIG_DIR/yazi
 
-if [[ "$(rg 'source \$HOME/THConfigs/utils.sh' ~/.bashrc)" == "" ]]; then
+if [[ "$(rg 'source \$HOME/THConfigs/utils.sh' $HOME/.bashrc)" == "" ]]; then
     echo -e '\n# Automatically added by ~/THConfigs/setup.sh' >> $HOME/.bashrc
     echo 'source $HOME/THConfigs/utils.sh' >> $HOME/.bashrc
 fi

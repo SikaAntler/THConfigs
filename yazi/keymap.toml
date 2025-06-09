@@ -1,12 +1,12 @@
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = 'f'
 run = 'plugin jump-to-char'
 desc = 'Jump to char'
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = '<S-j>'
 run = 'arrow 5'
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = '<S-k>'
 run = 'arrow -5'

@@ -12,6 +12,7 @@ return {
     },
     opts = {
         formatters_by_ft = {
+            cpp = { "clang-format" },
             json = { "jq" },
             lua = { "stylua" },
             python = { "isort", "black" },

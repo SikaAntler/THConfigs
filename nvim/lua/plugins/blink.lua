@@ -34,6 +34,14 @@ return {
                 border = "rounded",
             },
         },
-        sources = { default = { "snippets", "path", "lsp", "buffer" } },
+        sources = {
+            default = { "snippets", "path", "lsp", "buffer" },
+            providers = {
+                snippets = { score_offset = 4 },
+                path = { score_offset = 3 },
+                lsp = { score_offset = 2 },
+                buffer = { score_offset = 1 },
+            },
+        },
     },
 }

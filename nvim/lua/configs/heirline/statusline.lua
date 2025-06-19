@@ -27,21 +27,20 @@ local Mode = {
     static = {
         mode_names = {
             n = "NORMAL",
-            no = "?",
-            nov = "?",
-            noV = "?",
-            ["no\22"] = "?",
-            niI = "INSERT",
-            niR = "REPLACE",
-            niV = "VISUAL",
-            nt = "TERMINAL",
-            ntT = "TERMINAL",
+            no = "NORMAL-?",
+            nov = "NORMAL-?",
+            noV = "NORMAL-?",
+            ["no\22"] = "NORMAL-?",
+            niI = "NORMAL-I",
+            niR = "NORMAL-R",
+            niV = "NORMAL-V",
+            nt = "NORMAL-T",
             v = "VISUAL",
-            vs = "VISUAL",
+            vs = "VISUAL-S",
             V = "V-LINE",
-            Vs = "V-LINE",
+            Vs = "V-LINE-S",
             ["\22"] = "V-BLOCK",
-            ["\22s"] = "V-BLOCK",
+            ["\22s"] = "V-BLOCK-S",
             s = "SELECT",
             S = "S-LINE",
             ["\19"] = "S-BLOCK",
@@ -55,9 +54,7 @@ local Mode = {
             Rvc = "REPLACE-VC",
             Rvx = "REPLACE-VX",
             c = "COMMAND",
-            cr = "COMMAND-R",
             cv = "COMMAND-V",
-            cvr = "COMMAND-VR",
             r = "R",
             rm = "RM",
             ["r?"] = "R?",
@@ -75,8 +72,8 @@ local Mode = {
             ["\19"] = palette.pink,
             i = palette.green,
             R = palette.peach,
-            r = palette.peach,
             c = palette.red,
+            r = palette.peach,
             ["!"] = palette.red,
             t = palette.green,
         },
@@ -274,7 +271,19 @@ local Language = {
     },
 }
 
-local Cursor = { provider = "%(%l%):%c %(%P%)" }
+local Cursor = {
+    provider = function()
+        local lines = ""
+        local mode = vim.fn.mode()
+        if mode == "v" or mode == "V" or mode == "\22" then
+            local begin_lnum = vim.fn.getpos("v")[2]
+            local end_lnum = vim.fn.getcurpos()[2]
+            local count = math.abs(end_lnum - begin_lnum) + 1
+            lines = "(" .. count .. " lines) "
+        end
+        return lines .. "%(%l%):%c %(%P%)"
+    end,
+}
 
 return {
     RightPadding(Mode),

@@ -100,6 +100,13 @@
     "prefix": "cvtColor",
     "body": "${1:image} = cv2.cvtColor(${2:image}, cv2.COLOR_$0)"
   },
+  "INIT": {
+    "prefix": "init",
+    "body": [
+      "def __init__(self, $0) -> None:",
+      "\tsuper().__init__()"
+    ]
+  },
   "Progress Bar": {
     "prefix": "pbar",
     "body": [

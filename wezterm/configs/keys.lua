@@ -24,7 +24,7 @@ end
 ---@return table
 local function tmux(key)
 	return {
-		mods = "CTRL",
+		mods = "ALT",
 		key = key,
 		action = action.Multiple({
 			action.SendKey({ mods = "ALT", key = "m" }),

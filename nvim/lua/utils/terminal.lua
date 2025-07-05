@@ -16,7 +16,7 @@ local function handle_cpp(name)
         compiler = "g++"
     elseif system.is_macos then
         compiler = "clang++"
-    elseif system.is_macos then
+    elseif system.is_windows then
         if vim.fn.executable("cl") ~= 0 then
             compiler = "cl"
         elseif vim.fn.executable("g++") ~= 0 then
@@ -54,6 +54,14 @@ local ft_to_func = {
 }
 
 return function()
+    -- check whether the buffer is modified
+    if vim.bo.modified then
+        vim.cmd("write")
+        if vim.bo.modified then -- handle error
+            return
+        end
+    end
+
     local ft = vim.bo.filetype
     local name = vim.fn.expand("%:t")
     name = handle_whitespaces(name)

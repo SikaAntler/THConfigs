@@ -13,5 +13,10 @@ use = "AnirudhG07/rich-preview"
 rev = "843c3fa"
 hash = "b4040931f0d2f9670ddb4923e55cd881"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "b886025"
+hash = "d6f60c24d8c0cf57a855bf46115b2502"
+
 [flavor]
 deps = []

@@ -26,7 +26,12 @@ DOWNLOAD_DIR=$HOME/Downloads
 [[ -d $DOWNLOAD_DIR ]] || mkdir $DOWNLOAD_DIR
 
 # 下载并安装二进制包
-[[ -x $(command -v starship) ]] || curl -sS https://starship.rs/install.sh | sh -s -- -b $BIN_DIR
+if [[ ! -x $(command -v csvtk) ]]; then
+    csvtk_version=0.34.0
+    csvtk_name=csvtk_linux_amd64
+    wget https://github.com/shenwei356/csvtk/releases/tag/v$csvtk_version/$csvtk_name.tar.gz -O $DOWNLOAD_DIR/$csvtk_name.tar.gz
+    tar -zxf $DOWNLOAD_DIR/$csvtk_name.tar.gz -C $BIN_DIR
+fi
 
 if [[ ! -x $(command -v eza) ]]; then
     eza_version=0.21.4
@@ -78,6 +83,8 @@ if [[ ! -x $(command -v rg) ]]; then
     tar -zxf $DOWNLOAD_DIR/$rg_name.tar.gz -C $DOWNLOAD_DIR
     mv $DOWNLOAD_DIR/$rg_name/rg $BIN_DIR
 fi
+
+[[ -x $(command -v starship) ]] || curl -sS https://starship.rs/install.sh | sh -s -- -b $BIN_DIR
 
 if [[ ! -x $(command -v tmux) ]]; then
     tmux_version=3.5a

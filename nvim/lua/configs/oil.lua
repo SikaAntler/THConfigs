@@ -21,6 +21,12 @@ local opts = {
         ["<BS>"] = "actions.parent",
     },
     use_default_keymaps = true,
+    view_options = {
+        show_hidden = false,
+        is_hidden_file = function(name, _)
+            return name:match("^%.%.") ~= nil
+        end,
+    },
 }
 
 require("oil").setup(opts)

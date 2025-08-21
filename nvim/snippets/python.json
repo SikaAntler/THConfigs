@@ -62,6 +62,15 @@
     "prefix": "add_argument",
     "body": "parser.add_argument($0)"
   },
+  "Add Font": {
+    "prefix": "addfont",
+    "body": [
+      "from matplotlib import font_manager\n",
+      "font_manager.fontManager.addfont(\"/home/thliang/.local/share/fonts/simhei.ttf\")",
+      "plt.rcParams[\"font.sans-serif\"] = [\"SimHei\"]",
+      "plt.rcParams[\"axes.unicode_minus\"] = False\n"
+    ]
+  },
   "File Read": {
     "prefix": "fileread",
     "body": [
@@ -90,15 +99,19 @@
   },
   "Image Read": {
     "prefix": "imread",
+    "body": "${1:image} = np.array(Image.open(${2:img_file}))"
+  },
+  "Image Read Numpy": {
+    "prefix": "imreadnumpy",
     "body": "${1:image} = cv2.imdecode(np.fromfile(${2:img_file}, np.uint8), cv2.IMREAD_UNCHANGED)"
   },
   "Image Write": {
     "prefix": "imwrite",
-    "body": "cv2.imencode(\".${1:png}\", ${2:image})[1].tofile(${3:img_file})"
+    "body": "Image.fromarray(${1:image}).save(${2:img_file})"
   },
-  "Image Convert Color": {
-    "prefix": "cvtColor",
-    "body": "${1:image} = cv2.cvtColor(${2:image}, cv2.COLOR_$0)"
+  "Image Write Numpy": {
+    "prefix": "imwritenumpy",
+    "body": "cv2.imencode(\".${1:png}\", ${2:image})[1].tofile(${3:img_file})"
   },
   "INIT": {
     "prefix": "init",
@@ -121,16 +134,6 @@
       "QML_IMPORT_NAME = \"${1:module}\"",
       "QML_IMPORT_MAJOR_VERSION = 1",
       "QML_IMPORT_MINOR_VERSION = 0"
-    ]
-  },
-  "Set Font": {
-    "prefix": "setfont",
-    "body": [
-      "from matplotlib import font_manager\n",
-      "font_manager.fontManager.addfont(Path(\"\\$HOME/.local/share/fonts/Songti.ttc\").resolve())",
-      "plt.rcParams[\"font.sans-serif\"] = [\"Songti SC\"]",
-      "plt.rcParams[\"axes.unicode_minus\"] = False",
-      "$0"
     ]
   },
   "Subplots": {

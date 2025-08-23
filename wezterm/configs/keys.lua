@@ -1,11 +1,16 @@
 local action = require("wezterm").action
 
----@param mods string
----@param key string
----@param send string
+---@param mods1 string|nil
+---@param key1 string
+---@param mods2 string|nil
+---@param key2 string
 ---@return table
-local function send_key(mods, key, send)
-	return { mods = mods, key = key, action = action.SendKey({ key = send }) }
+local function map(mods1, key1, mods2, key2)
+	return {
+		mods = mods1,
+		key = key1,
+		action = action.SendKey({ mods = mods2, key = key2 }),
+	}
 end
 
 ---@param mods string
@@ -22,7 +27,20 @@ end
 
 ---@param key string
 ---@return table
-local function tmux(key)
+local function tmux_new_window(key)
+	return {
+		mods = "ALT",
+		key = key,
+		action = action.Multiple({
+			action.SendKey({ mods = "ALT", key = "m" }),
+			action.SendKey({ key = "c" }),
+		}),
+	}
+end
+
+---@param key string
+---@return table
+local function tmux_select_window(key)
 	return {
 		mods = "ALT",
 		key = key,
@@ -33,21 +51,43 @@ local function tmux(key)
 	}
 end
 
+---@param key1 string
+---@param key2 string
+---@return table
+local function tmux_select_pane(key1, key2)
+	return map("ALT|SHIFT", key1, "ALT|SHIFT", key2)
+end
+
+-- ---@param mods string|nil
+-- ---@param key string
+-- local function disable(mods, key)
+-- 	return {
+-- 		mods = mods,
+-- 		key = key,
+-- 		action = action.DisableDefaultAssignment,
+-- 	}
+-- end
+
 return {
 	keys = {
 		-- neovim
+		map("CTRL", "`", nil, "F5"),
 		sequence("CTRL", "/", "gccj"),
-		send_key("CTRL", "`", "F5"),
 
 		-- tmux
-		tmux("1"),
-		tmux("2"),
-		tmux("3"),
-		tmux("4"),
-		tmux("5"),
-		tmux("6"),
-		tmux("7"),
-		tmux("8"),
-		tmux("9"),
+		tmux_new_window("t"),
+		tmux_select_window("1"),
+		tmux_select_window("2"),
+		tmux_select_window("3"),
+		tmux_select_window("4"),
+		tmux_select_window("5"),
+		tmux_select_window("6"),
+		tmux_select_window("7"),
+		tmux_select_window("8"),
+		tmux_select_window("9"),
+		tmux_select_pane("h", "LeftArrow"),
+		tmux_select_pane("j", "DownArrow"),
+		tmux_select_pane("k", "UpArrow"),
+		tmux_select_pane("l", "RightArrow"),
 	},
 }

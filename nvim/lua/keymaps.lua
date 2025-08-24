@@ -1,19 +1,19 @@
 local map = vim.keymap.set
 local opt = { noremap = true, silent = true }
 
--- <Esc>
-map("i", "jk", "<Esc>", opt)
+-- Search
+map("n", "<Esc>", "<Cmd>nohlsearch<CR>", opt)
 
 -- Save
 map({ "n", "i" }, "<C-s>", "<Cmd>w<CR>", opt)
 
 -- Move line
-map("n", "<C-j>", "<Cmd>m+1<CR>", opt)
-map("v", "<C-j>", "<Cmd>m'>+1<CR>gv", opt)
-map("i", "<C-j>", "<Esc><Cmd>m+1<CR>gi", opt)
-map("n", "<C-k>", "<Cmd>m-2<CR>", opt)
-map("v", "<C-k>", "<Cmd>m'<-2<CR>gv", opt)
-map("i", "<C-k>", "<Esc><Cmd>m-2<CR>gi", opt)
+map("n", "<C-j>", "<Cmd>m+1<CR>V=", opt)
+map("v", "<C-j>", ":m'>+1<CR>gv=gv", opt)
+map("i", "<C-j>", "<Esc><Cmd>m+1<CR>V=gi", opt)
+map("n", "<C-k>", "<Cmd>m-2<CR>V=", opt)
+map("v", "<C-k>", ":m'<-2<CR>gv=gv", opt)
+map("i", "<C-k>", "<Esc><Cmd>m-2<CR>V=gi", opt)
 
 -- Move cursor
 map({ "n", "v", "o" }, "<S-j>", "5j", opt)
@@ -32,7 +32,7 @@ map({ "n", "i" }, "<A-k>", "<Esc><C-w>k", opt)
 map({ "n", "i" }, "<A-l>", "<Esc><C-w>l", opt)
 map({ "n", "i" }, "<A-w>", "<Esc><C-w>w", opt)
 
--- Swicth buffer
+-- Buffer & Tabline
 map("n", "<C-h>", "<Cmd>bprevious<CR>", opt)
 map("n", "<C-l>", "<Cmd>bnext<CR>", opt)
 

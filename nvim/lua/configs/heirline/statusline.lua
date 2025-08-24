@@ -228,6 +228,23 @@ local Diagnostics = {
     },
 }
 
+local Search = {
+    condition = function()
+        return vim.v.hlsearch == 1
+    end,
+    hl = { fg = palette.sky },
+    provider = function()
+        local info = vim.fn.searchcount({ maxcount = 0 })
+        local state = ""
+        if info.incomplete > 0 then
+            state(" [?/?]")
+        elseif info.total then
+            state = (" [%s/%s]"):format(info.current, info.total)
+        end
+        return state
+    end,
+}
+
 local FileInfo = {
     { -- Encoding
         provider = function()
@@ -289,7 +306,8 @@ return {
     RightPadding(Mode),
     RightPadding(Git),
     RightPadding(File),
-    Diagnostics,
+    RightPadding(Diagnostics),
+    Search,
     C.Fill,
     RightPadding(FileInfo),
     RightPadding(Language),

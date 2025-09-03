@@ -1,6 +1,8 @@
 local wezterm = require("wezterm")
 local platform = require("configs.platform")
 
+local WP = 7
+
 return {
 	-- Window
 	window_decorations = platform.is_win and "INTEGRATED_BUTTONS|RESIZE" or "RESIZE",
@@ -9,7 +11,7 @@ return {
 	macos_window_background_blur = 20,
 	win32_system_backdrop = "Auto",
 	adjust_window_size_when_changing_font_size = false,
-	window_padding = { left = 5, right = 5, top = 5, bottom = 5 },
+	window_padding = { left = WP, right = WP, top = WP, bottom = WP },
 
 	-- Font
 	font_size = platform.is_win and 10 or 15,

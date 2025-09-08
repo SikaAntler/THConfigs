@@ -23,7 +23,7 @@ if [[ -x $(command -v eza) ]]; then
     alias la="ls -aF"
     alias ll="ls -laF"
     
-    alias lr="ls -l | grep"
+    alias lr="ll | grep"
     alias cnf="ls -1f | wc -l | xargs"
     alias cnfr="ls -1Rf | grep -v '^\.' | grep -v '^$' | wc -l | xargs"
     alias cnd="ls -1D | wc -l | xargs"
@@ -32,7 +32,7 @@ else
     alias la="ls -AF"
     alias ll="ls -lAF"
 
-    alias lr="ls -l | grep"
+    alias lr="ll | grep"
     alias cnd="ls -l | grep '^d' -c"
     alias cnf="ls -l | grep '^-' -c"
     alias cnfr="ls -lR | grep '^-' -c"

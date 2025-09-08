@@ -3,14 +3,17 @@ return {
     name = "catppuccin",
     prioroty = 1000,
     init = function()
-        vim.cmd.colorscheme("catppuccin")
-        -- vim.cmd.hi("Comment gui=none")
+        vim.cmd.colorscheme("catppuccin-macchiato")
     end,
     opts = {
-        flavour = "macchiato",
         transparent_background = true,
-        show_end_of_buffer = true,
-        term_colors = true,
+        float = {
+            transparent = true,
+            solid = true,
+        },
+        styles = {
+            comments = {},
+        },
         highlight_overrides = {
             macchiato = function(mocha)
                 return {
@@ -26,6 +29,7 @@ return {
             blink_cmp = true,
             diffview = true,
             dropbar = { enabled = true, color_mode = true },
+            flash = true,
             gitsigns = true,
             illuminate = { enabled = true, lsp = false },
             lsp_trouble = true,

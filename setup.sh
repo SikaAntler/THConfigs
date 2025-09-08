@@ -125,7 +125,6 @@ fi
 [[ -d "$CONFIG_DIR/tmux" ]]          || ln -s "$THC_DIR/tmux"          "$CONFIG_DIR/tmux"
 [[ -d "$CONFIG_DIR/yazi" ]]          || ln -s "$THC_DIR/yazi"          "$CONFIG_DIR/yazi"
 
-UTILS="source \"\$HOME/THConfigs/utils.sh\""
 case "$SHELL" in
     */bash)
         RC_FILE=$HOME/.bashrc
@@ -134,9 +133,9 @@ case "$SHELL" in
         RC_FILE=$HOME/.zshrc
         ;;
 esac
-if [[ "$(rg "$UTILS" "$RC_FILE")" == "" ]]; then
+if [[ "$(rg "HOME/THConfigs/utils.sh" "$RC_FILE")" == "" ]]; then
     echo -e '\n# Automatically added by ~/THConfigs/setup.sh' >>"$RC_FILE"
-    echo "$UTILS" >>"$RC_FILE"
+    echo "source \"\$HOME/THConfigs/utils.sh\"" >>"$RC_FILE"
 fi
 # shellcheck disable=1090
 source "$RC_FILE"

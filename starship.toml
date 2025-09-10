@@ -3,7 +3,7 @@
 palette = "catppuccin_macchiato"
 
 format = """
- $os$username$hostname in $directory$git_branch$cmd_duration
+ $os$username$hostname in $directory$cmd_duration
  $conda$python$character"""
 
 add_newline = true

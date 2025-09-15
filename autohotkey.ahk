@@ -1,12 +1,13 @@
 ﻿#SingleInstance Force
 
 ; 短按CapsLock 长按Ctrl
-CapsLock:: Send "{Ctrl Down}"
-CapsLock Up:: {
-    Send "{Ctrl Up}"
-    ;if (A_PriorKey == "CapsLock" and A_TimeSincePriorHotKey < 300) {
-    if (A_TimeSincePriorHotKey < 150) {
+*CapsLock:: {
+    if KeyWait("CapsLock", "T" . 0.15) {
         SetCapsLockState !GetKeyState("CapsLock", "T")
+    } else {
+        Send "{Ctrl Down}"
+        KeyWait("CapsLock")
+        Send "{Ctrl Up}"
     }
 }
 

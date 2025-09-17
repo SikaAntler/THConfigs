@@ -81,7 +81,7 @@
   "File Write": {
     "prefix": "filewrite",
     "body": [
-      "with open(${1:filename}, \"r\", encoding=\"utf-8\") as fw:",
+      "with open(${1:filename}, \"w\", encoding=\"utf-8\") as fw:",
       "\t$0"
     ]
   },

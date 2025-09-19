@@ -1,3 +1,5 @@
+#!/bin/bash
+
 case "$SHELL" in
     */bash | */zsh) ;;
     *)
@@ -118,7 +120,6 @@ if [[ ! -x $(command -v yq) ]]; then
 fi
 
 # 建立软链接
-[[ -f "$HOME/.bash_profile" ]]       || ln -s "$THC_DIR/.bash_profile" "$HOME"
 [[ -d "$CONFIG_DIR/lazygit" ]]       || ln -s "$THC_DIR/lazygit"       "$CONFIG_DIR/lazygit"
 [[ -d "$CONFIG_DIR/nvim" ]]          || ln -s "$THC_DIR/nvim"          "$CONFIG_DIR/nvim"
 [[ -f "$CONFIG_DIR/starship.toml" ]] || ln -s "$THC_DIR/starship.toml" "$CONFIG_DIR"
@@ -137,5 +138,5 @@ if [[ "$(rg "HOME/THConfigs/utils.sh" "$RC_FILE")" == "" ]]; then
     echo -e '\n# Automatically added by ~/THConfigs/setup.sh' >>"$RC_FILE"
     echo "source \"\$HOME/THConfigs/utils.sh\"" >>"$RC_FILE"
 fi
-# shellcheck disable=1090
-source "$RC_FILE"
+
+echo "Finished, please restart the shell."

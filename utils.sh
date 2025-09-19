@@ -1,6 +1,13 @@
-# ╭───────────────────────────────────────────╮
-# │                 Aliases                   │
-# ╰───────────────────────────────────────────╯
+# set environment variables at first
+export PATH="$HOME/.local/bin:$PATH"
+
+# ╭───────────────────────────────────────────────╮
+# │                    Aliases                    │
+# ╰───────────────────────────────────────────────╯
+
+# avoid override
+alias mv="mv -i"
+alias cp="cp -i"
 
 # cd
 alias ..="cd ../"
@@ -10,6 +17,7 @@ alias cd4="cd ../../../../"
 
 # conda
 alias act="conda activate"
+alias deact="conda deactivate"
 
 # git
 alias lg="lazygit"
@@ -19,14 +27,14 @@ alias gs="git status"
 alias grep="grep --color=auto"
 if [[ -x $(command -v eza) ]]; then
     alias ls="eza --icons"
-    alias l="ls"
-    alias la="ls -aF"
-    alias ll="ls -laF"
-    
-    alias lr="ll | grep"
-    alias cnf="ls -1f | wc -l | xargs"
-    alias cnfr="ls -1Rf | grep -v '^\.' | grep -v '^$' | wc -l | xargs"
-    alias cnd="ls -1D | wc -l | xargs"
+    alias l="eza --icons --sort Name"
+    alias la="eza --icons --sort Name --all"
+    alias ll="eza --icons --sort Name --all --long"
+
+    alias lr="eza --sort Name --all --long | grep"
+    alias cnf="ls --oneline --only-files | wc -l"
+    alias cnfr="ls --oneline --only-files --recurse | grep -v '^\.' | grep -v '^$' | wc -l"
+    alias cnd="ls --oneline --only-dirs | wc -l"
 else
     alias ls="ls --color=auto"
     alias la="ls -AF"
@@ -38,13 +46,15 @@ else
     alias cnfr="ls -lR | grep '^-' -c"
 fi
 
+# monitor
+alias bt="btop"
+alias nt="pipx run nvitop --colorful"
+alias ns="nvidia-smi"
+alias wns="watch -n 1 -d nvidia-smi"
+
 # neovim
 alias nb="nvim ~/.bashrc"
 alias nz="nvim ~/.zshrc"
-
-# nvidia
-alias ns="nvidia-smi"
-alias wns="watch -n 1 -d nvidia-smi"
 
 # source
 alias sb="source ~/.bashrc"
@@ -55,18 +65,22 @@ alias tls="tmux ls"
 alias tn="tmux new-session -s"
 alias ta="tmux attach -t"
 alias tk="tmux kill-session -t"
+alias tks="tmux kill-server"
 alias tnm="tn main"
 alias tam="ta main"
 alias tkm="tk main"
 
+# zellij
+alias za="zellij attach"
+alias zam="zellij attach main"
 
-# ╭───────────────────────────────────────────╮
-# │                 Commands                  │
-# ╰───────────────────────────────────────────╯
+# ╭───────────────────────────────────────────────╮
+# │                  Commands                     │
+# ╰───────────────────────────────────────────────╯
 
 # fzf
 if [[ -x $(command -v fzf) ]]; then
-    if [[ $SHELL == */bash ]]; then
+    if [[ "$SHELL" == */bash ]]; then
         eval "$(fzf --bash)"
     elif [[ "$SHELL" == */zsh ]]; then
         source <(fzf --zsh)
@@ -84,9 +98,9 @@ fi
 
 # starship
 if [[ -x $(command -v starship) ]]; then
-    if [[ $SHELL  == */bash ]]; then
+    if [[ "$SHELL" == */bash  ]]; then
         eval "$(starship init bash)"
-    elif [[ $SHELL == */zsh ]]; then
+    elif [[ "$SHELL" == */zsh ]]; then
         eval "$(starship init zsh)"
     else
         echo "Shell is not Bash or Zsh"
@@ -95,10 +109,10 @@ fi
 
 # yazi
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
 }

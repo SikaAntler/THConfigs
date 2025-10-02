@@ -15,7 +15,7 @@ return {
     keys = {
         { "<Space>ff", "<Cmd>Telescope find_files<CR>" },
         { "<Space>fw", "<Cmd>Telescope live_grep_args<CR>" },
-        { "<Space>fb", "<Cmd>Telescope buffers<CR>" },
+        { "<Space><Space>", "<Cmd>Telescope buffers<CR>" },
         { "<Space>fo", "<Cmd>Telescope oldfiles<CR>" },
         { "<Space>fd", "<Cmd>Telescope diagnostics<CR>" },
         { "<Space>fk", "<Cmd>Telescope keymaps<CR>" },

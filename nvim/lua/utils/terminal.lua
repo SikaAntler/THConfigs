@@ -35,10 +35,10 @@ end
 
 local function handle_python(name)
     local msg, cmd
-    if vim.fn.executable("python") ~= 0 then
-        cmd = "python"
+    if vim.fn.executable("python3") ~= 0 then
+        cmd = "python3"
     else
-        msg = "command not found: python"
+        msg = "command not found: python3"
     end
     return msg, cmd, name
 end

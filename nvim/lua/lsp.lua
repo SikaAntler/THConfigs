@@ -33,13 +33,68 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("<Space>rn", vim.lsp.buf.rename, "Rename")
         map("<Space>ca", vim.lsp.buf.code_action, "Code Action")
 
-        -- Inlay hint
+        -- lsp client
         local client = vim.lsp.get_client_by_id(event.data.client_id)
-        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+        if not client then
+            return
+        end
+
+        -- inlay hint
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             vim.lsp.inlay_hint.enable()
             map("<Space>ih", function()
                 vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
             end, "Inlay Hint")
+        end
+
+        -- jump to function header
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentSymbol) then
+            local function request()
+                local params = { textDocument = vim.lsp.util.make_text_document_params() }
+                local responses = vim.lsp.buf_request_sync(0, "textDocument/documentSymbol", params)
+                return responses or {}
+            end
+
+            local function find_symbol(symbols, line)
+                for _, s in ipairs(symbols) do
+                    local range = s.range or (s.localtion and s.location.range)
+                    if range and line >= range.start.line and line <= range["end"].line then
+                        if s.children then
+                            local child = find_symbol(s.children, line)
+                            if child then
+                                return child
+                            end
+                        end
+                        return s
+                    end
+                end
+            end
+
+            map("[f", function()
+                local pos = vim.api.nvim_win_get_cursor(0)
+                local line = pos[1] - 1 -- 1-indexed in nvim and 0-indexed in lsp
+                for _, response in pairs(request()) do
+                    local symbol = find_symbol(response.result or {}, line)
+                    if symbol and symbol.range then
+                        vim.cmd("normal! m'")
+                        vim.api.nvim_win_set_cursor(0, { symbol.range.start.line + 1, 0 })
+                        return
+                    end
+                end
+            end, "Jump to function header")
+
+            map("]f", function()
+                local pos = vim.api.nvim_win_get_cursor(0)
+                local line = pos[1] - 1
+                for _, response in pairs(request()) do
+                    local symbol = find_symbol(response.result or {}, line)
+                    if symbol and symbol.range then
+                        vim.cmd("normal! m'")
+                        vim.api.nvim_win_set_cursor(0, { symbol.range["end"].line + 1, 0 })
+                        return
+                    end
+                end
+            end, "Jump to function footer")
         end
     end,
 })

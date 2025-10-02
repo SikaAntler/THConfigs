@@ -21,8 +21,8 @@ return {
             highlight = { enable = true },
         },
     },
-    {
-        "nvim-treesitter/nvim-treesitter-context",
-        event = "VeryLazy",
-    },
+    -- {
+    --     "nvim-treesitter/nvim-treesitter-context",
+    --     event = "VeryLazy",
+    -- },
 }

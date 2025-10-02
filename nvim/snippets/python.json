@@ -1,4 +1,45 @@
 {
+  "Add Argument": {
+    "prefix": "add_argument",
+    "body": "parser.add_argument($0)"
+  },
+  "Add Font": {
+    "prefix": "addfont",
+    "body": [
+      "from matplotlib import font_manager\n",
+      "font_manager.fontManager.addfont(\"/home/thliang/.local/share/fonts/simhei.ttf\")",
+      "plt.rcParams[\"font.sans-serif\"] = [\"SimHei\"]",
+      "plt.rcParams[\"axes.unicode_minus\"] = False\n"
+    ]
+  },
+  "If Main": {
+    "prefix": "ifmain",
+    "body": [
+      "from argparse import ArgumentParser\n\n",
+      "def main(cfg) -> None:",
+      "\tpass\n\n",
+      "if __name__ == \"__main__\":",
+      "\tparser = ArgumentParser()",
+      "\t$0\n",
+      "\tmain(parser.parse_args())"
+    ]
+  },
+  "Image Read": {
+    "prefix": "imread",
+    "body": "${1:image} = np.array(Image.open(${2:img_file}))"
+  },
+  "Image Read Numpy": {
+    "prefix": "imreadnumpy",
+    "body": "${1:image} = cv2.imdecode(np.fromfile(${2:img_file}, np.uint8), cv2.IMREAD_UNCHANGED)"
+  },
+  "Image Write": {
+    "prefix": "imwrite",
+    "body": "Image.fromarray(${1:image}).save(${2:img_file})"
+  },
+  "Image Write Numpy": {
+    "prefix": "imwritenumpy",
+    "body": "cv2.imencode(\".${1:png}\", ${2:image})[1].tofile(${3:img_file})"
+  },
   "Import Enum": {
     "prefix": "enum",
     "body": "from enum import Enum"
@@ -58,61 +99,6 @@
     "prefix": "typing",
     "body": "from typing import Literal, Optional"
   },
-  "Add Argument": {
-    "prefix": "add_argument",
-    "body": "parser.add_argument($0)"
-  },
-  "Add Font": {
-    "prefix": "addfont",
-    "body": [
-      "from matplotlib import font_manager\n",
-      "font_manager.fontManager.addfont(\"/home/thliang/.local/share/fonts/simhei.ttf\")",
-      "plt.rcParams[\"font.sans-serif\"] = [\"SimHei\"]",
-      "plt.rcParams[\"axes.unicode_minus\"] = False\n"
-    ]
-  },
-  "File Read": {
-    "prefix": "fileread",
-    "body": [
-      "with open(${1:filename}, \"r\", encoding=\"utf-8\") as fr:",
-      "\t$0"
-    ]
-  },
-  "File Write": {
-    "prefix": "filewrite",
-    "body": [
-      "with open(${1:filename}, \"w\", encoding=\"utf-8\") as fw:",
-      "\t$0"
-    ]
-  },
-  "If Main": {
-    "prefix": "ifmain",
-    "body": [
-      "from argparse import ArgumentParser\n\n",
-      "def main(cfg) -> None:",
-      "\tpass\n\n",
-      "if __name__ == \"__main__\":",
-      "\tparser = ArgumentParser()",
-      "\t$0\n",
-      "\tmain(parser.parse_args())"
-    ]
-  },
-  "Image Read": {
-    "prefix": "imread",
-    "body": "${1:image} = np.array(Image.open(${2:img_file}))"
-  },
-  "Image Read Numpy": {
-    "prefix": "imreadnumpy",
-    "body": "${1:image} = cv2.imdecode(np.fromfile(${2:img_file}, np.uint8), cv2.IMREAD_UNCHANGED)"
-  },
-  "Image Write": {
-    "prefix": "imwrite",
-    "body": "Image.fromarray(${1:image}).save(${2:img_file})"
-  },
-  "Image Write Numpy": {
-    "prefix": "imwritenumpy",
-    "body": "cv2.imencode(\".${1:png}\", ${2:image})[1].tofile(${3:img_file})"
-  },
   "INIT": {
     "prefix": "init",
     "body": [
@@ -134,6 +120,24 @@
       "QML_IMPORT_NAME = \"${1:module}\"",
       "QML_IMPORT_MAJOR_VERSION = 1",
       "QML_IMPORT_MINOR_VERSION = 0"
+    ]
+  },
+  "Read Classes": {
+    "prefix": "readclasses",
+    "body": "classes = pd.read_csv(directory / \"classes.csv\", header=None)[0].to_list()"
+  },
+  "Read File": {
+    "prefix": "readfile",
+    "body": [
+      "with open(${1:filename}, \"r\", encoding=\"utf-8\") as fr:",
+      "\t$0"
+    ]
+  },
+  "Write File": {
+    "prefix": "writefile",
+    "body": [
+      "with open(${1:filename}, \"w\", encoding=\"utf-8\") as fw:",
+      "\t$0"
     ]
   },
   "Subplots": {

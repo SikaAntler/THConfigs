@@ -4,6 +4,9 @@
 # lazygit
 /lazygit/state.yml
 
+# setup
+/packages.json
+
 # MacOS
 .DS_Store
 

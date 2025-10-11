@@ -116,3 +116,12 @@ function y() {
     fi
     rm -f -- "$tmp"
 }
+
+# zoxide
+if [[ -x $(command -v zoxide) ]]; then
+    if [[ "$SHELL" == */bash ]]; then
+        eval "$(zoxide init bash)"
+    elif [[ "$SHELL" == */zsh ]]; then
+        eval "$(zoxide init zsh)"
+    fi
+fi

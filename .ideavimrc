@@ -4,16 +4,13 @@ set incsearch
 " Don't use Ex mode, use Q for formatting.
 map Q gq
 
-" <Esc>
-inoremap jk <ESC>
-
 " Move line
-nnoremap <C-j> :m+1<CR>
-vnoremap <C-j> :m'>+1<CR>gv
-inoremap <C-j> <ESC>:m+1<CR>gi
-nnoremap <C-k> :m-2<CR>
-vnoremap <C-k> :m'<-2<CR>gv
-inoremap <C-k> <ESC>:m-2<CR>gi
+nnoremap <C-j> :m+1<CR>V=
+vnoremap <C-j> :m'>+1<CR>gv=gv
+" inoremap <C-j> <Esc>:m+1<CR>V=gi
+nnoremap <C-k> :m-2<CR>V=
+vnoremap <C-k> :m'<-2<CR>gv=gv
+" inoremap <C-k> <Esc>:m-2<CR>V=gi
 
 " Move cursor
 nnoremap <S-j> 5j
@@ -28,6 +25,16 @@ onoremap <S-h> ^
 nnoremap <S-l> $
 vnoremap <S-l> $
 onoremap <S-l> $
+
+" Switch window
+nnoremap <A-h> <C-w>h
+inoremap <A-h> <Esc><C-w>h
+nnoremap <A-j> <C-w>j
+inoremap <A-j> <Esc><C-w>j
+nnoremap <A-k> <C-w>k
+inoremap <A-k> <Esc><C-w>k
+nnoremap <A-l> <C-w>l
+inoremap <A-l> <Esc><C-w>l
 
 Plug 'machakann/vim-highlightedyank'
 Plug 'tpope/vim-commentary'

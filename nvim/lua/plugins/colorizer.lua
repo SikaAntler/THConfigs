@@ -1,9 +1,5 @@
 return {
-    "norcalli/nvim-colorizer.lua",
+    "brenoprata10/nvim-highlight-colors",
     event = "VeryLazy",
-    opts = {
-        "lua",
-        "python",
-        "qml",
-    },
+    opts = {},
 }

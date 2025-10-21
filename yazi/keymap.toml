@@ -13,3 +13,11 @@ run = 'arrow -5'
 [[mgr.prepend_keymap]]
 on = "T"
 run = "plugin toggle-pane max-preview"
+
+[[mgr.prepend_keymap]]
+on = "<C-y>"
+run = "seek -1"
+
+[[mgr.prepend_keymap]]
+on = "<C-e>"
+run = "seek 1"

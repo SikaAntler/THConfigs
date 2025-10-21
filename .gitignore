@@ -12,3 +12,7 @@
 
 # tmux
 /tmux/plugins/
+
+# yazi
+/yazi/plugins/
+/yazi/state/

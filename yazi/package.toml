@@ -1,22 +1,22 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "63f9650"
+rev = "8f1d971"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "63f9650"
-hash = "30fc0b37f03a597b92d387268319450f"
+rev = "8f1d971"
+hash = "ce67445ebb1bf3d97b8e44f50904b2c5"
 
 [[plugin.deps]]
 use = "AnirudhG07/rich-preview"
-rev = "843c3fa"
-hash = "b4040931f0d2f9670ddb4923e55cd881"
+rev = "831234e"
+hash = "ed3363e256e210593f0f8e4cec3e36a9"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "b886025"
-hash = "d6f60c24d8c0cf57a855bf46115b2502"
+rev = "8f1d971"
+hash = "8a7c58225816a163a6e8730c0adafbc8"
 
 [flavor]
 deps = []

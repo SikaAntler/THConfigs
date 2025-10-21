@@ -1,5 +1,5 @@
 return {
-    cmd = { "qmlls", "pyside6-qmlls" },
+    cmd = { "qmlls" },
     filetypes = { "qml", "qmljs" },
     root_markers = { ".git" },
 }

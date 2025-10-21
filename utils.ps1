@@ -34,14 +34,15 @@ if (Get-Module -ListAvailable -Name "PSFzf" -ErrorAction Stop)
 }
 
 # starship
-if (Get-Command "starship" -ErrorAction Stop)
-{
-    $env:STARSHIP_CONFIG = "$HOME\THConfigs\starship.toml"
-    Invoke-Expression(&starship init powershell)
-}
+# if (Get-Command "starship" -ErrorAction Stop)
+# {
+#     $env:STARSHIP_CONFIG = "$HOME\THConfigs\starship.toml"
+#     Invoke-Expression(&starship init powershell)
+# }
 
 # yazi
 $env:YAZI_CONFIG_HOME = "$HOME\THConfigs\yazi"
+$env:YAZI_FILE_ONE = "$HOME\scoop\apps\git\current\usr\bin\file.exe"
 function y
 {
     $tmp = [System.IO.Path]::GetTempFileName()
@@ -52,4 +53,10 @@ function y
         Set-Location -LiteralPath $cwd
     }
     Remove-Item -Path $tmp
+}
+
+# zoxide
+if (Get-Command "zoxide" -ErrorAction Stop)
+{
+    Invoke-Expression (& { (zoxide init powershell | Out-String) })
 }

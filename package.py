@@ -9,20 +9,24 @@ from zipfile import ZipFile
 import requests
 from tqdm import tqdm
 
-PACKAGES = [
-    ("shenwei356/csvtk", "csvtk_linux_amd64.tar.gz", "csvtk"),
-    ("eza-community/eza", "eza_x86_64-unknown-linux-musl.tar.gz", "eza"),
-    ("sharkdp/fd", "fd-v10.3.0-x86_64-unknown-linux-musl.tar.gz", "fd"),
-    ("junegunn/fzf", "fzf-0.65.2-linux_amd64.tar.gz", "fzf"),
-    ("jqlang/jq", "jq-linux-amd64", "jq"),
-    ("jesseduffield/lazygit", "lazygit_0.55.1_linux_x86_64.tar.gz", "lazygit"),
-    ("neovim/neovim", "nvim-linux-x86_64.appimage", "nvim"),
-    ("BurntSushi/ripgrep", "ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz", "rg"),
-    ("nelsonenzo/tmux-appimage", "tmux.appimage", "tmux"),
-    ("sxyazi/yazi", "yazi-x86_64-unknown-linux-musl.zip", "yazi"),
-    ("mikefarah/yq", "yq_linux_amd64", "yq"),
-    ("ajeetdsouza/zoxide", "zoxide-0.9.8-x86_64-unknown-linux-musl.tar.gz", "zoxide"),
-]
+# fmt: off
+PACKAGES = {
+  "csvtk": (        "shenwei356/csvtk",                        "csvtk_linux_amd64.tar.gz",        "csvtk"),
+    "duf": (              "muesli/duf",                   "duf_0.9.1_linux_x86_64.tar.gz",          "duf"),
+   "dust": (           "bootandy/dust",    "dust-v1.2.3-x86_64-unknown-linux-musl.tar.gz",         "dust"),
+    "eza": (       "eza-community/eza",            "eza_x86_64-unknown-linux-musl.tar.gz",          "eza"),
+     "fd": (              "sharkdp/fd",     "fd-v10.3.0-x86_64-unknown-linux-musl.tar.gz",           "fd"),
+    "fzf": (            "junegunn/fzf",                   "fzf-0.65.2-linux_amd64.tar.gz",          "fzf"),
+     "jq": (               "jqlang/jq",                                  "jq-linux-amd64",           "jq"),
+"lazygit": (   "jesseduffield/lazygit",              "lazygit_0.55.1_linux_x86_64.tar.gz",      "lazygit"),
+   "nvim": (           "neovim/neovim",                      "nvim-linux-x86_64.appimage",         "nvim"),
+     "rg": (      "BurntSushi/ripgrep", "ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz",           "rg"),
+   "tmux": ("nelsonenzo/tmux-appimage",                                   "tmux.appimage",         "tmux"),
+   "yazi": (             "sxyazi/yazi",              "yazi-x86_64-unknown-linux-musl.zip", ["yazi", "ya"]),
+     "yq": (            "mikefarah/yq",                                  "yq_linux_amd64",           "yq"),
+ "zoxide": (      "ajeetdsouza/zoxide",   "zoxide-0.9.8-x86_64-unknown-linux-musl.tar.gz",       "zoxide"),
+}
+# fmt: on
 DOWNLOAD_DIR = Path("~/Downloads/").expanduser()
 RUN_DIR = Path("~/.local/bin/").expanduser()
 
@@ -84,14 +88,14 @@ def download(download_url: str, download_file: Path) -> None:
 
 
 def main(cfg) -> None:
-    if cfg.update == "all":  # 更新全部
-        update_dict = {c: True for _, _, c in PACKAGES}
+    if cfg.package == "all":  # 更新全部
+        upgrade_dict = {n: True for n in PACKAGES.keys()}
     else:  # 更新指定包
-        update_dict = {c: False for _, _, c in PACKAGES}
-        if cfg.update in update_dict:
-            update_dict[cfg.update] = True
+        upgrade_dict = {n: False for n in PACKAGES.keys()}
+        if cfg.package in upgrade_dict:
+            upgrade_dict[cfg.package] = True
         else:
-            raise KeyError(f"package {cfg.update} is not included")
+            raise KeyError(f"package {cfg.package} is not included")
 
     package_info_file = Path("./packages.json")
     if package_info_file.exists():
@@ -100,9 +104,13 @@ def main(cfg) -> None:
     else:
         package_info = {}
 
-    for repo, name, package in PACKAGES:
+    for pkg_name, (repo, pkg_file, executable_files) in PACKAGES.items():
+        #         pkg_name: yazi
+        #             repo: sxyazi/yazi
+        #         pkg_file: yazi-x86_64-unknown-linux-musl
+        # executable_files: ["yazi", "ya"]
         try:
-            if not update_dict[package]:
+            if not upgrade_dict[pkg_name]:
                 continue
 
             url = f"https://github.com/{repo}/releases/latest"
@@ -111,25 +119,28 @@ def main(cfg) -> None:
 
             latest = response.url.split("/")[-1]
 
-            requires_update = False
+            requires_upgrade = False
             if repo in package_info:
                 if package_info[repo] != latest:
-                    requires_update = True
+                    requires_upgrade = True
             else:
-                requires_update = True
+                requires_upgrade = True
 
-            if requires_update:
+            if requires_upgrade:
                 version = package_info[repo] if repo in package_info else "none"
-                print(f"{package}: current {version} | latest {latest}")
+                print(f"{pkg_name}: current {version} | latest {latest}")
                 download_url = (
-                    f"https://github.com/{repo}/releases/download/{latest}/{name}"
+                    f"https://github.com/{repo}/releases/download/{latest}/{pkg_file}"
                 )
-                download_file = DOWNLOAD_DIR / name
+                download_file = DOWNLOAD_DIR / pkg_file
                 download(download_url, download_file)
-                extract(download_file, package)
+                extract(download_file, pkg_name)
+                if isinstance(executable_files, list):
+                    for pkg_name in executable_files[1:]:
+                        extract(download_file, pkg_name)
                 package_info[repo] = latest
             else:
-                print(f"{package} is the latest")
+                print(f"{pkg_name} is the latest")
 
         except requests.exceptions.RequestException as e:
             print(e)
@@ -143,7 +154,9 @@ def main(cfg) -> None:
 if __name__ == "__main__":
     if sys.platform == "linux":
         parser = ArgumentParser()
-        parser.add_argument("--update", default="all", type=str)
+        subparsers = parser.add_subparsers()
+        upgrade_parser = subparsers.add_parser("upgrade")
+        upgrade_parser.add_argument("package", default="all", type=str)
         main(parser.parse_args())
     else:
         print(f"This script is only for linux, get {sys.platform} instead!")

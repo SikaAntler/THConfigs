@@ -1,13 +1,7 @@
 -- Clipboard
--- If using Neovim under SSH, using OSC 52
+-- If using Neovim under SSH and not in tmux, using OSC 52
 vim.opt.clipboard:append("unnamedplus")
-local function paste()
-    return {
-        vim.fn.split(vim.fn.getreg(""), "\n"),
-        vim.fn.getregtype(""),
-    }
-end
-if vim.fn.exists("$SSH_TTY") == 1 then
+if vim.fn.exists("#SSH_TTY") == 1 and vim.env.TMUX == nil then
     vim.g.clipboard = {
         name = "OSC 52",
         copy = {
@@ -15,8 +9,8 @@ if vim.fn.exists("$SSH_TTY") == 1 then
             ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
         },
         paste = {
-            ["+"] = paste,
-            ["*"] = paste,
+            ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+            ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
         },
     }
 end

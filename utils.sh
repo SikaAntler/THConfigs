@@ -31,7 +31,7 @@ if [[ -x $(command -v eza) ]]; then
     alias la="eza --icons --sort Name --all"
     alias ll="eza --icons --sort Name --all --long"
 
-    alias lr="eza --sort Name --all --long | grep"
+    alias lr="eza --sort Name --all --long | grep -i"
     alias cnf="ls --oneline --only-files | wc -l"
     alias cnfr="ls --oneline --only-files --recurse | grep -v '^\.' | grep -v '^$' | wc -l"
     alias cnd="ls --oneline --only-dirs | wc -l"

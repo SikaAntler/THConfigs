@@ -1,5 +1,21 @@
-# set environment variables at first
+# ╭───────────────────────────────────────────────╮
+# │                      Env                      │
+# ╰───────────────────────────────────────────────╯
+
+# config
 export PATH="$HOME/.local/bin:$PATH"
+export XDG_CONFIG_HOME="$HOME/.config"
+
+# editor
+export EDITOR="nvim"
+export VISUAL=$EDITOR
+export GIT_EDITOR=$EDITOR
+
+# shell history
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+shopt -s histappend
+PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
 
 # ╭───────────────────────────────────────────────╮
 # │                    Aliases                    │
@@ -32,9 +48,9 @@ if [[ -x $(command -v eza) ]]; then
     alias ll="eza --icons --sort Name --all --long"
 
     alias lr="eza --sort Name --all --long | grep -i"
-    alias cnf="ls --oneline --only-files | wc -l"
-    alias cnfr="ls --oneline --only-files --recurse | grep -v '^\.' | grep -v '^$' | wc -l"
-    alias cnd="ls --oneline --only-dirs | wc -l"
+    alias cnf="eza --oneline --only-files | wc -l"
+    alias cnfr="eza --oneline --only-files --recurse | grep -v '^\.' | grep -v '^$' | wc -l"
+    alias cnd="eza --oneline --only-dirs | wc -l"
 else
     alias ls="ls --color=auto"
     alias la="ls -AF"
@@ -62,7 +78,7 @@ alias sz="source ~/.zshrc"
 
 # tmux
 alias tls="tmux ls"
-alias tn="tmux new-session -s"
+alias tn='tmux new-session -c $HOME -s'
 alias ta="tmux attach -t"
 alias tk="tmux kill-session -t"
 alias tks="tmux kill-server"

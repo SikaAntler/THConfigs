@@ -12,6 +12,13 @@
       "plt.rcParams[\"axes.unicode_minus\"] = False\n"
     ]
   },
+  "Forward": {
+    "prefix": "forward",
+    "body": [
+      "def forward(self, x: Tensor) -> Tensor:",
+      "\t$0"
+    ]
+  },
   "If Main": {
     "prefix": "ifmain",
     "body": [

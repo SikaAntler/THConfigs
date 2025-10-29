@@ -64,7 +64,7 @@ fi
 
 # monitor
 alias bt="btop"
-alias nt="pipx run nvitop --colorful"
+alias nt="uvx nvitop --colorful"
 alias ns="nvidia-smi"
 alias wns="watch -n 1 -d nvidia-smi"
 

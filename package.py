@@ -22,6 +22,7 @@ PACKAGES = {
    "nvim": (           "neovim/neovim",                      "nvim-linux-x86_64.appimage",         "nvim"),
      "rg": (      "BurntSushi/ripgrep", "ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz",           "rg"),
    "tmux": ("nelsonenzo/tmux-appimage",                                   "tmux.appimage",         "tmux"),
+     "uv": (            "astral-sh/uv",             "uv-x86_64-unknown-linux-musl.tar.gz",  ["uv", "uvx"]),
    "yazi": (             "sxyazi/yazi",              "yazi-x86_64-unknown-linux-musl.zip", ["yazi", "ya"]),
      "yq": (            "mikefarah/yq",                                  "yq_linux_amd64",           "yq"),
  "zoxide": (      "ajeetdsouza/zoxide",   "zoxide-0.9.8-x86_64-unknown-linux-musl.tar.gz",       "zoxide"),
@@ -120,14 +121,14 @@ def main(cfg) -> None:
             latest = response.url.split("/")[-1]
 
             requires_upgrade = False
-            if repo in package_info:
-                if package_info[repo] != latest:
+            if pkg_name in package_info:
+                if package_info[pkg_name] != latest:
                     requires_upgrade = True
             else:
                 requires_upgrade = True
 
             if requires_upgrade:
-                version = package_info[repo] if repo in package_info else "none"
+                version = package_info[pkg_name] if pkg_name in package_info else "none"
                 print(f"{pkg_name}: current {version} | latest {latest}")
                 download_url = (
                     f"https://github.com/{repo}/releases/download/{latest}/{pkg_file}"
@@ -138,7 +139,7 @@ def main(cfg) -> None:
                 if isinstance(executable_files, list):
                     for pkg_name in executable_files[1:]:
                         extract(download_file, pkg_name)
-                package_info[repo] = latest
+                package_info[pkg_name] = latest
             else:
                 print(f"{pkg_name} is the latest")
 

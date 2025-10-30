@@ -21,6 +21,7 @@ return {
             yaml = { "yamlfmt" },
         },
         formatters = {
+            jq = { args = { "--indent", "2" } },
             yamlfmt = { args = { "-formatter", "retain_line_breaks_single=true", "-" } },
         },
     },

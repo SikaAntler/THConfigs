@@ -72,6 +72,9 @@ alias wns="watch -n 1 -d nvidia-smi"
 alias nb="nvim ~/.bashrc"
 alias nz="nvim ~/.zshrc"
 
+# python virtual environment
+alias actv="source .venv/bin/activate"
+
 # source
 alias sb="source ~/.bashrc"
 alias sz="source ~/.zshrc"

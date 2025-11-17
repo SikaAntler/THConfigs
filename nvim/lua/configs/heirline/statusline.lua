@@ -298,7 +298,9 @@ local Cursor = {
             local count = math.abs(end_lnum - begin_lnum) + 1
             lines = "(" .. count .. " lines) "
         end
-        return lines .. "%(%l%):%c %(%P%)"
+        local row = vim.fn.line(".")
+        local col = vim.fn.charcol(".")
+        return lines .. row .. ":" .. col .. " %P"
     end,
 }
 

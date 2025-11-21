@@ -14,8 +14,10 @@ export GIT_EDITOR=$EDITOR
 # shell history
 export HISTSIZE=10000
 export HISTFILESIZE=10000
-shopt -s histappend
-PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
+if [[ "$SHELL" == */bash ]]; then
+    shopt -s histappend
+    PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
+fi
 
 # ╭───────────────────────────────────────────────╮
 # │                    Aliases                    │

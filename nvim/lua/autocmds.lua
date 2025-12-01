@@ -14,3 +14,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
     desc = "Set cursor to the position where it was last left.",
 })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = "*.csv",
+    callback = function()
+        vim.cmd("CsvViewEnable")
+    end,
+})

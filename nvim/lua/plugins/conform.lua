@@ -1,3 +1,7 @@
+local function is_available(name, bufnr)
+    return require("conform").get_formatter_info(name, bufnr).available
+end
+
 return {
     "stevearc/conform.nvim",
     keys = {
@@ -16,7 +20,16 @@ return {
             cpp = { "clang-format" },
             json = { "jq" },
             lua = { "stylua" },
-            python = { "isort", "black" },
+            python = function(bufnr)
+                if
+                    is_available("ruff_format", bufnr)
+                    and is_available("ruff_organize_imports", bufnr)
+                then
+                    return { "ruff_format", "ruff_organize_imports" }
+                else
+                    return { "isort", "black" }
+                end
+            end,
             toml = { "taplo" },
             yaml = { "yamlfmt" },
         },

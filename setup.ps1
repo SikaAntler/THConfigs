@@ -32,6 +32,13 @@ if (Test-ScoopPackageNotInstalled git) {
     scoop install main/git
 }
 
+if (Test-ScoopPackageNotInstalled alacritty) {
+    scoop install extras/alacritty
+}
+if (-not (Test-Path -Path $HOME\AppData\Roaming\alacritty\ -PathType Container)) {
+    New-Item -ItemType Symboliclink -Path $HOME\AppData\Roaming\alacritty\ -Target $HOME\THConfigs\alacritty\
+}
+
 if (Test-ScoopPackageNotInstalled cmake) {
     scoop install main/cmake
 }

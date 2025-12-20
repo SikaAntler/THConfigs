@@ -1,0 +1,25 @@
+[general]
+import = [ "./catppuccin-macchiato.toml" ]
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+decorations = "none"
+startup_mode = "Maximized"
+padding.x = 3
+padding.y = 3
+
+[font]
+normal = { family = "Maple Mono NF CN", style = "Light" }
+italic = { family = "Maple Mono NF CN", style = "Light Italic" }
+bold = { family = "Maple Mono NF CN", style = "Medium" }
+bold_italic = { family = "Maple Mono NF CN", style = "Medium Italic" }
+size = 10.0
+offset.x = 2
+offset.y = 6
+glyph_offset.x = 1
+glyph_offset.y = 3
+
+[cursor]
+style = { shape = "Beam" }

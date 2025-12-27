@@ -36,6 +36,7 @@ THC_DIR=$HOME/THConfigs
 [[ -d "$CONFIG_DIR/nvim" ]]          || ln -s "$THC_DIR/nvim"          "$CONFIG_DIR/nvim"
 [[ -f "$CONFIG_DIR/starship.toml" ]] || ln -s "$THC_DIR/starship.toml" "$CONFIG_DIR"
 [[ -d "$CONFIG_DIR/tmux" ]]          || ln -s "$THC_DIR/tmux"          "$CONFIG_DIR/tmux"
+[[ -f "$HOME/.vimrc" ]]              || ln -s "$THC_DIR/.vimrc"        "$HOME/.vimrc"
 [[ -d "$CONFIG_DIR/yazi" ]]          || ln -s "$THC_DIR/yazi"          "$CONFIG_DIR/yazi"
 
 case "$SHELL" in

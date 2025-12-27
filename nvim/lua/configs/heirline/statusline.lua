@@ -237,7 +237,7 @@ local Search = {
         local info = vim.fn.searchcount({ maxcount = 0 })
         local state = ""
         if info.incomplete > 0 then
-            state(" [?/?]")
+            state = " [?/?]"
         elseif info.total then
             state = (" [%s/%s]"):format(info.current, info.total)
         end

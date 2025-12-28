@@ -63,7 +63,7 @@ return function()
     end
 
     local ft = vim.bo.filetype
-    local name = vim.fn.expand("%:t")
+    local name  = vim.fn.expand("%")
     name = handle_whitespaces(name)
     local msg, cmd, arg
 

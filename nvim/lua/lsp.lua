@@ -1,5 +1,6 @@
 vim.lsp.enable("bashls")
 vim.lsp.enable("clangd")
+vim.lsp.enable("glsl_analyzer")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("neocmake")
 vim.lsp.enable("qmlls")

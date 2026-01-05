@@ -21,14 +21,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 if not result or vim.tbl_isempty(result) then
                     vim.notify("No definition found", vim.log.levels.INFO)
                 else
-                    require("telescope.builtin").lsp_definitions()
+                    require("snacks").picker.lsp_definitions()
                 end
             end)
         end, "Goto Definition")
         map("gD", vim.lsp.buf.declaration, "Goto Declaration")
         map("gi", vim.lsp.buf.implementation, "Goto Implementation")
         map("gr", function()
-            require("telescope.builtin").lsp_references()
+            require("snacks").picker.lsp_references()
         end, "Goto References")
         map("<Space>h", vim.lsp.buf.hover, "Hover")
         map("<Space>rn", vim.lsp.buf.rename, "Rename")

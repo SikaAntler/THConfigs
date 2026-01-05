@@ -1,10 +1,10 @@
-vim.lsp.enable("basedpyright")
 vim.lsp.enable("bashls")
 vim.lsp.enable("clangd")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("neocmake")
 vim.lsp.enable("qmlls")
 vim.lsp.enable("taplo")
+vim.lsp.enable("ty")
 vim.lsp.enable("yamlls")
 
 -- Keymap

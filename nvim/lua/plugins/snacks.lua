@@ -72,6 +72,12 @@ return {
             end,
         },
         {
+            "<Space>fr",
+            function()
+                require("snacks").picker.resume()
+            end,
+        },
+        {
             "<Space><Space>",
             function()
                 require("snacks").picker.buffers()

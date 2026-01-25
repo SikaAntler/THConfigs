@@ -68,6 +68,15 @@ end
 -- 	}
 -- end
 
+---@param key integer
+local function wezterm_activate_tab(key)
+	return {
+		mods = "CTRL",
+		key = tostring(key),
+		action = action.ActivateTab(key - 1),
+	}
+end
+
 return {
 	keys = {
 		-- neovim
@@ -89,5 +98,16 @@ return {
 		tmux_select_pane("j", "DownArrow"),
 		tmux_select_pane("k", "UpArrow"),
 		tmux_select_pane("l", "RightArrow"),
+
+		-- wezterm
+		wezterm_activate_tab(1),
+		wezterm_activate_tab(2),
+		wezterm_activate_tab(3),
+		wezterm_activate_tab(4),
+		wezterm_activate_tab(5),
+		wezterm_activate_tab(6),
+		wezterm_activate_tab(7),
+		wezterm_activate_tab(8),
+		wezterm_activate_tab(9),
 	},
 }

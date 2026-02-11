@@ -89,5 +89,11 @@ return {
                 require("snacks").picker.help({ layout = "dropdown" })
             end,
         },
+        {
+            "<Space>bd",
+            function()
+                require("snacks").bufdelete()
+            end,
+        },
     },
 }

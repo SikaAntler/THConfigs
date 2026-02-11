@@ -121,6 +121,15 @@ if [[ ! -x $(command -v nvim) ]]; then
     chmod u+x "$BIN_DIR/nvim"
 fi
 
+if [[ ! -x $(command -v resvg) ]]; then
+    echo "Downloading resvg..."
+    version=0.46.0
+    name=resvg-linux-x86_64.tar.gz
+    url=https://github.com/linebender/resvg/releases/download/v$version/$name
+    curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
+    tar -xzf "$DOWNLOAD_DIR/$name" -C "$BIN_DIR"
+fi
+
 if [[ ! -x $(command -v rg) ]]; then
     echo "Downloading rg..."
     version=15.1.0

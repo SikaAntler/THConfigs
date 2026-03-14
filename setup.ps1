@@ -29,7 +29,6 @@ if (Test-ScoopPackageNotInstalled git) {
 }
 
 $packages = @(
-    # 'extras/alacritty'
     'main/cmake'
     'main/dust'
     'main/eza'
@@ -57,6 +56,7 @@ $packages = @(
     'main/scc'
     'main/stylua'
     'main/taplo'
+    'main/ty'
     'main/uv'
     'main/vcpkg'
     'extras/wezterm'

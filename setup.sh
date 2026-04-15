@@ -44,7 +44,7 @@ fi
 
 if [[ ! -x $(command -v csvtk) ]]; then
     echo "Downloading csvtk..."
-    version=0.36.0
+    version=0.37.0
     name=csvtk_linux_amd64.tar.gz
     url=https://github.com/shenwei356/csvtk/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -62,7 +62,7 @@ fi
 
 if [[ ! -x $(command -v dust) ]]; then
     echo "Downloading dust..."
-    version=1.2.3
+    version=1.2.4
     name=dust-v$version-x86_64-unknown-linux-musl.tar.gz
     url=https://github.com/bootandy/dust/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -80,7 +80,7 @@ fi
 
 if [[ ! -x $(command -v fd) ]]; then
     echo "Downloading fd..."
-    version=10.3.0
+    version=10.4.2
     name=fd-v$version-x86_64-unknown-linux-musl.tar.gz
     url=https://github.com/sharkdp/fd/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -89,7 +89,7 @@ fi
 
 if [[ ! -x $(command -v fzf) ]]; then
     echo "Downloading fzf..."
-    version=0.67.0
+    version=0.71.0
     name=fzf-$version-linux_amd64.tar.gz
     url=https://github.com/junegunn/fzf/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -106,7 +106,7 @@ fi
 
 if [[ ! -x $(command -v lazygit) ]]; then
     echo "Downloading lazygit..."
-    version=0.58.0
+    version=0.61.1
     name=lazygit_${version}_linux_x86_64.tar.gz
     url=https://github.com/jesseduffield/lazygit/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -115,7 +115,7 @@ fi
 
 if [[ ! -x $(command -v nvim) ]]; then
     echo "Downloading nvim..."
-    version=0.11.5
+    version=0.12.1
     url=https://github.com/neovim/neovim/releases/download/v$version/nvim-linux-x86_64.appimage
     curl -L --progress-bar -o "$BIN_DIR/nvim" "$url"
     chmod u+x "$BIN_DIR/nvim"
@@ -123,7 +123,7 @@ fi
 
 if [[ ! -x $(command -v resvg) ]]; then
     echo "Downloading resvg..."
-    version=0.46.0
+    version=0.47.0
     name=resvg-linux-x86_64.tar.gz
     url=https://github.com/linebender/resvg/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -142,7 +142,7 @@ fi
 [[ -x $(command -v starship) ]] || curl -sS https://starship.rs/install.sh | sh -s -- -b "$BIN_DIR"
 
 if [[ ! -x $(command -v tmux) ]]; then
-    echo "DOWNLOAD_DIR tmux..."
+    echo "Downloading tmux..."
     version=3.5a
     url=https://github.com/nelsonenzo/tmux-appimage/releases/download/$version/tmux.appimage
     curl -L --progress-bar -o "$BIN_DIR/tmux" "$url"
@@ -150,8 +150,8 @@ if [[ ! -x $(command -v tmux) ]]; then
 fi
 
 if [[ ! -x $(command -v uv) ]]; then
-    echo "DOWNLOAD_DIR uv..."
-    version=0.9.21
+    echo "Downloading uv..."
+    version=0.11.6
     name=uv-x86_64-unknown-linux-musl.tar.gz
     url=https://github.com/astral-sh/uv/releases/download/$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -159,17 +159,27 @@ if [[ ! -x $(command -v uv) ]]; then
 fi
 
 if [[ ! -x $(command -v yazi) ]]; then
-    echo "DOWNLOAD_DIR yazi..."
-    version=26.1.4
+    echo "Downloading yazi..."
+    version=26.1.22
     name=yazi-x86_64-unknown-linux-musl.zip
     url=https://github.com/sxyazi/yazi/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
     unzip -j "$DOWNLOAD_DIR/$name" "*/yazi" "*/ya" -d "$BIN_DIR"
 fi
 
+if [[ ! -x $(command -v yq) ]]; then
+    echo "Downloading yq..."
+    version=4.52.5
+    name=yq_linux_amd64.tar.gz
+    url=https://github.com/mikefarah/yq/releases/download/v$version/$name
+    curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
+    tar -xzf "$DOWNLOAD_DIR/$name" --strip-components=1 -C "$BIN_DIR" ./yq_linux_amd64
+    mv "$BIN_DIR/yq_linux_amd64" "$BIN_DIR/yq"
+fi
+
 if [[ ! -x $(command -v zoxide) ]]; then
-    echo "DOWNLOAD_DIR zoxide..."
-    version=0.9.8
+    echo "Downloading zoxide..."
+    version=0.9.9
     name=zoxide-$version-x86_64-unknown-linux-musl.tar.gz
     url=https://github.com/ajeetdsouza/zoxide/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"

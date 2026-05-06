@@ -1,14 +1,14 @@
 [[mgr.prepend_keymap]]
-on = 'f'
-run = 'plugin jump-to-char'
+on = "f"
+run = "plugin jump-to-char"
 
 [[mgr.prepend_keymap]]
-on = '<S-j>'
-run = 'arrow 5'
+on = "<S-j>"
+run = "arrow 5"
 
 [[mgr.prepend_keymap]]
-on = '<S-k>'
-run = 'arrow -5'
+on = "<S-k>"
+run = "arrow -5"
 
 [[mgr.prepend_keymap]]
 on = "T"

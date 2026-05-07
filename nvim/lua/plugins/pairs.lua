@@ -1,11 +1,9 @@
--- return {
--- 	"echasnovski/mini.pairs",
--- 	version = "*",
--- 	event = "VeryLazy",
--- 	opts = {},
--- }
 return {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = true,
+    "saghen/blink.pairs",
+    version = "*",
+    dependencies = "saghen/blink.download",
+
+    --- @module 'blink.pairs'
+    --- @type blink.pairs.Config
+    opts = {},
 }

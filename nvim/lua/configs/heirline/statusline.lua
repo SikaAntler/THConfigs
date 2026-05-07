@@ -278,10 +278,10 @@ local Language = {
     C.Spacer,
     { -- Treesitter
         condition = function()
-            return require("nvim-treesitter.parsers").has_parser()
+            return vim.treesitter.get_parser()
         end,
         provider = function()
-            local ts = require("nvim-treesitter.parsers").has_parser()
+            local ts, _ = vim.treesitter.get_parser()
             return ts and " TS" or ""
         end,
         hl = { fg = palette.green, bold = true },

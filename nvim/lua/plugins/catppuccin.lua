@@ -26,7 +26,9 @@ return {
         integrations = {
             aerial = true,
             alpha = true,
-            blink_cmp = true,
+            blink_cmp = {
+                style = "bordered",
+            },
             diffview = true,
             dropbar = { enabled = true, color_mode = true },
             flash = true,
@@ -38,10 +40,9 @@ return {
             noice = true,
             notify = true,
             nvim_surround = true,
+            render_markdown = true,
             snacks = { enabled = true, indent_scope_color = "pink" },
-            telescope = { enabled = true },
             treesitter = true,
-            treesitter_context = true,
             which_key = true,
         },
     },

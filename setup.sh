@@ -149,6 +149,16 @@ if [[ ! -x $(command -v tmux) ]]; then
     chmod u+x "$BIN_DIR/tmux"
 fi
 
+if [[ ! -x $(command -v tree-sitter) ]]; then
+    echo "Downloading tree-sitter"
+    version=0.25.10
+    name=tree-sitter-linux-x64.gz
+    url=https://github.com/tree-sitter/tree-sitter/releases/download/v$version/$name
+    curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
+    gzip -dc "$DOWNLOAD_DIR/$name" > "$BIN_DIR/tree-sitter"
+    chmod u+x "$BIN_DIR/tree-sitter"
+fi
+
 if [[ ! -x $(command -v uv) ]]; then
     echo "Downloading uv..."
     version=0.11.6

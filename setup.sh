@@ -33,11 +33,11 @@ THC_DIR=$HOME/THConfigs
 
 if [[ ! -x $(command -v btop) ]]; then
     echo "Downloading btop..."
-    version=1.4.6
-    name=btop-x86_64-unknown-linux-musl.tbz
-    url=https://github.com/aristocratos/btop/releases/download/v$version/$name
+    version=1.4.7
+    name=btop-x86_64-unknown-linux-musl.tar.gz
+    url=https://github.com/aristocratos/btop/releases/download/v$version/btop-x86_64-unknown-linux-musl.tar.gz
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
-    tar -xjf "$DOWNLOAD_DIR/$name" -C "$DOWNLOAD_DIR"
+    tar -xzf "$DOWNLOAD_DIR/$name" -C "$DOWNLOAD_DIR"
     cd "$DOWNLOAD_DIR/btop" || exit
     make install PREFIX="$HOME/.local"
 fi
@@ -89,7 +89,7 @@ fi
 
 if [[ ! -x $(command -v fzf) ]]; then
     echo "Downloading fzf..."
-    version=0.71.0
+    version=0.72.0
     name=fzf-$version-linux_amd64.tar.gz
     url=https://github.com/junegunn/fzf/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -115,7 +115,7 @@ fi
 
 if [[ ! -x $(command -v nvim) ]]; then
     echo "Downloading nvim..."
-    version=0.12.1
+    version=0.12.2
     url=https://github.com/neovim/neovim/releases/download/v$version/nvim-linux-x86_64.appimage
     curl -L --progress-bar -o "$BIN_DIR/nvim" "$url"
     chmod u+x "$BIN_DIR/nvim"
@@ -161,7 +161,7 @@ fi
 
 if [[ ! -x $(command -v uv) ]]; then
     echo "Downloading uv..."
-    version=0.11.6
+    version=0.11.13
     name=uv-x86_64-unknown-linux-musl.tar.gz
     url=https://github.com/astral-sh/uv/releases/download/$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -170,7 +170,7 @@ fi
 
 if [[ ! -x $(command -v yazi) ]]; then
     echo "Downloading yazi..."
-    version=26.1.22
+    version=26.5.6
     name=yazi-x86_64-unknown-linux-musl.zip
     url=https://github.com/sxyazi/yazi/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -179,7 +179,7 @@ fi
 
 if [[ ! -x $(command -v yq) ]]; then
     echo "Downloading yq..."
-    version=4.52.5
+    version=4.53.2
     name=yq_linux_amd64.tar.gz
     url=https://github.com/mikefarah/yq/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"

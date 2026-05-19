@@ -6,6 +6,10 @@ $env:XDG_CONFIG_HOME = "$HOME\.config"
 Set-PSReadLineOption -EditMode Emacs
 
 # aliases
+function actv {
+    . .venv\Scripts\activate
+}
+
 function cd2 {
     Set-Location ..\..\
 }

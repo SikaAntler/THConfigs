@@ -32,11 +32,18 @@ fi
 alias mv="mv -i"
 alias cp="cp -i"
 
-# cd
-alias ..="cd ../"
-alias cd2="cd ../../"
-alias cd3="cd ../../../"
-alias cd4="cd ../../../../"
+# cd & z
+if [[ -x $(command -v eza) ]]; then
+    alias ..="z ../"
+    alias z2="z ../../"
+    alias z3="z ../../../"
+    alias z4="z ../../../../"
+else
+    alias ..="cd ../"
+    alias cd2="cd ../../"
+    alias cd3="cd ../../../"
+    alias cd4="cd ../../../../"
+fi
 
 # conda
 alias act="conda activate"

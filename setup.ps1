@@ -56,6 +56,7 @@ $packages = @(
     'main/scc'
     'main/stylua'
     'main/taplo'
+    'main/tree-sitter'
     'main/ty'
     'main/uv'
     'main/vcpkg'

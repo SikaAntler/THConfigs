@@ -1,17 +1,12 @@
--- return {
---     "brenoprata10/nvim-highlight-colors",
---     event = "VeryLazy",
---     opts = {},
--- }
-
 return {
     "catgoose/nvim-colorizer.lua",
-    event = "BufReadPre",
+    event = "VeryLazy",
     opts = {
-        user_default_options = {
-            names = false,
-            RRGGBBAA = true,
-            AARRGGBB = true,
+        options = {
+            parsers = {
+                css = true,
+                names = false,
+            },
         },
     },
 }

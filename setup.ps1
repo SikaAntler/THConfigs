@@ -5,7 +5,7 @@ function Test-ScoopBucketNotAdded {
     return -not (Test-Path $BucketPath)
 }
 
-if (Get-Command scoop) {
+if (Get-Command scoop -ErrorAction SilentlyContinue -CommandType Application) {
     if (Test-ScoopBucketNotAdded extras) {
         scoop bucket add extras
     }
@@ -68,16 +68,15 @@ $packages = @(
 )
 
 function Install-ScoopPackage {
-    param([String[]]$Package)
-    $parts = $Package -split '/'
-    $PackageName = $parts[-1]
+    param([String]$Package)
+    $PackageName = ($Package -split '/')[-1]
     if (Test-ScoopPackageNotInstalled $PackageName) {
-        scoop install $PackageName
+        scoop install $Package
     }
 }
 
 foreach ($Package in $packages) {
-    Install-ScoopPackage($Package)
+    Install-ScoopPackage $Package
 }
 
 # if (-not (Test-Path -Path $HOME\AppData\Roaming\alacritty\ -PathType Container)) {
@@ -94,4 +93,8 @@ if (-not (Test-Path -Path $HOME\.config\nvim\ -PathType Container)) {
 
 if (-not (Test-Path -Path $HOME\.ideavimrc)) {
     New-Item -ItemType Symboliclink -Path $HOME\.ideavimrc -Target $HOME\THConfigs\.ideavimrc
+}
+
+if (-not (Test-Path -Path $HOME\.config\wezterm\ -PathType Container)) {
+    New-Item -ItemType Symboliclink -Path $HOME\.config\wezterm\ -Target $HOME\THConfigs\wezterm\
 }

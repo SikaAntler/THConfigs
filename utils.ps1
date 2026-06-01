@@ -47,7 +47,7 @@ function wsi {
 }
 
 # fzf
-if (Get-Module -ListAvailable -Name "PSFzf" -ErrorAction Stop) {
+if (Get-Module -ListAvailable -Name "PSFzf" -ErrorAction SilentlyContinue) {
     Set-PsFzfOption -PSReadlineChordProvider "Ctrl+t" -PSReadlineChordReverseHistory "Ctrl+r"
 }
 
@@ -72,6 +72,6 @@ function y {
 }
 
 # zoxide
-if (Get-Command "zoxide") {
+if (Get-Command zoxide -ErrorAction SilentlyContinue -CommandType Application) {
     Invoke-Expression (& { (zoxide init powershell | Out-String) })
 }

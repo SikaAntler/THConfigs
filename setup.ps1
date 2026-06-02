@@ -61,6 +61,7 @@ $packages = @(
     'main/uv'
     'main/vcpkg'
     'extras/wezterm'
+    'extras/winscp'
     'main/yamlfmt'
     'main/yazi'
     'main/yq'

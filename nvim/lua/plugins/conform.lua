@@ -22,10 +22,11 @@ return {
             lua = { "stylua" },
             python = function(bufnr)
                 if
-                    is_available("ruff_format", bufnr)
+                    is_available("ruff_fix", bufnr)
+                    and is_available("ruff_format", bufnr)
                     and is_available("ruff_organize_imports", bufnr)
                 then
-                    return { "ruff_format", "ruff_organize_imports" }
+                    return { "ruff_fix", "ruff_format", "ruff_organize_imports" }
                 else
                     return { "isort", "black" }
                 end

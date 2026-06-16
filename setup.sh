@@ -115,7 +115,7 @@ fi
 
 if [[ ! -x $(command -v nvim) ]]; then
     echo "Downloading nvim..."
-    version=0.12.2
+    version=0.12.3
     url=https://github.com/neovim/neovim/releases/download/v$version/nvim-linux-x86_64.appimage
     curl -L --progress-bar -o "$BIN_DIR/nvim" "$url"
     chmod u+x "$BIN_DIR/nvim"

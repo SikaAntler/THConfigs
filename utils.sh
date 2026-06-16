@@ -102,6 +102,9 @@ alias tks="tmux kill-server"
 alias tnm="tn main"
 alias tam="ta main"
 alias tkm="tk main"
+alias tnt="tn train"
+alias tat="ta train"
+alias tkt="tk train"
 
 # zellij
 alias za="zellij attach"

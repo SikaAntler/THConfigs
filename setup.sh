@@ -31,11 +31,20 @@ DOWNLOAD_DIR=$HOME/Downloads
 
 THC_DIR=$HOME/THConfigs
 
+if [[ ! -x $(command -v bat) ]]; then
+    echo "Downloading bat..."
+    version=0.26.1
+    name=bat-v$version-x86_64-unknown-linux-musl.tar.gz
+    url=https://github.com/sharkdp/bat/releases/download/v$version/$name
+    curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
+    tar -xzf "$DOWNLOAD_DIR/$name" --strip-components=1 -C "$BIN_DIR" bat-v$version-x86_64-unknown-linux-musl/bat
+fi
+
 if [[ ! -x $(command -v btop) ]]; then
     echo "Downloading btop..."
     version=1.4.7
     name=btop-x86_64-unknown-linux-musl.tar.gz
-    url=https://github.com/aristocratos/btop/releases/download/v$version/btop-x86_64-unknown-linux-musl.tar.gz
+    url=https://github.com/aristocratos/btop/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
     tar -xzf "$DOWNLOAD_DIR/$name" -C "$DOWNLOAD_DIR"
     cd "$DOWNLOAD_DIR/btop" || exit

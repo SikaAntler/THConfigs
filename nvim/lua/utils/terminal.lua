@@ -35,11 +35,24 @@ end
 
 local function handle_python(name)
     local msg, cmd
-    if vim.fn.executable("python3") ~= 0 then
+
+    local venv_existed = false
+    local root = vim.fs.root(0, { ".git", "pyproject.toml", "setup.py" })
+    if root then
+        local venv = root .. "/.venv"
+        if vim.fn.isdirectory(venv) == 1 then
+            venv_existed = true
+        end
+    end
+
+    if vim.fn.executable("uv") ~= 0 and venv_existed then
+        cmd = "uv run"
+    elseif vim.fn.executable("python3") ~= 0 then
         cmd = "python3"
     else
         msg = "command not found: python3"
     end
+
     return msg, cmd, name
 end
 
@@ -63,7 +76,7 @@ return function()
     end
 
     local ft = vim.bo.filetype
-    local name  = vim.fn.expand("%")
+    local name = vim.api.nvim_buf_get_name(0)
     name = handle_whitespaces(name)
     local msg, cmd, arg
 

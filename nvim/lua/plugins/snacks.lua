@@ -90,6 +90,12 @@ return {
             end,
         },
         {
+            "<Space>fk",
+            function()
+                require("snacks").picker.keymaps()
+            end,
+        },
+        {
             "<Space>bd",
             function()
                 require("snacks").bufdelete()

@@ -1,7 +1,6 @@
 return {
     "catppuccin/nvim",
     name = "catppuccin",
-    prioroty = 1000,
     init = function()
         vim.cmd.colorscheme("catppuccin-macchiato")
     end,
@@ -27,8 +26,10 @@ return {
             aerial = true,
             alpha = true,
             blink_cmp = {
+                enabled = true,
                 style = "bordered",
             },
+            blink_pairs = false,
             diffview = true,
             dropbar = { enabled = true, color_mode = true },
             flash = true,

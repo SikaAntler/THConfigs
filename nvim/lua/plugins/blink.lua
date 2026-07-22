@@ -1,7 +1,8 @@
 return {
     "saghen/blink.cmp",
-    version = "1.*",
+    dependencies = "saghen/blink.lib",
     event = { "BufReadPost", "BufNewFile" },
+    version = "*",
 
     ---@module "blink.cmp"
     ---@type blink.cmp.Config

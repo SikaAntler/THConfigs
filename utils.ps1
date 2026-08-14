@@ -6,53 +6,65 @@ $env:XDG_CONFIG_HOME = "$HOME\.config"
 Set-PSReadLineOption -EditMode Emacs
 
 # aliases
-function actv {
+function actv
+{
     . .venv\Scripts\activate
 }
 
-function cd2 {
+function cd2
+{
     Set-Location ..\..\
 }
 
-function cd3 {
+function cd3
+{
     Set-Location ..\..\..\
 }
 
-function ls {
+function ls
+{
     eza --icons
 }
 
-function l {
+function l
+{
     eza --icons --sort Name
 }
 
-function la {
+function la
+{
     eza --icons --sort Name --all
 }
 
-function ll {
+function ll
+{
     eza --icons --sort Name --all --long
 }
 
-function lg {
+function lg
+{
     lazygit
 }
 
-function np {
+function np
+{
     nvim $PROFILE
 }
 
-function wsi {
+function wsi
+{
     wezterm cli spawn --domain-name SSH:imager
 }
 
 # fzf
-if (Get-Module -ListAvailable -Name "PSFzf" -ErrorAction SilentlyContinue) {
+if (Get-Module -ListAvailable -Name "PSFzf" -ErrorAction SilentlyContinue)
+{
     Set-PsFzfOption -PSReadlineChordProvider "Ctrl+t" -PSReadlineChordReverseHistory "Ctrl+r"
 }
 
 # starship
-# if (Get-Command "starship" -ErrorAction Stop) {
+# if (Get-Command "starship" -ErrorAction Stop)
+# {
 #     $env:STARSHIP_CONFIG = "$HOME\THConfigs\starship.toml"
 #     Invoke-Expression(&starship init powershell)
 # }
@@ -60,7 +72,8 @@ if (Get-Module -ListAvailable -Name "PSFzf" -ErrorAction SilentlyContinue) {
 # yazi
 $env:YAZI_CONFIG_HOME = "$HOME\THConfigs\yazi"
 $env:YAZI_FILE_ONE = "$HOME\scoop\apps\git\current\usr\bin\file.exe"
-function y {
+function y
+{
     $tmp = [System.IO.Path]::GetTempFileName()
     yazi $args --cwd-file="$tmp"
     $cwd = Get-Content -Path $tmp
@@ -72,6 +85,7 @@ function y {
 }
 
 # zoxide
-if (Get-Command zoxide -ErrorAction SilentlyContinue -CommandType Application) {
+if (Get-Command zoxide -ErrorAction SilentlyContinue -CommandType Application)
+{
     Invoke-Expression (& { (zoxide init powershell | Out-String) })
 }

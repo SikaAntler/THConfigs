@@ -1,30 +1,37 @@
-function Test-ScoopBucketNotAdded {
+function Test-ScoopBucketNotAdded
+{
     param([String]$BucketPath)
     $BucketPath = Join-Path $HOME\scoop\buckets $BucketPath
 
     return -not (Test-Path $BucketPath)
 }
 
-if (Get-Command scoop -ErrorAction SilentlyContinue -CommandType Application) {
-    if (Test-ScoopBucketNotAdded extras) {
+if (Get-Command scoop -ErrorAction SilentlyContinue -CommandType Application)
+{
+    if (Test-ScoopBucketNotAdded extras)
+    {
         scoop bucket add extras
     }
-    if (Test-ScoopBucketNotAdded nerd-fonts) {
+    if (Test-ScoopBucketNotAdded nerd-fonts)
+    {
         scoop bucket add nerd-fonts
     }
-} else {
+} else
+{
     Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
     Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 }
 
-function Test-ScoopPackageNotInstalled {
+function Test-ScoopPackageNotInstalled
+{
     param([String]$PackageName)
     $PackagePath = Join-Path $HOME\scoop\apps $PackageName
 
     return -not (Test-Path $PackagePath)
 }
 
-if (Test-ScoopPackageNotInstalled git) {
+if (Test-ScoopPackageNotInstalled git)
+{
     scoop install main/git
 }
 
@@ -49,6 +56,7 @@ $packages = @(
     'extras/netron'
     'main/ninja'
     'main/nodejs'
+    'main/powershelleditorservices'
     'extras/psfzf'
     'main/python'
     'main/ripgrep'
@@ -68,34 +76,37 @@ $packages = @(
     'main/zoxide'
 )
 
-function Install-ScoopPackage {
+function Install-ScoopPackage
+{
     param([String]$Package)
     $PackageName = ($Package -split '/')[-1]
-    if (Test-ScoopPackageNotInstalled $PackageName) {
+    if (Test-ScoopPackageNotInstalled $PackageName)
+    {
         scoop install $Package
     }
 }
 
-foreach ($Package in $packages) {
+foreach ($Package in $packages)
+{
     Install-ScoopPackage $Package
 }
 
-# if (-not (Test-Path -Path $HOME\AppData\Roaming\alacritty\ -PathType Container)) {
-#     New-Item -ItemType Symboliclink -Path $HOME\AppData\Roaming\alacritty\ -Target $HOME\THConfigs\alacritty\
-# }
-
-if (-not (Test-Path -Path $HOME\.config\lazygit\ -PathType Container)) {
+if (-not (Test-Path -Path $HOME\.config\lazygit\ -PathType Container))
+{
     New-Item -ItemType Symboliclink -Path $HOME\.config\lazygit\ -Target $HOME\THConfigs\lazygit\
 }
 
-if (-not (Test-Path -Path $HOME\.config\nvim\ -PathType Container)) {
+if (-not (Test-Path -Path $HOME\.config\nvim\ -PathType Container))
+{
     New-Item -ItemType Symboliclink -Path $HOME\.config\nvim\ -Target $HOME\THConfigs\nvim\
 }
 
-if (-not (Test-Path -Path $HOME\.ideavimrc)) {
+if (-not (Test-Path -Path $HOME\.ideavimrc))
+{
     New-Item -ItemType Symboliclink -Path $HOME\.ideavimrc -Target $HOME\THConfigs\.ideavimrc
 }
 
-if (-not (Test-Path -Path $HOME\.config\wezterm\ -PathType Container)) {
+if (-not (Test-Path -Path $HOME\.config\wezterm\ -PathType Container))
+{
     New-Item -ItemType Symboliclink -Path $HOME\.config\wezterm\ -Target $HOME\THConfigs\wezterm\
 }

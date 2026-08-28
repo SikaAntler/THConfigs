@@ -80,7 +80,7 @@ fi
 
 if [[ ! -x $(command -v eza) ]]; then
     echo "Downloading eza..."
-    version=0.23.4
+    version=0.23.5
     name=eza_x86_64-unknown-linux-musl.tar.gz
     url=https://github.com/eza-community/eza/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -89,7 +89,7 @@ fi
 
 if [[ ! -x $(command -v fd) ]]; then
     echo "Downloading fd..."
-    version=10.4.2
+    version=10.5.0
     name=fd-v$version-x86_64-unknown-linux-musl.tar.gz
     url=https://github.com/sharkdp/fd/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -98,7 +98,7 @@ fi
 
 if [[ ! -x $(command -v fzf) ]]; then
     echo "Downloading fzf..."
-    version=0.72.0
+    version=0.74.3
     name=fzf-$version-linux_amd64.tar.gz
     url=https://github.com/junegunn/fzf/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -107,7 +107,7 @@ fi
 
 if [[ ! -x $(command -v jq) ]]; then
     echo "Downloading jq..."
-    version=1.8.1
+    version=1.8.2
     url=https://github.com/jqlang/jq/releases/download/jq-$version/jq-linux-amd64
     curl -L --progress-bar -o "$BIN_DIR/jq" "$url"
     chmod u+x "$BIN_DIR/jq"
@@ -115,7 +115,7 @@ fi
 
 if [[ ! -x $(command -v lazygit) ]]; then
     echo "Downloading lazygit..."
-    version=0.61.1
+    version=0.64.1
     name=lazygit_${version}_linux_x86_64.tar.gz
     url=https://github.com/jesseduffield/lazygit/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -124,7 +124,7 @@ fi
 
 if [[ ! -x $(command -v nvim) ]]; then
     echo "Downloading nvim..."
-    version=0.12.3
+    version=0.12.5
     url=https://github.com/neovim/neovim/releases/download/v$version/nvim-linux-x86_64.appimage
     curl -L --progress-bar -o "$BIN_DIR/nvim" "$url"
     chmod u+x "$BIN_DIR/nvim"
@@ -132,7 +132,7 @@ fi
 
 if [[ ! -x $(command -v resvg) ]]; then
     echo "Downloading resvg..."
-    version=0.47.0
+    version=0.48.1
     name=resvg-linux-x86_64.tar.gz
     url=https://github.com/linebender/resvg/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -141,7 +141,7 @@ fi
 
 if [[ ! -x $(command -v rg) ]]; then
     echo "Downloading rg..."
-    version=15.1.0
+    version=15.2.0
     name=ripgrep-$version-x86_64-unknown-linux-musl.tar.gz
     url=https://github.com/BurntSushi/ripgrep/releases/download/$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -150,17 +150,9 @@ fi
 
 [[ -x $(command -v starship) ]] || curl -sS https://starship.rs/install.sh | sh -s -- -b "$BIN_DIR"
 
-if [[ ! -x $(command -v tmux) ]]; then
-    echo "Downloading tmux..."
-    version=3.5a
-    url=https://github.com/nelsonenzo/tmux-appimage/releases/download/$version/tmux.appimage
-    curl -L --progress-bar -o "$BIN_DIR/tmux" "$url"
-    chmod u+x "$BIN_DIR/tmux"
-fi
-
 if [[ ! -x $(command -v tree-sitter) ]]; then
     echo "Downloading tree-sitter"
-    version=0.25.10
+    version=0.26.13
     name=tree-sitter-linux-x64.gz
     url=https://github.com/tree-sitter/tree-sitter/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -170,7 +162,7 @@ fi
 
 if [[ ! -x $(command -v uv) ]]; then
     echo "Downloading uv..."
-    version=0.11.13
+    version=0.12.7
     name=uv-x86_64-unknown-linux-musl.tar.gz
     url=https://github.com/astral-sh/uv/releases/download/$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -179,7 +171,7 @@ fi
 
 if [[ ! -x $(command -v yazi) ]]; then
     echo "Downloading yazi..."
-    version=26.5.6
+    version=26.8.15
     name=yazi-x86_64-unknown-linux-musl.zip
     url=https://github.com/sxyazi/yazi/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -188,7 +180,7 @@ fi
 
 if [[ ! -x $(command -v yq) ]]; then
     echo "Downloading yq..."
-    version=4.53.2
+    version=4.53.6
     name=yq_linux_amd64.tar.gz
     url=https://github.com/mikefarah/yq/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -198,7 +190,7 @@ fi
 
 if [[ ! -x $(command -v zoxide) ]]; then
     echo "Downloading zoxide..."
-    version=0.9.9
+    version=0.10.0
     name=zoxide-$version-x86_64-unknown-linux-musl.tar.gz
     url=https://github.com/ajeetdsouza/zoxide/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"

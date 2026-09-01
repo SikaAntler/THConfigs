@@ -85,8 +85,8 @@ vim.o.foldmethod = "expr"
 vim.o.foldtext = "v:lua.custom_foldtext()"
 
 -- Term
-if vim.uv.os_uname().sysname == "Windows_NT" and vim.fn.executable("powershell") then
-    vim.opt.shell = "powershell"
+if vim.uv.os_uname().sysname == "Windows_NT" and vim.fn.executable("pwsh.exe") then
+    vim.opt.shell = "pwsh.exe"
     vim.opt.shellcmdflag =
         "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
     vim.opt.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'

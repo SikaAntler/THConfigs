@@ -63,11 +63,11 @@ if (Get-Module -ListAvailable -Name "PSFzf" -ErrorAction SilentlyContinue)
 }
 
 # starship
-# if (Get-Command "starship" -ErrorAction Stop)
-# {
-#     $env:STARSHIP_CONFIG = "$HOME\THConfigs\starship.toml"
-#     Invoke-Expression(&starship init powershell)
-# }
+if (Get-Command "starship" -ErrorAction SilentlyContinue -CommandType Application)
+{
+    $env:STARSHIP_CONFIG = "$HOME\THConfigs\starship.toml"
+    Invoke-Expression(&starship init powershell)
+}
 
 # yazi
 $env:YAZI_CONFIG_HOME = "$HOME\THConfigs\yazi"

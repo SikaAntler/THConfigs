@@ -29,7 +29,7 @@ return {
                 enabled = true,
                 style = "bordered",
             },
-            blink_pairs = false,
+            blink_pairs = true,
             diffview = true,
             dropbar = { enabled = true, color_mode = true },
             flash = true,

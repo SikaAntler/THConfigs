@@ -41,6 +41,12 @@ function ll
     eza --icons --sort Name --all --long
 }
 
+function lr
+{
+    param($Pattern)
+    eza --sort Name --all --long | rg -i $Pattern
+}
+
 function lg
 {
     lazygit

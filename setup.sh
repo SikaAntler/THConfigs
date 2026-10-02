@@ -71,7 +71,7 @@ fi
 
 if [[ ! -x $(command -v dust) ]]; then
     echo "Downloading dust..."
-    version=1.2.4
+    version=1.2.6
     name=dust-v$version-x86_64-unknown-linux-musl.tar.gz
     url=https://github.com/bootandy/dust/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -98,7 +98,7 @@ fi
 
 if [[ ! -x $(command -v fzf) ]]; then
     echo "Downloading fzf..."
-    version=0.74.3
+    version=0.74.4
     name=fzf-$version-linux_amd64.tar.gz
     url=https://github.com/junegunn/fzf/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -115,7 +115,7 @@ fi
 
 if [[ ! -x $(command -v lazygit) ]]; then
     echo "Downloading lazygit..."
-    version=0.64.1
+    version=0.65.1
     name=lazygit_${version}_linux_x86_64.tar.gz
     url=https://github.com/jesseduffield/lazygit/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -152,7 +152,7 @@ fi
 
 if [[ ! -x $(command -v tree-sitter) ]]; then
     echo "Downloading tree-sitter"
-    version=0.26.13
+    version=0.27.0
     name=tree-sitter-linux-x64.gz
     url=https://github.com/tree-sitter/tree-sitter/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -162,16 +162,17 @@ fi
 
 if [[ ! -x $(command -v uv) ]]; then
     echo "Downloading uv..."
-    version=0.12.7
-    name=uv-x86_64-unknown-linux-musl.tar.gz
+    version=0.12.22
+    stem=uv-x86_64-unknown-linux-musl
+    name=$stem.tar.gz
     url=https://github.com/astral-sh/uv/releases/download/$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
-    tar -xzf "$DOWNLOAD_DIR/$name" --strip-components=1 -C "$BIN_DIR" uv-x86_64-unknown-linux-musl/uv uv-x86_64-unknown-linux-musl/uvx
+    tar -xzf "$DOWNLOAD_DIR/$name" --strip-components=1 -C "$BIN_DIR" "$stem/uv" "$stem/uvx"
 fi
 
 if [[ ! -x $(command -v yazi) ]]; then
     echo "Downloading yazi..."
-    version=26.8.15
+    version=26.9.1
     name=yazi-x86_64-unknown-linux-musl.zip
     url=https://github.com/sxyazi/yazi/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -180,7 +181,7 @@ fi
 
 if [[ ! -x $(command -v yq) ]]; then
     echo "Downloading yq..."
-    version=4.53.6
+    version=4.54.1
     name=yq_linux_amd64.tar.gz
     url=https://github.com/mikefarah/yq/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"

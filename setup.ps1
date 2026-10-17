@@ -42,6 +42,7 @@ $packages = @(
     'main/fd'
     'main/ffmpeg'
     'main/fzf'
+    'extras/gersemi'
     'main/ghostscript'
     'main/gsudo'
     'main/imagemagick'

@@ -1,5 +1,5 @@
 return {
-    cmd = { "clangd", "--header-insertion=never" },
+    cmd = { "clangd", "--background-index", "--clang-tidy", "--header-insertion=never" },
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
     root_markers = {
         ".clangd",

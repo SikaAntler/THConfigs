@@ -8,5 +8,6 @@ return {
                 names = false,
             },
         },
+        filetypes = { "*", "!cuda" },
     },
 }

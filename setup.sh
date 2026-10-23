@@ -51,15 +51,6 @@ if [[ ! -x $(command -v btop) ]]; then
     make install PREFIX="$HOME/.local"
 fi
 
-if [[ ! -x $(command -v csvtk) ]]; then
-    echo "Downloading csvtk..."
-    version=0.37.0
-    name=csvtk_linux_amd64.tar.gz
-    url=https://github.com/shenwei356/csvtk/releases/download/v$version/$name
-    curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
-    tar -xzf "$DOWNLOAD_DIR/$name" -C "$BIN_DIR"
-fi
-
 if [[ ! -x $(command -v duf) ]]; then
     echo "Downloading duf..."
     version=0.9.1
@@ -98,7 +89,7 @@ fi
 
 if [[ ! -x $(command -v fzf) ]]; then
     echo "Downloading fzf..."
-    version=0.74.4
+    version=0.74.5
     name=fzf-$version-linux_amd64.tar.gz
     url=https://github.com/junegunn/fzf/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -115,7 +106,7 @@ fi
 
 if [[ ! -x $(command -v lazygit) ]]; then
     echo "Downloading lazygit..."
-    version=0.65.1
+    version=0.66.2
     name=lazygit_${version}_linux_x86_64.tar.gz
     url=https://github.com/jesseduffield/lazygit/releases/download/v$version/$name
     curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
@@ -124,7 +115,7 @@ fi
 
 if [[ ! -x $(command -v nvim) ]]; then
     echo "Downloading nvim..."
-    version=0.12.5
+    version=0.12.6
     url=https://github.com/neovim/neovim/releases/download/v$version/nvim-linux-x86_64.appimage
     curl -L --progress-bar -o "$BIN_DIR/nvim" "$url"
     chmod u+x "$BIN_DIR/nvim"
@@ -150,19 +141,9 @@ fi
 
 [[ -x $(command -v starship) ]] || curl -sS https://starship.rs/install.sh | sh -s -- -b "$BIN_DIR"
 
-if [[ ! -x $(command -v tree-sitter) ]]; then
-    echo "Downloading tree-sitter"
-    version=0.27.0
-    name=tree-sitter-linux-x64.gz
-    url=https://github.com/tree-sitter/tree-sitter/releases/download/v$version/$name
-    curl -L --progress-bar -o "$DOWNLOAD_DIR/$name" "$url"
-    gzip -dc "$DOWNLOAD_DIR/$name" > "$BIN_DIR/tree-sitter"
-    chmod u+x "$BIN_DIR/tree-sitter"
-fi
-
 if [[ ! -x $(command -v uv) ]]; then
     echo "Downloading uv..."
-    version=0.12.22
+    version=0.13.5
     stem=uv-x86_64-unknown-linux-musl
     name=$stem.tar.gz
     url=https://github.com/astral-sh/uv/releases/download/$version/$name

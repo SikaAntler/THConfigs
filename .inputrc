@@ -1,0 +1,15 @@
+# Case insensitive tab completion
+set completion-ignore-case on
+
+# Show all available completions
+set show-all-if-ambiguous on
+
+set mark-symlinked-directories on
+
+Control-l: clear-screen
+
+# Backspcing until slash or whitespace
+Control-g: unix-filename-rubout
+
+Control-p: history-search-backward
+Control-n: history-search-forward

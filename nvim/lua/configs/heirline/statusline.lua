@@ -288,6 +288,26 @@ local Language = {
     },
 }
 
+local selection_width = function(mode)
+    local regions = vim.fn.getregionpos(vim.fn.getpos("v"), vim.fn.getpos("."), {
+        type = mode,
+        exclusive = vim.o.selection == "exclusive",
+        eol = true,
+    })
+    local width = 0
+    for _, region in ipairs(regions) do
+        local first, last = region[1], region[2]
+        local start_col = vim.fn.virtcol({ first[2], first[3] }, true)[1] + first[4]
+        local end_cells = vim.fn.virtcol({ last[2], last[3] }, true)
+        local end_col = last[4] > 0 and (end_cells[1] + last[4] - 1) or end_cells[2]
+        if mode ~= "\22" then
+            end_col = math.min(end_col, vim.fn.virtcol({ last[2], "$" }) - 1)
+        end
+        width = math.max(width, end_col - start_col + 1)
+    end
+    return width
+end
+
 local Cursor = {
     provider = function()
         local lines = ""
@@ -296,10 +316,10 @@ local Cursor = {
             local begin_lnum = vim.fn.getpos("v")[2]
             local end_lnum = vim.fn.getcurpos()[2]
             local count = math.abs(end_lnum - begin_lnum) + 1
-            lines = "(" .. count .. " lines) "
+            lines = ("(%d lines, %d cols) "):format(count, selection_width(mode))
         end
         local row = vim.fn.line(".")
-        local col = vim.fn.charcol(".")
+        local col = vim.fn.virtcol(".")
         return lines .. row .. ":" .. col .. " %P"
     end,
 }

@@ -46,7 +46,7 @@ local function handle_python(name)
     end
 
     if vim.fn.executable("uv") ~= 0 and venv_existed then
-        cmd = "uv run"
+        cmd = "uv run --no-sync"
     elseif vim.fn.executable("python3") ~= 0 then
         cmd = "python3"
     else

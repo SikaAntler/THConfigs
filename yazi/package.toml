@@ -1,16 +1,21 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "33dde28"
-hash = "f281261ff04ad7ec867c3f802a50835f"
+rev = "1ef5fe0"
+hash = "17ebde15c4349f90aedbc45984b98db2"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "33dde28"
+rev = "1ef5fe0"
 hash = "7a4b4237223aaa94e589d1c01a23542a"
 
 [[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "1ef5fe0"
+hash = "d1e0499cae5f3aeb628c267616d4b682"
+
+[[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "33dde28"
+rev = "1ef5fe0"
 hash = "5b2fbef7d1513ce38ff72623a071a5e"
 
 [flavor]

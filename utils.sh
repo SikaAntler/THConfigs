@@ -33,7 +33,7 @@ alias mv="mv -i"
 alias cp="cp -i"
 
 # cd & z
-if [[ -x $(command -v eza) ]]; then
+if [[ -x $(command -v zoxide) ]]; then
     alias ..="z ../"
     alias z2="z ../../"
     alias z3="z ../../../"

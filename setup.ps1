@@ -44,6 +44,7 @@ $packages = @(
     'main/fzf'
     'extras/gersemi'
     'main/ghostscript'
+    'main/glow'
     'main/gsudo'
     'main/imagemagick'
     'main/jq'

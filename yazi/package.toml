@@ -6,7 +6,7 @@ hash = "17ebde15c4349f90aedbc45984b98db2"
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
 rev = "1ef5fe0"
-hash = "7a4b4237223aaa94e589d1c01a23542a"
+hash = "8c60f68f63898faf1e420098487486c0"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
@@ -16,7 +16,7 @@ hash = "d1e0499cae5f3aeb628c267616d4b682"
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
 rev = "1ef5fe0"
-hash = "5b2fbef7d1513ce38ff72623a071a5e"
+hash = "a0d570162ec1ae6e3945f547c3d784f9"
 
 [flavor]
 deps = []
